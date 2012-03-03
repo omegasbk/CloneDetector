@@ -1,0 +1,6 @@
+content   CloneDetector                    content/
+skin      CloneDetector      classic/1.0   skin/
+locale    CloneDetector      en-US         locale/en-US/
+
+overlay chrome://browser/content/browser.xul          chrome://CloneDetector/content/browserOverlay.xul
+style   chrome://global/content/customizeToolbar.xul  chrome://CloneDetector/skin/toolbar.css

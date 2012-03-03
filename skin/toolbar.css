@@ -1,0 +1,15 @@
+#cloneDetectorToolbarButton 
+{
+	list-style-image: url("chrome://CloneDetector/skin/toolbar-large.png");
+}
+
+toolbar[iconsize="small"] #cloneDetectorToolbarButton 
+{
+	list-style-image: url("chrome://CloneDector/skin/toolbar.png");
+}
+
+#cloneDetectorToolbarButton  > .toolbarbutton-icon {
+  margin: 0px !important;
+  width: auto !important;
+  height: auto !important;
+}
