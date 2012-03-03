@@ -2,6 +2,12 @@ var CloneDetector =
 {
 	handleClick: function()
 	{
-		alert("Hello from CloneDetector!");
+		try
+		{
+			var scriptSources = "";
+		
+			alert(FFHelper.getScriptsPathsContent());
+		}
+		catch(e) { alert("Error when handling click on the toolbar button: " + e); }
 	}
 };

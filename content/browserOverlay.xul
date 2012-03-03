@@ -4,6 +4,7 @@
 
 <overlay id="cloneDetectorBrowserOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 	
+	<script src="chrome://CloneDetector/content/scripts/helpers/FFHelper.js" type="application/x-javascript"/>
 	<script src="chrome://CloneDetector/content/scripts/buttonInitializer.js" type="application/x-javascript"/>
 	<script src="chrome://CloneDetector/content/scripts/main.js" type="application/x-javascript"/>
 
