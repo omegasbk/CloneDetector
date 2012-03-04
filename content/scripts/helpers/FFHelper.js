@@ -1,6 +1,6 @@
 var FFHelper = 
 {
-	getScriptsPathsContent: function(callbackFunction)
+	getScriptsPathContent: function()
 	{
 		try
 		{
@@ -9,8 +9,6 @@ var FFHelper =
 			
 			scriptElements.forEach(function(script, index)
 			{
-				var request = new XMLHttpRequest();
-				
 				if(script.src == null || script.src == "")
 				{
 					scriptsPathsContent.push({ path: this.getPageDocument().location.href, content : script.textContent });
@@ -29,6 +27,36 @@ var FFHelper =
 			return scriptsPathsContent;
 		}
 		catch(e) { alert("Error when executing FFHelper.getScriptsPathsContent: " + e);}
+	},
+	
+	getScriptsPathContentAST: function ()
+	{
+		try
+		{
+			Components.utils.import("resource://gre/modules/reflect.jsm");
+			
+			var scriptPathsContent = this.getScriptsPathContent();
+			
+			scriptPathsContent.forEach(function(scriptPathContent)
+			{
+				try
+				{
+					scriptPathContent.ast = Reflect.parse
+					(
+						scriptPathContent.content,
+						{
+							loc:true,
+							source: scriptPathContent.path,
+							line: 1 //TODO - Put the real line number here!
+						}
+					);
+				}
+				catch(e) { alert("Error occured while parsing javascript code in file: " + scriptPathContent.path + " " + e);} 
+			});
+			
+			return scriptPathsContent;
+		}
+		catch(e) { alert("An error occured while parsing JS code: " + e);}
 	},
 	
 	getPageDocument: function()
