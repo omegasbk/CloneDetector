@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>ASTViewerWindow</title>
+        <style>
+            #mainContainer
+            {
+                margin-left: auto;
+                margin-right: auto;
+                width: 99%;
+                height: 470px;
+            }
+
+            #textInputContainer
+            {
+                float: left;
+                width: 50%;
+                height: 95%;
+            }
+
+            #astOutputContainer
+            {
+                float: left;
+                clear: right;
+                width: 50%;
+                height: 95%;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>AST Viewer</h2>
+
+        <div id="mainContainer">
+            <div id="textInputContainer">
+                <textarea id="codeTextArea" cols="51" rows="28"></textarea>
+            </div>
+            <div id="astOutputContainer">
+                <textarea id="astTextArea" cols="51" rows="28"></textarea>
+            </div>
+
+            <div style="clear:both"></div>
+
+            <button id="buildASTButton">Build</button>
+        </div>
+
+        <script>
+            document.getElementById("buildASTButton").onclick = function()
+            {
+                try
+                {
+                    document.getElementById("astTextArea").value =  JSON.stringify
+                    (
+                        window.parent.ASTViewerWindow.args.getAst(document.getElementById("codeTextArea").value)
+                    );
+                }
+                catch(e) { alert("Error when buling AST");}
+
+            };
+        </script>
+    </body>
+</html>

@@ -1,5 +1,31 @@
 var FFHelper = 
 {
+    openWindow: function(pathToWindowXul, windowTitle, args)
+    {
+        try
+        {
+            var windowWatcher = Components.classes["@mozilla.org/embedcomp/window-watcher;1"].getService
+            (
+                Components.interfaces.nsIWindowWatcher
+            );
+
+            if(args != null)
+            {
+                args.wrappedJSObject = args;
+            }
+
+            return windowWatcher.openWindow
+            (
+                null,
+                pathToWindowXul,
+                windowTitle,
+                "chrome,centerscreen",
+                args
+            );
+        }
+        catch (e) { alert("Error opening window:" + e); }
+    },
+
 	getScriptsPathContent: function()
 	{
 		try
@@ -28,6 +54,16 @@ var FFHelper =
 		}
 		catch(e) { alert("Error when executing FFHelper.getScriptsPathsContent: " + e);}
 	},
+
+    getTextContentAST: function(text)
+    {
+        try
+        {
+            Components.utils.import("resource://gre/modules/reflect.jsm");
+            return Reflect.parse(text, {});
+        }
+        catch(e) { alert("Error in FFHelper when getting textContent AST"); }
+    },
 	
 	getScriptsPathContentAST: function ()
 	{
