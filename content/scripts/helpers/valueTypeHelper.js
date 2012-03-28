@@ -5,6 +5,13 @@
         return variable instanceof className;
     },
 
+    isRegExp: function(variable)
+    {
+        if (this.isNull(variable)) { return false; }
+
+        return (typeof variable) == "object" && variable.constructor.name == "RegExp";
+    },
+
     isBoolean: function(variable)
     {
         if (this.isNull(variable)) { return false; }
@@ -17,6 +24,13 @@
         if (this.isNull(variable)) { return false; }
 
         return (typeof variable) == "string" || variable instanceof String;
+    },
+
+    isNumber: function(variable)
+    {
+        if (this.isNull(variable)) { return false; }
+
+        return (typeof variable) == "number";
     },
 
     isInteger: function (variable)
