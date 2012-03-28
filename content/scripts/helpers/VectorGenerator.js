@@ -20,6 +20,7 @@ var VectorGenerator = {
             */
             
             else if (ASTHelper.isTryStatement(astElement)) { this.generateVectorForTryStatement(astElement); }
+            else if (ASTHelper.isExpressionStatement(astElement)) { this.generateVectorForExpressionStatement(astElement); }
             else if (ASTHelper.isCatchClause(astElement)) { this.generateVectorForCatchClause(astElement); }
             
             
@@ -45,6 +46,18 @@ var VectorGenerator = {
         catch(e) { alert("Error when generating vector from block statement: " + e);}
     },
 
+    generateVectorForExpressionStatement: function(expStat)
+    {
+        try
+        {
+            if(!ASTHelper.isExpressionStatement(expStat)) { alert("Sent argument is not a expression or statement when generating vector!"); return; }
+
+            expStat.characteristicVector = new CharacteristicVector();
+            
+        }
+        catch(e) { alert("Error when generating vector from expression or statement: " + e);}
+    },
+    
     generateVectorForFunction: function(functionElement)
     {
         try
@@ -170,63 +183,49 @@ var VectorGenerator = {
     
     generateVectorForTryStatement: function(tryStatement)
     {
-    	try
-    	{
-    		if(!ASTHelper.isTryStatement(tryStatement)) { alert("Sent argument is not a try statement when generating vector!"); return; }
-    		
-    		  
-    	    this.generate(tryStatement.block);
+        try
+        {
+            if(!ASTHelper.isTryStatement(tryStatement)) { alert("Sent argument is not a try statement when generating vector!"); return; }
 
-    		tryStatement.characteristicVector = new CharacteristicVector();
-    		
-    		tryStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.TryStatement]++;  
-    		
-    	  
-    	    
-    	    tryStatement.handlers.forEach(function(catchClause)
-    	    		{
-    	    		   this.generate(catchClause);
-    	    		   tryStatement.characteristicVector.join(catchClause.characteristicVector);
-    	    		}, this);
-    	    		
+            tryStatement.characteristicVector = new CharacteristicVector();
 
-    	    		if(tryStatement.finalizer != null)
-    	    		{
-    	    		this.generate(tryStatement.finalizer);
-    	    		tryStatement.characteristicVector.join(tryStatement.finalizer.characteristicVector);
-    	    		}
-    	    		
-    	    		
-    	    tryStatement.characteristicVector.join(tryStatement.block.characteristicVector);
-    		
-    	  
-    	  
-    	}
-    	catch (e) { alert ("Error when generating vector for Try Statement: " + e); }
+            this.generate(tryStatement.block);
+
+            tryStatement.characteristicVector.join(tryStatement.block.characteristicVector);
+
+            tryStatement.handlers.forEach(function(catchClause)
+            {
+                this.generate(catchClause);
+                tryStatement.characteristicVector.join(catchClause.characteristicVector);
+            }, this);
+
+            if(tryStatement.finalizer != null)
+            {
+                this.generate(tryStatement.finalizer);
+                tryStatement.characteristicVector.join(tryStatement.finalizer.characteristicVector);
+            }
+
+            tryStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.TryStatement]++;
+        }
+        catch (e) { alert ("Error when generating vector for Try Statement: " + e); }
     },
-    
 
     generateVectorForCatchClause: function(catchClause)
     {
-    
-    	try
-    	{
-    		   
-    		catchClause.characteristicVector = new CharacteristicVector();
-    		
-    		if(!ASTHelper.isCatchClause(catchClause)) { alert("Sent argument is not a catch clause when generating vector!"); return; }
-    		
-    		this.generate(catchClause.block);
-    		catchClause.characteristicVector.join(catchClause.block.characteristicVector);
-    		    		
-    		catchClause.characteristicVector[CharacteristicVector.RELEVANT_NODES.CatchClause]++;  
-    	    
-    	 
-    	 
-    	}
-    	catch (e) { alert ("Error when generating vector for Catch Clause: " + e); }
+        try
+        {
+            if(!ASTHelper.isCatchClause(catchClause)) { alert("Sent argument is not a catch clause when generating vector!"); return; }
+
+            catchClause.characteristicVector = new CharacteristicVector();
+
+            this.generate(catchClause.block);
+
+            catchClause.characteristicVector.join(catchClause.block.characteristicVector);
+
+            catchClause.characteristicVector[CharacteristicVector.RELEVANT_NODES.CatchClause]++;
+        }
+        catch (e) { alert ("Error when generating vector for Catch Clause: " + e); }
     }
-    
     
 };
 
