@@ -14,6 +14,15 @@ var VectorGenerator = {
             else if (ASTHelper.isVariableDeclarator(astElement)) { this.generateVectorForVariableDeclarator(astElement); }
             else if (ASTHelper.isIdentifier(astElement)) { this.generateVectorForIdentifier(astElement); }
             else if (ASTHelper.isLiteral(astElement)) { this.generateVectorForLiteral(astElement); }
+          
+            /**
+             *  my code
+            */
+            
+            else if (ASTHelper.isTryStatement(astElement)) { this.generateVectorForTryStatement(astElement); }
+             
+            
+            
             else { alert("Unhandled element when generating vector: " + astElement.type); }
         }
         catch(e) { alert("Error when generating vector: " + e); }
@@ -157,7 +166,21 @@ var VectorGenerator = {
             else {alert("Unknown literal when generating vector!"); return; }
         }
         catch(e) { alert("Error when generating vector for literal: " + e); }
+    },
+    
+    generateVectorForTryStatement: function(tryStatement)
+    {
+    	try
+    	{
+    		if(!ASTHelper.isTryStatement(tryStatement)) { alert("Sent argument is not a try statement when generating vector!"); return; }
+    		
+    		tryStatement.characteristicVector = new CharacteristicVector();
+    		
+    	    tryStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.TryStatement]++;  		
+    	}
+    	catch (e) { alert ("Error when generating vector for Try Statement: " + e); }
     }
+    
 };
 
 function CharacteristicVector()
