@@ -20,7 +20,7 @@ var VectorGenerator = {
             */
             
             else if (ASTHelper.isTryStatement(astElement)) { this.generateVectorForTryStatement(astElement); }
-             
+            else if (ASTHelper.isCatchClause(astElement)) { this.generateVectorForCatchClause(astElement); }
             
             
             else { alert("Unhandled element when generating vector: " + astElement.type); }
@@ -182,7 +182,27 @@ var VectorGenerator = {
     	    tryStatement.characteristicVector.join(tryStatement.block.characteristicVector);
     	}
     	catch (e) { alert ("Error when generating vector for Try Statement: " + e); }
+    },
+    
+    
+    generateVectorForCatchClause: function(catchClause)
+    {
+    
+    	try
+    	{
+    		if(!ASTHelper.isCatchClause(catchClause)) { alert("Sent argument is not a catch clause when generating vector!"); return; }
+    		
+    		
+    		catchClause.characteristicVector = new CharacteristicVector();
+    		
+    		catchClause.characteristicVector[CharacteristicVector.RELEVANT_NODES.CatchClause]++;  
+    	    
+    	    this.generate(catchClause.body);
+    	    catchClause.characteristicVector.join(catchClause.body.characteristicVector);
+    	}
+    	catch (e) { alert ("Error when generating vector for Catch Clause: " + e); }
     }
+    
     
 };
 
