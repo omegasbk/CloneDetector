@@ -8,13 +8,67 @@ var VectorGenerator = {
         try
         {
             if(ASTHelper.isProgram(astElement)) { this.generateVectorForProgram(astElement); }
+            else if (ASTHelper.isFunction(astElement)) { this.generateVectorForFunction(astElement); }
+            else if (ASTHelper.isBlockStatement(astElement)) { this.generateVectorForBlockStatement(astElement); }
             else if (ASTHelper.isVariableDeclaration(astElement)) { this.generateVectorForVariableDeclaration(astElement); }
             else if (ASTHelper.isVariableDeclarator(astElement)) { this.generateVectorForVariableDeclarator(astElement); }
             else if (ASTHelper.isIdentifier(astElement)) { this.generateVectorForIdentifier(astElement); }
             else if (ASTHelper.isLiteral(astElement)) { this.generateVectorForLiteral(astElement); }
-            else { alert("Unhandled element when generating vector!"); }
+            else { alert("Unhandled element when generating vector: " + astElement.type); }
         }
         catch(e) { alert("Error when generating vector: " + e); }
+    },
+
+    generateVectorForBlockStatement: function(blockStatement)
+    {
+        try
+        {
+            if(!ASTHelper.isBlockStatement(blockStatement)) { alert("Sent argument is not a block statement when generating vector!"); return; }
+
+            blockStatement.characteristicVector = new CharacteristicVector();
+
+            blockStatement.body.forEach(function(statement)
+            {
+                this.generate(statement);
+                blockStatement.characteristicVector.join(statement.characteristicVector);
+            }, this);
+        }
+        catch(e) { alert("Error when generating vector from block statement: " + e);}
+    },
+
+    generateVectorForFunction: function(functionElement)
+    {
+        try
+        {
+            if(!ASTHelper.isFunction(functionElement)) { alert("Sent argument is not a function when generating vector!"); return; }
+
+            functionElement.characteristicVector = new CharacteristicVector();
+
+            if(functionElement.id != null)
+            {
+                this.generate(functionElement.id);
+                functionElement.characteristicVector.join(functionElement.id.characteristicVector);
+            }
+
+            functionElement.params.forEach(function(parameter)
+            {
+                this.generate(parameter);
+                functionElement.characteristicVector.join(parameter.characteristicVector);
+            }, this);
+
+            this.generate(functionElement.body);
+            functionElement.characteristicVector.join(functionElement.body.characteristicVector);
+
+            if(ASTHelper.isFunctionDeclaration(functionElement))
+            {
+                functionElement.characteristicVector[CharacteristicVector.RELEVANT_NODES.FunctionDeclaration]++;
+            }
+            else if(ASTHelper.isFunctionExpression(functionElement))
+            {
+                functionElement.characteristicVector[CharacteristicVector.RELEVANT_NODES.FunctionExpression]++;
+            }
+        }
+        catch(e) { alert("Error when generating vector from function: " + e);}
     },
 
     generateVectorForProgram: function(program)
@@ -22,6 +76,7 @@ var VectorGenerator = {
         try
         {
             if(!ASTHelper.isProgram(program)) { alert("Sent argument is not a program when generating vector!"); return; }
+
             program.characteristicVector = new CharacteristicVector();
 
             program.body.forEach(function(programStatement)
