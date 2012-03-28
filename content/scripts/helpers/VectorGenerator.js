@@ -176,7 +176,10 @@ var VectorGenerator = {
     		
     		tryStatement.characteristicVector = new CharacteristicVector();
     		
-    	    tryStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.TryStatement]++;  		
+    	    tryStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.TryStatement]++;  
+    	    
+    	    this.generate(tryStatement.block);
+    	    tryStatement.characteristicVector.join(tryStatement.block.characteristicVector);
     	}
     	catch (e) { alert ("Error when generating vector for Try Statement: " + e); }
     }
