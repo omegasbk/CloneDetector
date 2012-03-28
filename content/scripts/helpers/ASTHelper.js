@@ -260,7 +260,7 @@ var ASTHelper =
     isVariableDeclaration: function(element) { return this.isElementOfType(element, this.CONST.VariableDeclaration); },
     isVariableDeclarator: function(element) { return this.isElementOfType(element, this.CONST.VariableDeclarator); },
     isSwitchCase: function(element) { return this.isElementOfType(element, this.CONST.SwitchCase); },
-    isCatchCase: function(element) { return this.isElementOfType(element, this.CONST.CatchClause); },
+    isCatchClause: function(element) { return this.isElementOfType(element, this.CONST.CatchClause); },
     isIdentifier: function(element) { return this.isElementOfType(element, this.CONST.Identifier); },
     isLiteral: function(element) { return this.isElementOfType(element, this.CONST.Literal); },
 
