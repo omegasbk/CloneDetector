@@ -316,11 +316,47 @@ var ASTHelper =
     isGeneratorExpression: function(element) { return this.isElementOfType(element, this.CONST.EXPRESSION.GeneratorExpression); },
     isLetExpression: function(element) { return this.isElementOfType(element, this.CONST.EXPRESSION.LetExpression); },
 
-    isUnaryOperator: function(element) { return this.isElementOfType(element, this.CONST.EXPRESSION.UnaryOperator); },
-    isBinaryOperator: function(element) { return this.isElementOfType(element, this.CONST.EXPRESSION.BinaryOperator); },
-    isAssignmentOperator: function(element) { return this.isElementOfType(element, this.CONST.EXPRESSION.AssignmentOperator); },
-    isUpdateOperator: function(element) { return this.isElementOfType(element, this.CONST.EXPRESSION.UpdateOperator); },
-    isLogicalOperator: function(element) { return this.isElementOfType(element, this.CONST.EXPRESSION.LogicalOperator); },
+    isUnaryOperator: function(element) { return this.isElementOfType(element, this.CONST.OPERATOR.UnaryOperator); },
+    isBinaryOperator: function(element) { return this.isElementOfType(element, this.CONST.OPERATOR.BinaryOperator); },
+    isAssignmentOperator: function(element) { return this.isElementOfType(element, this.CONST.OPERATOR.AssignmentOperator); },
+    isUpdateOperator: function(element) { return this.isElementOfType(element, this.CONST.OPERATOR.UpdateOperator); },
+    isLogicalOperator: function(element) { return this.isElementOfType(element, this.CONST.OPERATOR.LogicalOperator); },
+
+    isBinaryEqualityOperator:function (element)
+    {
+        return element == "==" || element == "==="
+            || element == "!=" || element == "!==";
+    },
+
+    isBinaryMathOperator:function (element)
+    {
+        return element == "+" || element == "-"
+            || element == "*" || element == "/" || element == "%";
+    },
+
+    isBinaryRelationalOperator:function (element)
+    {
+        return element == "<" || element == "<="
+            || element == ">" || element == ">=";
+    },
+
+    isBinaryBitOperator:function (element)
+    {
+        return element == "|" || element == "&"
+            || element == "^"
+            || element == "<<" || element == ">>"
+            || element == ">>>";
+    },
+
+    isBinaryObjectOperator:function (element)
+    {
+        return element == "in" || element == "instanceof";
+    },
+
+    isBinaryXmlOperator:function (element)
+    {
+        return element == "..";
+    },
 
     CONST :
     {

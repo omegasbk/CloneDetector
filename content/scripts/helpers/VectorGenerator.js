@@ -12,17 +12,20 @@ var VectorGenerator = {
             else if (ASTHelper.isBlockStatement(astElement)) { this.generateVectorForBlockStatement(astElement); }
             else if (ASTHelper.isVariableDeclaration(astElement)) { this.generateVectorForVariableDeclaration(astElement); }
             else if (ASTHelper.isVariableDeclarator(astElement)) { this.generateVectorForVariableDeclarator(astElement); }
-            else if (ASTHelper.isIdentifier(astElement)) { this.generateVectorForIdentifier(astElement); }
-            else if (ASTHelper.isLiteral(astElement)) { this.generateVectorForLiteral(astElement); }
+
           
             /**
              *  my code
             */
             
             else if (ASTHelper.isTryStatement(astElement)) { this.generateVectorForTryStatement(astElement); }
-            else if (ASTHelper.isExpressionStatement(astElement)) { this.generateVectorForExpressionStatement(astElement); }
             else if (ASTHelper.isCatchClause(astElement)) { this.generateVectorForCatchClause(astElement); }
-            
+
+            else if (ASTHelper.isExpressionStatement(astElement)) { this.generateVectorForExpressionStatement(astElement); }
+
+            else if (ASTHelper.isBinaryExpression(astElement)) { this.generateVectorForBinaryExpression(astElement); }
+            else if (ASTHelper.isIdentifier(astElement)) { this.generateVectorForIdentifier(astElement); }
+            else if (ASTHelper.isLiteral(astElement)) { this.generateVectorForLiteral(astElement); }
             
             else { alert("Unhandled element when generating vector: " + astElement.type); }
         }
@@ -49,16 +52,64 @@ var VectorGenerator = {
         catch(e) { alert("Error when generating vector from block statement: " + e);}
     },
 
-    generateVectorForExpressionStatement: function(expStat)
+    generateVectorForExpressionStatement: function(expressionStatement)
     {
         try
         {
-            if(!ASTHelper.isExpressionStatement(expStat)) { alert("Sent argument is not a expression or statement when generating vector!"); return; }
+            if(!ASTHelper.isExpressionStatement(expressionStatement)) { alert("Sent argument is not a expressionStatement when generating vector!"); return; }
 
-            expStat.characteristicVector = new CharacteristicVector();
+            expressionStatement.characteristicVector = new CharacteristicVector();
+
+            this.generate(expressionStatement.expression);
+
+            expressionStatement.characteristicVector.join(expressionStatement.expression.characteristicVector);
             
         }
-        catch(e) { alert("Error when generating vector from expression or statement: " + e);}
+        catch(e) { alert("Error when generating vector from expressionStatement: " + e);}
+    },
+
+    generateVectorForBinaryExpression: function(binaryExpression)
+    {
+        try
+        {
+            if(!ASTHelper.isBinaryExpression(binaryExpression)) { alert("Sent argument is not a binary expression when generating vector!"); return; }
+
+            binaryExpression.characteristicVector = new CharacteristicVector();
+
+            this.generate(binaryExpression.left);
+            this.generate(binaryExpression.right);
+
+            binaryExpression.characteristicVector.join(binaryExpression.left.characteristicVector);
+            binaryExpression.characteristicVector.join(binaryExpression.right.characteristicVector);
+
+            //Own contribution
+            if(ASTHelper.isBinaryEqualityOperator(binaryExpression.operator))
+            {
+                binaryExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.BinaryEqualityExpression]++;
+            }
+            else if (ASTHelper.isBinaryMathOperator(binaryExpression.operator))
+            {
+                binaryExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.BinaryMathExpression]++;
+            }
+            else if (ASTHelper.isBinaryRelationalOperator(binaryExpression.operator))
+            {
+                binaryExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.BinaryRelationalExpression]++;
+            }
+            else if (ASTHelper.isBinaryBitOperator(binaryExpression.operator))
+            {
+                binaryExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.BinaryBitExpression]++;
+            }
+            else if (ASTHelper.isBinaryObjectOperator(binaryExpression.operator))
+            {
+                binaryExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.BinaryObjectExpression]++;
+            }
+            else if (ASTHelper.isBinaryXmlOperator(binaryExpression.operator))
+            {
+                binaryExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.BinaryXmlExpression]++;
+            }
+
+        }
+        catch(e) { alert("Error when generating vector from binary expression: " + e);}
     },
     
     generateVectorForFunction: function(functionElement)
@@ -289,8 +340,19 @@ CharacteristicVector.RELEVANT_NODES =
     ObjectExpression: "ObjectExpression",
     FunctionExpression: "FunctionExpression",
     SequenceExpression: "SequenceExpression",
-    UnaryExpression: "UnaryExpression",
-    BinaryExpression: "BinaryExpression",
+
+    UnaryMathExpression: "UnaryMathExpression",
+    UnaryBitExpression: "UnaryBitExpression",
+    UnaryLogicalExpression: "UnaryLogicalExpression",
+    UnaryObjectExpression: "UnaryObjectExpression",
+
+    BinaryEqualityExpression: "BinaryEqualityExpression",
+    BinaryMathExpression: "BinaryMathExpression",
+    BinaryRelationalExpression: "BinaryRelationalExpression",
+    BinaryBitExpression: "BinaryBitExpression",
+    BinaryObjectExpression: "BinaryObjectExpression",
+    BinaryXmlExpression: "BinaryXmlExpression",
+
     AssignmentExpression: "AssignmentExpression",
     UpdateExpression: "UpdateExpression",
     LogicalExpression: "LogicalExpression",
