@@ -26,7 +26,10 @@ var VectorGenerator = {
             
             else { alert("Unhandled element when generating vector: " + astElement.type); }
         }
-        catch(e) { alert("Error when generating vector: " + e); }
+        catch(e)
+        {
+            alert("Error when generating vector: " + e);
+        }
     },
 
     generateVectorForBlockStatement: function(blockStatement)
@@ -218,9 +221,9 @@ var VectorGenerator = {
 
             catchClause.characteristicVector = new CharacteristicVector();
 
-            this.generate(catchClause.block);
+            this.generate(catchClause.body);
 
-            catchClause.characteristicVector.join(catchClause.block.characteristicVector);
+            catchClause.characteristicVector.join(catchClause.body.characteristicVector);
 
             catchClause.characteristicVector[CharacteristicVector.RELEVANT_NODES.CatchClause]++;
         }
