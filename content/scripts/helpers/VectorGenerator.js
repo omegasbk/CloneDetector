@@ -18,10 +18,15 @@ var VectorGenerator = {
              *  my code
             */
             
+            
+
+            else if (ASTHelper.isIfStatement(astElement)) { this.generateVectorForIfStatement(astElement); }
             else if (ASTHelper.isTryStatement(astElement)) { this.generateVectorForTryStatement(astElement); }
             else if (ASTHelper.isCatchClause(astElement)) { this.generateVectorForCatchClause(astElement); }
 
             else if (ASTHelper.isExpressionStatement(astElement)) { this.generateVectorForExpressionStatement(astElement); }
+            
+            else if (ASTHelper.isAssignmentExpression(astElement)) { this.generateVectorForAssignmentExpression(astElement); }
 
             else if (ASTHelper.isBinaryExpression(astElement)) { this.generateVectorForBinaryExpression(astElement); }
             else if (ASTHelper.isIdentifier(astElement)) { this.generateVectorForIdentifier(astElement); }
@@ -65,7 +70,28 @@ var VectorGenerator = {
             expressionStatement.characteristicVector.join(expressionStatement.expression.characteristicVector);
             
         }
-        catch(e) { alert("Error when generating vector from expressionStatement: " + e);}
+        catch(e) { alert("Error when generating vector from expressionStatement: " + e); }
+    },
+    
+    generateVectorForAssignmentExpression: function(assignmentExpression)
+    {
+    	try
+    	{
+    		if(!ASTHelper.isAssignmentExpression(assignmentExpression)) { alert("Sent argument is not a assignmentExpression when generating vector!"); return; }
+    	
+    		assignmentExpression.characteristicVector = new CharacteristicVector();
+    		
+    		this.generate(assignmentExpression.left);
+            this.generate(assignmentExpression.right);
+    		
+    		assignmentExpression.characteristicVector.join(assignmentExpression.left.characteristicVector);
+    		
+    		assignmentExpression.characteristicVector.join(assignmentExpression.right.characteristicVector);    		
+    		
+    		assignmentExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.AssignmentExpression]++;
+    	
+    	}
+    	catch (e) { alert("Error when generating vector for assignmentExpression: " + e); }
     },
 
     generateVectorForBinaryExpression: function(binaryExpression)
@@ -279,9 +305,43 @@ var VectorGenerator = {
             catchClause.characteristicVector[CharacteristicVector.RELEVANT_NODES.CatchClause]++;
         }
         catch (e) { alert ("Error when generating vector for Catch Clause: " + e); }
-    }
+    },
+    
+    generateVectorForIfStatement: function(ifStatement)
+	{
+		try
+		{
+	    	if(!ASTHelper.isIfStatement(ifStatement)) { alert("Sent argument is not an if statement when generating vector!"); return; }	
+			
+	        ifStatement.characteristicVector = new CharacteristicVector();
+	
+	        this.generate(ifStatement.test);       
+	             
+	        ifStatement.characteristicVector.join(ifStatement.test.characteristicVector);
+	        
+	        if (ifStatement.consequent != null) 
+	        {
+		        this.generate(ifStatement.consequent);
+		        
+		        ifStatement.characteristicVector.join(ifStatement.consequent.characteristicVector);
+	        }
+	        
+	        if (ifStatement.alternate != null) 
+	        {
+	        	this.generate(ifStatement.alternate);
+	        	ifStatement.characteristicVector.join(ifStatement.alternate.characteristicVector);	       	        
+	        }
+	        
+	       
+	        ifStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.IfStatement]++;
+		}
+		catch (e) { alert ("Error when generating vector for If Statement:" + e); }            
+
+	}
     
 };
+
+	
 
 function CharacteristicVector()
 {
