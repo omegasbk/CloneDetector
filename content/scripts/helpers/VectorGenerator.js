@@ -20,6 +20,9 @@ var VectorGenerator = {
             else if (ASTHelper.isExpressionStatement(astElement)) { this.generateVectorForExpressionStatement(astElement); }
             
             else if (ASTHelper.isAssignmentExpression(astElement)) { this.generateVectorForAssignmentExpression(astElement); }
+            
+            else if (ASTHelper.isUpdateExpression(astElement)) { this.generateVectorForUpdateExpression(astElement); }
+            else if (ASTHelper.isLogicalExpression(astElement)) { this.generateVectorForLogicalExpression(astElement); }
             else if (ASTHelper.isUnaryExpression(astElement)) { this.generateVectorForUnaryExpression(astElement); }
             else if (ASTHelper.isBinaryExpression(astElement)) { this.generateVectorForBinaryExpression(astElement); }
             else if (ASTHelper.isIdentifier(astElement)) { this.generateVectorForIdentifier(astElement); }
@@ -120,7 +123,7 @@ var VectorGenerator = {
     	
     },
 
-    
+ 
     generateVectorForBinaryExpression: function(binaryExpression)
     {
         try
@@ -360,10 +363,47 @@ var VectorGenerator = {
 	       
 	        ifStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.IfStatement]++;
 		}
-		catch (e) { alert ("Error when generating vector for If Statement:" + e); }            
+		catch (e) { alert ("Error when generating vector for If Statement: " + e); }            
 
-	}
+	},
+
+    generateVectorForUpdateExpression: function(updateExpression)
+    {
+    	try
+    	{
+    		if(!ASTHelper.isUpdateExpression(updateExpression)) { alert("Sent argument is not an if statement when generating vector!"); return; }	
+			
+    		updateExpression.characteristicVector = new CharacteristicVector();
+    		
+    		this.generate(updateExpression.argument);
+    		
+    		updateExpression.characteristicVector.join(updateExpression.argument.characteristicVector);
+    				
+	        updateExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.UpdateExpression]++;
+    	}
+    	catch (e) { alert ("Error when generating vector for Update Expression: " + e); }
+    },
     
+    generateVectorForLogicalExpression: function (logicalExpression)
+    {
+    	try
+    	{
+    		if(!ASTHelper.isLogicalExpression(logicalExpression)) { alert("Sent argument is not a logical expression when generating vector!"); return; }	
+    		
+    		logicalExpression.characteristicVector = new CharacteristicVector();
+    		
+    		this.generate(logicalExpression.left);
+    		this.generate(logicalExpression.right);
+    		
+
+            logicalExpression.characteristicVector.join(logicalExpression.left.characteristicVector);
+            logicalExpression.characteristicVector.join(logicalExpression.right.characteristicVector);
+
+    		
+    		logicalExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.LogicalExpression]++;
+    	}
+    	catch (e) { alert ("Error when generating vector for Logical Expression: " + e); }
+    }
 };
 
 	
