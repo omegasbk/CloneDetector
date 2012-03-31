@@ -18,6 +18,7 @@ var VectorGenerator = {
             else if (ASTHelper.isCatchClause(astElement)) { this.generateVectorForCatchClause(astElement); }
 
             else if (ASTHelper.isExpressionStatement(astElement)) { this.generateVectorForExpressionStatement(astElement); }
+            else if (ASTHelper.isLabeledStatement(astElement)) { this.generateVectorForLabeledStatement(astElement); }
             
             else if (ASTHelper.isAssignmentExpression(astElement)) { this.generateVectorForAssignmentExpression(astElement); }
             
@@ -51,6 +52,26 @@ var VectorGenerator = {
             }, this);
         }
         catch(e) { alert("Error when generating vector from block statement: " + e);}
+    },
+    
+    generateVectorForLabeledStatement: function(labeledStatement)
+    {
+    	try
+    	{
+    		  if(!ASTHelper.isLabeledStatement(labeledStatement)) { alert("Sent argument is not a block statement when generating vector!"); return; }
+    		  
+    		  labeledStatement.characteristicVector = new CharacteristicVector();
+    		  
+    		  this.generate(labeledStatement.label);
+    		  this.generate(labeledStatement.body);
+    		  
+    		 labeledStatement.characteristicVector.join(labeledStatement.label.characteristicVector);
+    		 labeledStatement.characteristicVector.join(labeledStatement.body.characteristicVector);
+   		      		  	  
+    		 labeledStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.LabeledStatement]++;
+    	    	
+    	}
+    	catch ( e ) { alert("Error when generating vector from labeled statement: " + e);}
     },
 
     generateVectorForExpressionStatement: function(expressionStatement)
