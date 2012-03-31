@@ -322,6 +322,28 @@ var ASTHelper =
     isUpdateOperator: function(element) { return this.isElementOfType(element, this.CONST.OPERATOR.UpdateOperator); },
     isLogicalOperator: function(element) { return this.isElementOfType(element, this.CONST.OPERATOR.LogicalOperator); },
 
+   
+    isUnaryMathOperator: function(element) 
+    { 
+    	return element == "-" || element == "+";
+    },
+    
+    isUnaryLogicalOperator: function(element) 
+    { 
+    	return element == "!";
+    },
+    
+    isUnaryBitOperator: function(element) 
+    { 
+    	return element == "~";
+    },
+    
+    isUnaryObjectOperator: function(element) 
+    { 
+    	return element == "typeof" || element == "void"
+            || element == "delete";
+    },    
+    
     isBinaryEqualityOperator:function (element)
     {
         return element == "==" || element == "==="

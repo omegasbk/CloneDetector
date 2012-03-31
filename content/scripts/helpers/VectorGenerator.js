@@ -13,13 +13,6 @@ var VectorGenerator = {
             else if (ASTHelper.isVariableDeclaration(astElement)) { this.generateVectorForVariableDeclaration(astElement); }
             else if (ASTHelper.isVariableDeclarator(astElement)) { this.generateVectorForVariableDeclarator(astElement); }
 
-          
-            /**
-             *  my code
-            */
-            
-            
-
             else if (ASTHelper.isIfStatement(astElement)) { this.generateVectorForIfStatement(astElement); }
             else if (ASTHelper.isTryStatement(astElement)) { this.generateVectorForTryStatement(astElement); }
             else if (ASTHelper.isCatchClause(astElement)) { this.generateVectorForCatchClause(astElement); }
@@ -27,7 +20,7 @@ var VectorGenerator = {
             else if (ASTHelper.isExpressionStatement(astElement)) { this.generateVectorForExpressionStatement(astElement); }
             
             else if (ASTHelper.isAssignmentExpression(astElement)) { this.generateVectorForAssignmentExpression(astElement); }
-
+            else if (ASTHelper.isUnaryExpression(astElement)) { this.generateVectorForUnaryExpression(astElement); }
             else if (ASTHelper.isBinaryExpression(astElement)) { this.generateVectorForBinaryExpression(astElement); }
             else if (ASTHelper.isIdentifier(astElement)) { this.generateVectorForIdentifier(astElement); }
             else if (ASTHelper.isLiteral(astElement)) { this.generateVectorForLiteral(astElement); }
@@ -74,6 +67,7 @@ var VectorGenerator = {
     },
     
     generateVectorForAssignmentExpression: function(assignmentExpression)
+
     {
     	try
     	{
@@ -94,6 +88,39 @@ var VectorGenerator = {
     	catch (e) { alert("Error when generating vector for assignmentExpression: " + e); }
     },
 
+    generateVectorForUnaryExpression: function(unaryExpression)
+    {
+    	try
+    	{
+    		if(!ASTHelper.isUnaryExpression(unaryExpression)) { alert("Sent argument is not an unaryExpression when generating vector!"); return; }
+    		
+    		unaryExpression.characteristicVector = new CharacteristicVector();
+
+            this.generate(unaryExpression.argument);          
+            unaryExpression.characteristicVector.join(unaryExpression.argument.characteristicVector);
+    		
+    		if(ASTHelper.isUnaryMathOperator(unaryExpression.operator))
+            {
+                unaryExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.UnaryMathExpression]++;
+            }
+            else if (ASTHelper.isUnaryLogicalOperator(unaryExpression.operator))
+            {
+                unaryExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.UnaryLogicalExpression]++;
+            }
+            else if (ASTHelper.isUnaryBitOperator(unaryExpression.operator))
+            {
+                unaryExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.UnaryBitExpression]++;
+            }
+            else if (ASTHelper.isUnaryObjectOperator(unaryExpression.operator))
+            {
+                unaryExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.UnaryObjectExpression]++;
+            }
+    	}
+    	catch (e) { alert("Error when generating vector for unaryExpression: " + e); }
+    	
+    },
+
+    
     generateVectorForBinaryExpression: function(binaryExpression)
     {
         try
