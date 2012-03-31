@@ -319,12 +319,10 @@ var VectorGenerator = {
 	             
 	        ifStatement.characteristicVector.join(ifStatement.test.characteristicVector);
 	        
-	        if (ifStatement.consequent != null) 
-	        {
-		        this.generate(ifStatement.consequent);
+	        this.generate(ifStatement.consequent);
 		        
-		        ifStatement.characteristicVector.join(ifStatement.consequent.characteristicVector);
-	        }
+		    ifStatement.characteristicVector.join(ifStatement.consequent.characteristicVector);
+	        
 	        
 	        if (ifStatement.alternate != null) 
 	        {
