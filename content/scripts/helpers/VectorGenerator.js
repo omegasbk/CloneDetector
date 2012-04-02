@@ -65,6 +65,24 @@ var VectorGenerator = {
             else if (ASTHelper.isIdentifier(astElement)) { this.generateVectorForIdentifier(astElement); }
             else if (ASTHelper.isLiteral(astElement)) { this.generateVectorForLiteral(astElement); }
             
+            
+            //NETESTIRANI
+            
+            else if (ASTHelper.isYieldExpression(astElement)) { this.generateVectorForYieldExpression(astElement); }
+            else if (ASTHelper.isComprehensionExpression(astElement)) { this.generateVectorForComprehensionExpression(astElement); }
+            else if (ASTHelper.isGeneratorExpression(astElement)) { this.generateVectorForGeneratorExpression(astElement); }
+            
+            else if (ASTHelper.isPattern(astElement)) { this.generateVectorForPattern(astElement); }
+            else if (ASTHelper.isArrayPattern(astElement)) { this.generateVectorArrayPattern(astElement); }
+            else if (ASTHelper.isObjectPattern(astElement)) { this.generateVectorForObjectPattern(astElement); }
+            
+            else if (ASTHelper.isComprehensionBlock(astElement)) { this.generateVectorForComprehensionBlock(astElement); }
+            
+            
+            
+            
+            
+            
             else { alert("Unhandled element when generating vector: " + astElement.type); }
         }
         catch(e)
@@ -887,7 +905,90 @@ var VectorGenerator = {
     		logicalExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.LogicalExpression]++;
     	}
     	catch (e) { alert ("Error when generating vector for Logical Expression: " + e); }
+    },
+    
+    //NETESTIRANI
+    generateVectorForYieldExpression: function (yieldExpression)
+    {
+    	try
+    	{
+    		if(!ASTHelper.isYieldExpression(yieldExpression)) { alert("Sent argument is not a yield expression when generating vector!"); return; }	
+    		
+    		yieldExpression.characteristicVector = new CharacteristicVector();
+    		
+    		if( yieldExpression.argument != null)
+    		{
+    			this.generate(yieldExpression.argument);
+    			yieldExpression.characteristicVector.join(yieldExpression.argument.characteristicVector);    			
+    		}
+    			
+    		yieldExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.YieldExpression]++;
+    	}
+    	catch (e) { alert ("Error when generating vector for Yield Expression: " + e); }
+    },
+    
+    generateVectorForComprehensionExpression: function (comprehensionExpression)
+    {
+    	try
+    	{
+    		if(!ASTHelper.isComprehensionExpression(comprehensionExpression)) { alert("Sent argument is not a comprehension expression when generating vector!"); return; }	
+    		
+    		comprehensionExpression.characteristicVector = new CharacteristicVector();
+    		
+    		this.generate(comprehensionExpression.body);
+    		comprehensionExpression.characteristicVector.join(comprehensionExpression.body.characteristicVector);
+    		
+
+            comprehensionExpression.blocks.forEach(function(comprehensionExpression)
+            {
+                this.generate(comprehensionExpression);
+                comprehensionExpression.characteristicVector.join(comprehensionExpression.blocks.characteristicVector);
+            }, this);
+    		
+    		
+    		if( comprehensionExpression.filter != null)
+    		{
+    			this.generate(comprehensionExpression.filter);
+    			comprehensionExpression.characteristicVector.join(comprehensionExpression.filter.characteristicVector);    			
+    		}
+    			
+    		comprehensionExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.ComprehensionExpression]++;
+    	}
+    	catch (e) { alert ("Error when generating vector for Comprehension Expression: " + e); }
+    },
+    
+    generateVectorForGeneratorExpression: function (generatorExpression)
+    {
+    	try
+    	{
+    		if(!ASTHelper.isGeneratorExpression(generatorExpression)) { alert("Sent argument is not a generator expression when generating vector!"); return; }	
+    		
+    		generatorExpression.characteristicVector = new CharacteristicVector();
+    		
+    		this.generate(generatorExpression.body);
+    		generatorExpression.characteristicVector.join(generatorExpression.body.characteristicVector);
+    		
+
+            generatorExpression.blocks.forEach(function(generatorExpression)
+            {
+                this.generate(generatorExpression);
+                generatorExpression.characteristicVector.join(generatorExpression.blocks.characteristicVector);
+            }, this);
+    		
+    		
+    		if( generatorExpression.filter != null)
+    		{
+    			this.generate(generatorExpression.filter);
+    			generatorExpression.characteristicVector.join(generatorExpression.filter.characteristicVector);    			
+    		}
+    			
+    		generatorExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.GeneratorExpression]++;
+    	}
+    	catch (e) { alert ("Error when generating vector for Generator Expression: " + e); }
     }
+
+    
+    
 };
 
 	
