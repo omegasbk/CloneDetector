@@ -17,6 +17,10 @@ var VectorGenerator = {
             
             
             else if (ASTHelper.isForStatement(astElement)) { this.generateVectorForForStatement(astElement); }    
+            else if (ASTHelper.isWhileStatement(astElement)) { this.generateVectorForWhileStatement(astElement); }   
+            else if (ASTHelper.isDoWhileStatement(astElement)) { this.generateVectorForDoWhileStatement(astElement); }    
+            
+            
             
             
             
@@ -464,7 +468,49 @@ var VectorGenerator = {
 		catch (e) { alert("Error when generating vector for For Statement: " + e); }
 		
 	},
-
+	
+	generateVectorForWhileStatement: function (whileStatement)
+	{
+		try
+		{
+			if(!ASTHelper.isWhileStatement(whileStatement)) { alert("Sent argument is not a while statement when generating vector!"); return; }
+			
+			whileStatement.characteristicVector = new CharacteristicVector();
+			
+			this.generate(whileStatement.body);
+			whileStatement.characteristicVector.join(whileStatement.body.characteristicVector);			
+			
+			this.generate(whileStatement.test);
+			whileStatement.characteristicVector.join(whileStatement.test.characteristicVector);		
+			
+			whileStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.WhileStatement]++;
+			
+		}
+		catch (e) { alert("Error when generating vector for While Statement: " + e); }
+		
+	},
+	
+	generateVectorForDoWhileStatement: function (dowhileStatement)
+	{
+		try
+		{
+			if(!ASTHelper.isDoWhileStatement(dowhileStatement)) { alert("Sent argument is not a do while statement when generating vector!"); return; }
+			
+			dowhileStatement.characteristicVector = new CharacteristicVector();
+			
+			this.generate(dowhileStatement.body);
+			dowhileStatement.characteristicVector.join(dowhileStatement.body.characteristicVector);			
+			
+			this.generate(dowhileStatement.test);
+			dowhileStatement.characteristicVector.join(dowhileStatement.test.characteristicVector);		
+			
+			dowhileStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.DoWhileStatement]++;
+			
+		}
+		catch (e) { alert("Error when generating vector for DoWhile Statement: " + e); }
+		
+	},
+	
 	generateVectorForBreakStatement: function(breakStatement)
 	{
 		try
@@ -491,6 +537,17 @@ var VectorGenerator = {
 		try
 		{
 			if(!ASTHelper.isContinueStatement(continueStatement)) { alert("Sent argument is not a continue statement when generating vector!"); return; }	
+			
+			continueStatement.characteristicVector = new CharacteristicVector();		
+			
+			if(continueStatement.label != null)
+			{
+				this.generate(continueStatement.label);
+				continueStatement.characteristicVector.join(continueStatement.label.characteristicVector);
+			}
+			
+			continueStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.ContinueStatement]++;
+			
 		}
 		catch (e) { alert ("Error when generating vector for Continue Statement: " + e); }
 	},
