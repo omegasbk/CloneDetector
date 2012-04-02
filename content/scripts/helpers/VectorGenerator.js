@@ -25,6 +25,8 @@ var VectorGenerator = {
             
             
             else if (ASTHelper.isBreakStatement(astElement)) { this.generateVectorForBreakStatement(astElement); }
+            else if (ASTHelper.isContinueStatement(astElement)) { this.generateVectorForContinueStatement(astElement); }
+            
             else if (ASTHelper.isIfStatement(astElement)) { this.generateVectorForIfStatement(astElement); }
             else if (ASTHelper.isTryStatement(astElement)) { this.generateVectorForTryStatement(astElement); }
             else if (ASTHelper.isCatchClause(astElement)) { this.generateVectorForCatchClause(astElement); }
@@ -65,7 +67,7 @@ var VectorGenerator = {
                 blockStatement.characteristicVector.join(statement.characteristicVector);
             }, this);
         }
-        catch(e) { alert("Error when generating vector from block statement: " + e);}
+        catch(e) { alert("Error when generating vector for block statement: " + e);}
     },
     
     generateVectorForLabeledStatement: function(labeledStatement)
@@ -85,7 +87,7 @@ var VectorGenerator = {
     		 labeledStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.LabeledStatement]++;
     	    	
     	}
-    	catch ( e ) { alert("Error when generating vector from labeled statement: " + e);}
+    	catch ( e ) { alert("Error when generating vector for labeled statement: " + e);}
     },
     
     generateVectorForCallExpression: function(callExpression)
@@ -99,14 +101,15 @@ var VectorGenerator = {
     		 callExpression.arguments.forEach(function(arguments)
     		            {
     		                this.generate(arguments);
-    		                callExpression.characteristicVector.join(arguments.characteristicVector);
+    		                callExpression.
+    		                characteristicVector.join(arguments.characteristicVector);
     		            }, this);
     		
     		 callExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.CallExpression]++;
      	    
     		 
     	}
-    	catch (e) { alert("Error when generating vector from call expression: " + e);}
+    	catch (e) { alert("Error when generating vector for call expression: " + e);}
     	
     },
 
@@ -123,7 +126,7 @@ var VectorGenerator = {
             expressionStatement.characteristicVector.join(expressionStatement.expression.characteristicVector);
             
         }
-        catch(e) { alert("Error when generating vector from expressionStatement: " + e); }
+        catch(e) { alert("Error when generating vector for expressionStatement: " + e); }
     },
     
     generateVectorForAssignmentExpression: function(assignmentExpression)
@@ -131,7 +134,7 @@ var VectorGenerator = {
     {
     	try
     	{
-    		if(!ASTHelper.isAssignmentExpression(assignmentExpression)) { alert("Sent argument is not a assignmentExpression when generating vector!"); return; }
+    		if(!ASTHelper.isAssignmentExpression(assignmentExpression)) { alert("Sent argument is not a assignment expression when generating vector!"); return; }
     	
     		assignmentExpression.characteristicVector = new CharacteristicVector();
     		
@@ -145,14 +148,14 @@ var VectorGenerator = {
     		assignmentExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.AssignmentExpression]++;
     	
     	}
-    	catch (e) { alert("Error when generating vector for assignmentExpression: " + e); }
+    	catch (e) { alert("Error when generating vector for Assignment Expression: " + e); }
     },
 
     generateVectorForUnaryExpression: function(unaryExpression)
     {
     	try
     	{
-    		if(!ASTHelper.isUnaryExpression(unaryExpression)) { alert("Sent argument is not an unaryExpression when generating vector!"); return; }
+    		if(!ASTHelper.isUnaryExpression(unaryExpression)) { alert("Sent argument is not an unary expression when generating vector!"); return; }
     		
     		unaryExpression.characteristicVector = new CharacteristicVector();
 
@@ -176,7 +179,7 @@ var VectorGenerator = {
                 unaryExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.UnaryObjectExpression]++;
             }
     	}
-    	catch (e) { alert("Error when generating vector for unaryExpression: " + e); }
+    	catch (e) { alert("Error when generating vector for Unary Expression: " + e); }
     	
     },
 
@@ -222,7 +225,7 @@ var VectorGenerator = {
             }
 
         }
-        catch(e) { alert("Error when generating vector from binary expression: " + e);}
+        catch(e) { alert("Error when generating vector for Binary Expression: " + e);}
     },
     
     generateVectorForFunction: function(functionElement)
@@ -257,7 +260,7 @@ var VectorGenerator = {
                 functionElement.characteristicVector[CharacteristicVector.RELEVANT_NODES.FunctionExpression]++;
             }
         }
-        catch(e) { alert("Error when generating vector from function: " + e);}
+        catch(e) { alert("Error when generating vector for Function: " + e);}
     },
 
     generateVectorForProgram: function(program)
@@ -274,7 +277,7 @@ var VectorGenerator = {
                program.characteristicVector.join(programStatement.characteristicVector);
             }, this);
         }
-        catch(e) { alert("Error when generating vector from program: " + e); }
+        catch(e) { alert("Error when generating vector for Program: " + e); }
     },
 
     generateVectorForVariableDeclaration: function(variableDeclaration)
@@ -293,7 +296,7 @@ var VectorGenerator = {
 
             variableDeclaration.characteristicVector[CharacteristicVector.RELEVANT_NODES.VariableDeclaration]++;
         }
-        catch(e) { alert("Error when generating vector from variable declaration: " + e); }
+        catch(e) { alert("Error when generating vector for Variable Declaration: " + e); }
     },
 
     generateVectorForVariableDeclarator: function(variableDeclarator)
@@ -315,7 +318,7 @@ var VectorGenerator = {
 
             variableDeclarator.characteristicVector[CharacteristicVector.RELEVANT_NODES.VariableDeclarator]++;
         }
-        catch(e) { alert("Error when generating vector for variableDeclarator: " + e); }
+        catch(e) { alert("Error when generating vector for Variable Declarator: " + e); }
     },
 
     generateVectorForIdentifier: function(identifier)
@@ -327,7 +330,7 @@ var VectorGenerator = {
             identifier.characteristicVector = new CharacteristicVector();
             identifier.characteristicVector[CharacteristicVector.RELEVANT_NODES.Identifier]++;
         }
-        catch(e) { alert("Error when generating vector for identifier: " + e); }
+        catch(e) { alert("Error when generating vector for Identifier: " + e); }
     },
 
     generateVectorForLiteral: function(literal)
@@ -345,7 +348,7 @@ var VectorGenerator = {
             else if(ValueTypeHelper.isRegExp(literal.value)){ literal.characteristicVector[CharacteristicVector.RELEVANT_NODES.RegExLiteral]++; }
             else {alert("Unknown literal when generating vector!"); return; }
         }
-        catch(e) { alert("Error when generating vector for literal: " + e); }
+        catch(e) { alert("Error when generating vector for Literal: " + e); }
     },
     
     generateVectorForTryStatement: function(tryStatement)
@@ -458,7 +461,7 @@ var VectorGenerator = {
 			
 			
 		}
-		catch (e) { alert("Error when generating vector for If Statement: " + e); }
+		catch (e) { alert("Error when generating vector for For Statement: " + e); }
 		
 	},
 
@@ -466,7 +469,7 @@ var VectorGenerator = {
 	{
 		try
 		{
-			if(!ASTHelper.isBreakStatement(breakStatement)) { alert("Sent argument is not an if statement when generating vector!"); return; }	
+			if(!ASTHelper.isBreakStatement(breakStatement)) { alert("Sent argument is not a break statement when generating vector!"); return; }	
 			
 			breakStatement.characteristicVector = new CharacteristicVector();		
 			
@@ -483,11 +486,20 @@ var VectorGenerator = {
 		
 	}, 
 	
+	generateVectorForContinueStatement: function(continueStatement)
+	{
+		try
+		{
+			if(!ASTHelper.isContinueStatement(continueStatement)) { alert("Sent argument is not a continue statement when generating vector!"); return; }	
+		}
+		catch (e) { alert ("Error when generating vector for Continue Statement: " + e); }
+	},
+		
     generateVectorForUpdateExpression: function(updateExpression)
     {
     	try
     	{
-    		if(!ASTHelper.isUpdateExpression(updateExpression)) { alert("Sent argument is not an if statement when generating vector!"); return; }	
+    		if(!ASTHelper.isUpdateExpression(updateExpression)) { alert("Sent argument is not an update expression when generating vector!"); return; }	
 			
     		updateExpression.characteristicVector = new CharacteristicVector();
     		
