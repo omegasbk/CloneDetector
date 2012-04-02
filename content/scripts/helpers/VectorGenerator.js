@@ -12,7 +12,19 @@ var VectorGenerator = {
             else if (ASTHelper.isBlockStatement(astElement)) { this.generateVectorForBlockStatement(astElement); }
             else if (ASTHelper.isVariableDeclaration(astElement)) { this.generateVectorForVariableDeclaration(astElement); }
             else if (ASTHelper.isVariableDeclarator(astElement)) { this.generateVectorForVariableDeclarator(astElement); }
+            
+            //********************************************************LOOPS******************************************************
+            
+            
+            else if (ASTHelper.isForStatement(astElement)) { this.generateVectorForForStatement(astElement); }    
+            
+            
+            
+           //*********************************************************************************************************************
 
+            
+            
+            else if (ASTHelper.isBreakStatement(astElement)) { this.generateVectorForBreakStatement(astElement); }
             else if (ASTHelper.isIfStatement(astElement)) { this.generateVectorForIfStatement(astElement); }
             else if (ASTHelper.isTryStatement(astElement)) { this.generateVectorForTryStatement(astElement); }
             else if (ASTHelper.isCatchClause(astElement)) { this.generateVectorForCatchClause(astElement); }
@@ -21,6 +33,8 @@ var VectorGenerator = {
             else if (ASTHelper.isLabeledStatement(astElement)) { this.generateVectorForLabeledStatement(astElement); }
             
             else if (ASTHelper.isAssignmentExpression(astElement)) { this.generateVectorForAssignmentExpression(astElement); }
+            
+            else if (ASTHelper.isCallExpression(astElement)) { this.generateVectorForCallExpression(astElement); }
             
             else if (ASTHelper.isUpdateExpression(astElement)) { this.generateVectorForUpdateExpression(astElement); }
             else if (ASTHelper.isLogicalExpression(astElement)) { this.generateVectorForLogicalExpression(astElement); }
@@ -58,7 +72,7 @@ var VectorGenerator = {
     {
     	try
     	{
-    		  if(!ASTHelper.isLabeledStatement(labeledStatement)) { alert("Sent argument is not a block statement when generating vector!"); return; }
+    		  if(!ASTHelper.isLabeledStatement(labeledStatement)) { alert("Sent argument is not a labeled statement when generating vector!"); return; }
     		  
     		  labeledStatement.characteristicVector = new CharacteristicVector();
     		  
@@ -72,6 +86,28 @@ var VectorGenerator = {
     	    	
     	}
     	catch ( e ) { alert("Error when generating vector from labeled statement: " + e);}
+    },
+    
+    generateVectorForCallExpression: function(callExpression)
+    {
+    	try
+    	{
+    		 if(!ASTHelper.isCallExpression(callExpression)) { alert("Sent argument is not a call expression when generating vector!"); return; }
+    		 
+    		 callExpression.characteristicVector = new CharacteristicVector();
+    		 
+    		 callExpression.arguments.forEach(function(arguments)
+    		            {
+    		                this.generate(arguments);
+    		                callExpression.characteristicVector.join(arguments.characteristicVector);
+    		            }, this);
+    		
+    		 callExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.CallExpression]++;
+     	    
+    		 
+    	}
+    	catch (e) { alert("Error when generating vector from call expression: " + e);}
+    	
     },
 
     generateVectorForExpressionStatement: function(expressionStatement)
@@ -387,7 +423,66 @@ var VectorGenerator = {
 		catch (e) { alert ("Error when generating vector for If Statement: " + e); }            
 
 	},
+	
+	generateVectorForForStatement: function (forStatement)
+	{
+		try
+		{
+			if(!ASTHelper.isForStatement(forStatement)) { alert("Sent argument is not a for statement when generating vector!"); return; }
+			
+			forStatement.characteristicVector = new CharacteristicVector();
+			
+			
+			if (forStatement.init != null)
+			{
+				this.generate(forStatement.init);
+				forStatement.characteristicVector.join(forStatement.init.characteristicVector);
+			}
+			
+			if (forStatement.test != null)
+			{
+				this.generate(forStatement.test);
+				forStatement.characteristicVector.join(forStatement.test.characteristicVector);
+			}
+			
+			if (forStatement.update != null)
+			{
+				this.generate(forStatement.update);
+				forStatement.characteristicVector.join(forStatement.update.characteristicVector);
+			}
+			
+			this.generate(forStatement.body);
+			forStatement.characteristicVector.join(forStatement.body.characteristicVector);
+			
+			forStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.ForStatement]++;
+			
+			
+		}
+		catch (e) { alert("Error when generating vector for If Statement: " + e); }
+		
+	},
 
+	generateVectorForBreakStatement: function(breakStatement)
+	{
+		try
+		{
+			if(!ASTHelper.isBreakStatement(breakStatement)) { alert("Sent argument is not an if statement when generating vector!"); return; }	
+			
+			breakStatement.characteristicVector = new CharacteristicVector();		
+			
+			if(breakStatement.label != null)
+			{
+				this.generate(breakStatement.label);
+				breakStatement.characteristicVector.join(breakStatement.label.characteristicVector);
+			}
+			
+			breakStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.BreakStatement]++;
+			
+		}
+		catch (e) { alert ("Error when generating vector for Break Statement: " + e); }
+		
+	}, 
+	
     generateVectorForUpdateExpression: function(updateExpression)
     {
     	try
