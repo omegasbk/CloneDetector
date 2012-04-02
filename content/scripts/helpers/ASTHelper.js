@@ -322,6 +322,7 @@ var ASTHelper =
     isUpdateOperator: function(element) { return this.isElementOfType(element, this.CONST.OPERATOR.UpdateOperator); },
     isLogicalOperator: function(element) { return this.isElementOfType(element, this.CONST.OPERATOR.LogicalOperator); },
 
+    
    
     isUnaryMathOperator: function(element) 
     { 

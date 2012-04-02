@@ -17,6 +17,8 @@ var VectorGenerator = {
             
             
             else if (ASTHelper.isForStatement(astElement)) { this.generateVectorForForStatement(astElement); }    
+            else if (ASTHelper.isForInStatement(astElement)) { this.generateVectorForForInStatement(astElement); }    
+            
             else if (ASTHelper.isWhileStatement(astElement)) { this.generateVectorForWhileStatement(astElement); }   
             else if (ASTHelper.isDoWhileStatement(astElement)) { this.generateVectorForDoWhileStatement(astElement); }    
             
@@ -26,6 +28,8 @@ var VectorGenerator = {
             
            //*********************************************************************************************************************
 
+            else if (ASTHelper.isObjectExpression(astElement)) { this.generateVectorForObjectExpression(astElement); }
+            else if (ASTHelper.isMemberExpression(astElement)) { this.generateVectorForMemberExpression(astElement); }
             
             
             else if (ASTHelper.isBreakStatement(astElement)) { this.generateVectorForBreakStatement(astElement); }
@@ -113,8 +117,62 @@ var VectorGenerator = {
      	    
     		 
     	}
-    	catch (e) { alert("Error when generating vector for call expression: " + e);}
+    	catch (e) { alert("Error when generating vector for call expression: " + e); }
     	
+    },
+    
+    
+    generateVectorForObjectExpression: function(objectExpression)
+    {
+    	try
+    	{
+    		if(!ASTHelper.isObjectExpression(objectExpression)) { alert("Sent argument is not an object expression when generating vector!"); return; }
+    		 
+    		objectExpression.characteristicVector = new CharacteristicVector();
+    		 
+    		objectExpression.properties.forEach(function(properties)
+    					{
+    						
+	   		                this.generate(properties.key);
+	   		                objectExpression.characteristicVector.join(properties.key.characteristicVector);
+	   		                
+	   		                this.generate(properties.value);
+	   		                objectExpression.characteristicVector.join(properties.value.characteristicVector);
+	   		               
+	   		                if(properties.kind = "init") objectExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.ObjectInitExpression]++;
+	   		                if(properties.kind = "get") objectExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.ObjectGetExpression]++;
+	   		                if(properties.kind = "set") objectExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.ObjectSetExpression]++; 		             
+ 		                	   		                
+	   		            }, this);
+    		  		 	
+    		//NEMA KIND PROPERTY-a JOŠ
+    		
+    		 objectExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.ObjectExpression]++;
+      	    
+	    }
+    	catch (e) { alert("Error when generating vector for object expression: " + e); }
+    },
+    
+    generateVectorForMemberExpression: function(memberExpression)
+    {
+    	try
+    	{
+
+    		if(!ASTHelper.isMemberExpression(memberExpression)) { alert("Sent argument is not a member expression when generating vector!"); return; }
+    		 
+    		memberExpression.characteristicVector = new CharacteristicVector();
+    		
+    		this.generate(memberExpression.object);
+            memberExpression.characteristicVector.join(memberExpression.object.characteristicVector);
+              
+            this.generate(memberExpression.property);
+            memberExpression.characteristicVector.join(memberExpression.property.characteristicVector);
+               
+            
+    		memberExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.MemberExpression]++;
+       	    
+    	}
+    	catch (e) { alert("Error when generating vector for member expression: " + e); }
     },
 
     generateVectorForExpressionStatement: function(expressionStatement)
@@ -469,6 +527,31 @@ var VectorGenerator = {
 		
 	},
 	
+	generateVectorForForInStatement: function (forinStatement)
+	{
+		try
+		{
+			if(!ASTHelper.isForInStatement(forinStatement)) { alert("Sent argument is not a for in statement when generating vector!"); return; }
+			
+			forinStatement.characteristicVector = new CharacteristicVector();
+			
+			this.generate(forinStatement.left);
+			forinStatement.characteristicVector.join(forinStatement.left.characteristicVector);			
+			
+			this.generate(forinStatement.right);
+			forinStatement.characteristicVector.join(forinStatement.right.characteristicVector);			
+						
+			this.generate(forinStatement.body);
+			forinStatement.characteristicVector.join(forinStatement.body.characteristicVector);			
+			
+			forinStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.ForInStatement]++;
+			
+			
+			//MISLIM DA JE EACH NEBITAN (each:boolean) =)
+		}
+		catch (e) { alert("Error when generating vector for for in statement: " + e); }
+	},
+	
 	generateVectorForWhileStatement: function (whileStatement)
 	{
 		try
@@ -648,6 +731,15 @@ CharacteristicVector.RELEVANT_NODES =
     ThisExpression : "ThisExpression",
     ArrayExpression: "ArrayExpression",
     ObjectExpression: "ObjectExpression",
+    
+    
+    
+    ObjectInitExpression: "ObjectInitExpression",    
+    ObjectGetExpression: "ObjectGetExpression",
+    ObjectSetExpression: "ObjectSetExpression",
+    
+    
+    
     FunctionExpression: "FunctionExpression",
     SequenceExpression: "SequenceExpression",
 
