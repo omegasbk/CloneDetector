@@ -30,12 +30,19 @@ var VectorGenerator = {
 
             else if (ASTHelper.isObjectExpression(astElement)) { this.generateVectorForObjectExpression(astElement); }
             else if (ASTHelper.isMemberExpression(astElement)) { this.generateVectorForMemberExpression(astElement); }
+            else if (ASTHelper.isWithStatement(astElement)) { this.generateVectorForWithStatement(astElement); }
+            
+            else if (ASTHelper.isNewExpression(astElement)) { this.generateVectorForNewExpression(astElement); }                      
             
             
             else if (ASTHelper.isBreakStatement(astElement)) { this.generateVectorForBreakStatement(astElement); }
             else if (ASTHelper.isContinueStatement(astElement)) { this.generateVectorForContinueStatement(astElement); }
             
             else if (ASTHelper.isIfStatement(astElement)) { this.generateVectorForIfStatement(astElement); }
+            else if (ASTHelper.isSwitchStatement(astElement)) { this.generateVectorForSwitchStatement(astElement); } 
+            else if (ASTHelper.isSwitchCase(astElement)) { this.generateVectorForSwitchCase(astElement); } 
+            
+            
             else if (ASTHelper.isTryStatement(astElement)) { this.generateVectorForTryStatement(astElement); }
             else if (ASTHelper.isCatchClause(astElement)) { this.generateVectorForCatchClause(astElement); }
 
@@ -75,7 +82,7 @@ var VectorGenerator = {
                 blockStatement.characteristicVector.join(statement.characteristicVector);
             }, this);
         }
-        catch(e) { alert("Error when generating vector for block statement: " + e);}
+        catch(e) { alert("Error when generating vector for Block Statement: " + e);}
     },
     
     generateVectorForLabeledStatement: function(labeledStatement)
@@ -95,7 +102,7 @@ var VectorGenerator = {
     		 labeledStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.LabeledStatement]++;
     	    	
     	}
-    	catch ( e ) { alert("Error when generating vector for labeled statement: " + e);}
+    	catch ( e ) { alert("Error when generating vector for Labeled Statement: " + e);}
     },
     
     generateVectorForCallExpression: function(callExpression)
@@ -117,7 +124,7 @@ var VectorGenerator = {
      	    
     		 
     	}
-    	catch (e) { alert("Error when generating vector for call expression: " + e); }
+    	catch (e) { alert("Error when generating vector for Call Expression: " + e); }
     	
     },
     
@@ -150,7 +157,7 @@ var VectorGenerator = {
     		 objectExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.ObjectExpression]++;
       	    
 	    }
-    	catch (e) { alert("Error when generating vector for object expression: " + e); }
+    	catch (e) { alert("Error when generating vector for Object Expression: " + e); }
     },
     
     generateVectorForMemberExpression: function(memberExpression)
@@ -172,7 +179,103 @@ var VectorGenerator = {
     		memberExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.MemberExpression]++;
        	    
     	}
-    	catch (e) { alert("Error when generating vector for member expression: " + e); }
+    	catch (e) { alert("Error when generating vector for Member Expression: " + e); }
+    },
+    
+    generateVectorForWithStatement: function (withStatement)
+    {
+    	try
+    	{
+    		if(!ASTHelper.isWithStatement(withStatement)) { alert("Sent argument is not a with statement when generating vector!"); return; }
+   		 
+    		withStatement.characteristicVector = new CharacteristicVector();
+    		
+    		this.generate(withStatement.object);
+            withStatement.characteristicVector.join(withStatement.object.characteristicVector);
+              
+            this.generate(withStatement.body);
+            withStatement.characteristicVector.join(withStatement.body.characteristicVector);
+            
+    		withStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.WithStatement]++;
+       	    
+    	}
+    	catch (e) { alert("Error when generating vector for With Statement: " + e); }
+    },
+    
+    generateVectorForNewExpression: function (newExpression)
+    {
+    	try
+    	{
+    		if(!ASTHelper.isNewExpression(newExpression)) { alert("Sent argument is not a new expression when generating vector!"); return; }
+      		 
+    		newExpression.characteristicVector = new CharacteristicVector();
+    		
+    		
+    		//NE VALJA CONSTUCTOR, MISLIM DA JE NETOÈNO NAPISANO NA PAPIRU
+    		/*
+    		this.generate(newExpression.constructor);
+            newExpression.characteristicVector.join(newExpression.constructor.characteristicVector);
+            */
+            newExpression.arguments.forEach(function(arguments)
+                    {
+                        this.generate(arguments);
+                        newExpression.characteristicVector.join(arguments.characteristicVector);
+                    }, this);
+
+    		
+    		newExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.NewExpression]++;
+       	    
+    	}
+    	catch (e) { alert("Error when generating vector for New Expression: " + e); }
+    },
+    
+    generateVectorForSwitchStatement: function (switchStatement)
+    {
+    	try
+    	{
+    		if(!ASTHelper.isSwitchStatement(switchStatement)) { alert("Sent argument is not a switch statement when generating vector!"); return; }
+     		 
+    		switchStatement.characteristicVector = new CharacteristicVector();
+    		
+    		this.generate(switchStatement.discriminant);
+			switchStatement.characteristicVector.join(switchStatement.discriminant.characteristicVector);
+			
+			switchStatement.cases.forEach(function(cases)
+		            {
+		                 this.generate(cases);
+		                 switchStatement.characteristicVector.join(cases.characteristicVector);
+		            }, this);
+    		
+    		switchStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.SwitchStatement]++;
+       	    
+    	}
+    	catch (e) { alert("Error when generating vector for Switch Statement: " + e); }
+    },
+    
+    generateVectorForSwitchCase: function (switchCase)
+    {
+    	try
+    	{
+    		if(!ASTHelper.isSwitchCase(switchCase)) { alert("Sent argument is not a switch case when generating vector!"); return; }
+     		 
+    		switchCase.characteristicVector = new CharacteristicVector();
+    		
+    		if(switchCase.test != null)
+    		{
+    			 this.generate(switchCase.test);
+    			 switchCase.characteristicVector.join(switchCase.test.characteristicVector);    	            
+    		}
+    		
+    		switchCase.consequent.forEach(function(consequent)
+            {
+                 this.generate(consequent);
+                 switchCase.characteristicVector.join(consequent.characteristicVector);
+            }, this);
+
+    		switchCase.characteristicVector[CharacteristicVector.RELEVANT_NODES.SwitchCase]++;
+       	    
+    	}
+    	catch (e) { alert("Error when generating vector for Switch Case: " + e); }
     },
 
     generateVectorForExpressionStatement: function(expressionStatement)
@@ -188,7 +291,7 @@ var VectorGenerator = {
             expressionStatement.characteristicVector.join(expressionStatement.expression.characteristicVector);
             
         }
-        catch(e) { alert("Error when generating vector for expressionStatement: " + e); }
+        catch(e) { alert("Error when generating vector for Expression Statement: " + e); }
     },
     
     generateVectorForAssignmentExpression: function(assignmentExpression)
