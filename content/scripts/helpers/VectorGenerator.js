@@ -91,6 +91,7 @@ var VectorGenerator = {
         }
     },
 
+   
     generateVectorForPattern: function(pattern)
     {
         try
@@ -285,6 +286,12 @@ var VectorGenerator = {
     {
     	try
     	{
+    		if(!ASTHelper.isThisExpression(thisExpression)) { alert("Sent argument is not a this expression when generating vector!"); return; }
+      		 
+    		thisExpression.characteristicVector = new CharacteristicVector();
+    		
+    		thisExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.ThisExpression]++;
+       	    
     		
     	}
     	catch (e) { alert("Error when generating vector for This Expression: " + e); }
@@ -488,11 +495,11 @@ var VectorGenerator = {
     		assignmentExpression.characteristicVector = new CharacteristicVector();
     		
     		this.generate(assignmentExpression.left);
-            this.generate(assignmentExpression.right);
+            //this.generate(assignmentExpression.right);
     		
     		assignmentExpression.characteristicVector.join(assignmentExpression.left.characteristicVector);
     		
-    		assignmentExpression.characteristicVector.join(assignmentExpression.right.characteristicVector);    		
+    		//assignmentExpression.characteristicVector.join(assignmentExpression.right.characteristicVector);    		
     		
     		assignmentExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.AssignmentExpression]++;
     	

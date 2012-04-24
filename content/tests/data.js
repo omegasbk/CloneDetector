@@ -273,4 +273,13 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":4,"column":17}
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
+//23 - array comprehension
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":13},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":13},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":13},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":4},"source":null},"type":"ThisExpression"},"property":{"loc":null,"type":"Identifier","name":"generate"},"computed":false}}]});
+/*
+ this.generate
+* */
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
 
