@@ -28,6 +28,14 @@ var VectorGenerator = {
             else if (ASTHelper.isMemberExpression(astElement)) { this.generateVectorForMemberExpression(astElement); }
             else if (ASTHelper.isWithStatement(astElement)) { this.generateVectorForWithStatement(astElement); }
             
+            
+            else if (ASTHelper.isThisExpression(astElement)) { this.generateVectorForThisExpression(astElement); }
+            else if (ASTHelper.isArrayExpression(astElement)) { this.generateVectorForArrayExpression(astElement); }
+            
+            
+            
+            
+            
             else if (ASTHelper.isNewExpression(astElement)) { this.generateVectorForNewExpression(astElement); }
             
             else if (ASTHelper.isSequenceExpression(astElement)) { this.generateVectorForSequenceExpression(astElement); }
@@ -72,7 +80,7 @@ var VectorGenerator = {
             else if (ASTHelper.isGeneratorExpression(astElement)) { this.generateVectorForGeneratorExpression(astElement); }
             
             else if (ASTHelper.isPattern(astElement)) { this.generateVectorForPattern(astElement); }
-
+           
             //else if (ASTHelper.isComprehensionBlock(astElement)) { this.generateVectorForComprehensionBlock(astElement); }
             
             else { alert("Unhandled element when generating vector: " + astElement.type); }
@@ -90,22 +98,54 @@ var VectorGenerator = {
             if(!ASTHelper.isPattern(pattern)) { alert("Sent argument is not a pattern when generating vector!"); return; }
 
             pattern.characteristicVector = new CharacteristicVector();
+            
 
-            alert("Make identifiers and Object Pattern");
-
-            if (ASTHelper.isArrayPattern(pattern))
+           if (ASTHelper.isArrayPattern(pattern))
             {
-                pattern.characteristicVector[CharacteristicVector.RELEVANT_NODES.ArrayPattern]++;
+            	 if(!ASTHelper.isArrayPattern(pattern)) { alert("Sent argument is not an array pattern when generating vector!"); return; }
+            	 
+            	
+ 
+                 pattern.elements.forEach(function(pattern)
+                        {
+                	 
+                			if(pattern.elements != null)
+                			{
+                				this.generate(elements);
+                				pattern.characteristicVector.join(pattern.elements.characteristicVector);                		        				
+                			}
+                        }, this);
 
-
+                 pattern.characteristicVector[CharacteristicVector.RELEVANT_NODES.ArrayPattern]++;
+                
             }
             else if (ASTHelper.isObjectPattern(pattern))
             {
-                pattern.characteristicVector[CharacteristicVector.RELEVANT_NODES.ObjectPattern]++;
+            	 if(!ASTHelper.isObjectPattern(pattern)) { alert("Sent argument is not an object pattern when generating vector!"); return; }
+
+                
+                pattern.properties.forEach(function(pattern)
+                        {
+                            this.generate(pattern.key);
+                            pattern.characteristicVector.join(pattern.key.characteristicVector);
+                            this.generate(pattern.value);
+                            pattern.characteristicVector.join(pattern.value.characteristicVector);
+                        }, this);
+                
+                pattern.characteristicVector[CharacteristicVector.RELEVANT_NODES.ObjectPattern]++;              
+                
             }
         }
         catch(e) { alert("Error when generating vector from Pattern"); }
     },
+    
+    
+    
+    
+    
+    
+    
+    
 
     generateVectorForBlockStatement: function(blockStatement)
     {
@@ -155,8 +195,7 @@ var VectorGenerator = {
     		 callExpression.arguments.forEach(function(arguments)
     		            {
     		                this.generate(arguments);
-    		                callExpression.
-    		                characteristicVector.join(arguments.characteristicVector);
+    		                callExpression.characteristicVector.join(arguments.characteristicVector);
     		            }, this);
     		
     		 callExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.CallExpression]++;
@@ -191,7 +230,7 @@ var VectorGenerator = {
  		                	   		                
 	   		            }, this);
     		  		 	
-    		//NEMA KIND PROPERTY-a JO�
+    		//NEMA KIND PROPERTY-a 
     		
     		 objectExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.ObjectExpression]++;
       	    
@@ -241,6 +280,46 @@ var VectorGenerator = {
     	catch (e) { alert("Error when generating vector for With Statement: " + e); }
     },
     
+    
+    generateVectorForThisExpression: function (thisExpression)
+    {
+    	try
+    	{
+    		
+    	}
+    	catch (e) { alert("Error when generating vector for This Expression: " + e); }
+    	
+    },
+    
+    generateVectorForArrayExpression: function (arrayExpression)
+    {
+    	try
+    	{
+
+    		if(!ASTHelper.isArrayExpression(arrayExpression)) { alert("Sent argument is not an array expression when generating vector!"); return; }
+   		 
+    		arrayExpression.characteristicVector = new CharacteristicVector();
+    		
+    		this.generate(arrayExpression.elements);
+    		arrayExpression.elements.forEach(function(elements)
+		            {
+		    			if (arrayExpression.elements != null)
+		        		{		
+				                 this.generate(elements);
+				                 arrayExpression.characteristicVector.join(elements.characteristicVector);
+		        		}
+		            }, this);
+    		    		 
+    		arrayExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.ArrayExpression]++;
+       	    
+    		
+    		
+    	}
+    	catch (e) { alert("Error when generating vector for Array Expression: " + e); }
+    	
+    	
+    },
+    
     generateVectorForNewExpression: function (newExpression)
     {
     	try
@@ -250,7 +329,7 @@ var VectorGenerator = {
     		newExpression.characteristicVector = new CharacteristicVector();
     		
     		
-    		//NE VALJA CONSTUCTOR, MISLIM DA JE NETO�NO NAPISANO NA PAPIRU
+    		//NE VALJA CONSTUCTOR, MISLIM DA JE NETOCNO NAPISANO NA PAPIRU
     		/*
     		this.generate(newExpression.constructor);
             newExpression.characteristicVector.join(newExpression.constructor.characteristicVector);
