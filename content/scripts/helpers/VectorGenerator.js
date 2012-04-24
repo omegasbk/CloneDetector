@@ -7,20 +7,19 @@ var VectorGenerator = {
     {
         try
         {
-            if(ASTHelper.isProgram(astElement)) { this.generateVectorForProgram(astElement); }
+            if(ASTHelper.isProgram(astElement)) { this.generateVectorForProgram(astElement);}
             else if (ASTHelper.isFunction(astElement)) { this.generateVectorForFunction(astElement); }
             else if (ASTHelper.isBlockStatement(astElement)) { this.generateVectorForBlockStatement(astElement); }
             else if (ASTHelper.isVariableDeclaration(astElement)) { this.generateVectorForVariableDeclaration(astElement); }
             else if (ASTHelper.isVariableDeclarator(astElement)) { this.generateVectorForVariableDeclarator(astElement); }
             
             //********************************************************LOOPS******************************************************
+
+            else if (ASTHelper.isForStatement(astElement)) { this.generateVectorForForStatement(astElement); }
+            else if (ASTHelper.isForInStatement(astElement)) { this.generateVectorForForInStatement(astElement); }
             
-            
-            else if (ASTHelper.isForStatement(astElement)) { this.generateVectorForForStatement(astElement); }    
-            else if (ASTHelper.isForInStatement(astElement)) { this.generateVectorForForInStatement(astElement); }    
-            
-            else if (ASTHelper.isWhileStatement(astElement)) { this.generateVectorForWhileStatement(astElement); }   
-            else if (ASTHelper.isDoWhileStatement(astElement)) { this.generateVectorForDoWhileStatement(astElement); }                                 
+            else if (ASTHelper.isWhileStatement(astElement)) { this.generateVectorForWhileStatement(astElement); }
+            else if (ASTHelper.isDoWhileStatement(astElement)) { this.generateVectorForDoWhileStatement(astElement); }
             
             
            //*********************************************************************************************************************
@@ -29,7 +28,7 @@ var VectorGenerator = {
             else if (ASTHelper.isMemberExpression(astElement)) { this.generateVectorForMemberExpression(astElement); }
             else if (ASTHelper.isWithStatement(astElement)) { this.generateVectorForWithStatement(astElement); }
             
-            else if (ASTHelper.isNewExpression(astElement)) { this.generateVectorForNewExpression(astElement); } 
+            else if (ASTHelper.isNewExpression(astElement)) { this.generateVectorForNewExpression(astElement); }
             
             else if (ASTHelper.isSequenceExpression(astElement)) { this.generateVectorForSequenceExpression(astElement); }
             
@@ -37,8 +36,8 @@ var VectorGenerator = {
             else if (ASTHelper.isContinueStatement(astElement)) { this.generateVectorForContinueStatement(astElement); }
             
             else if (ASTHelper.isIfStatement(astElement)) { this.generateVectorForIfStatement(astElement); }
-            else if (ASTHelper.isSwitchStatement(astElement)) { this.generateVectorForSwitchStatement(astElement); } 
-            else if (ASTHelper.isSwitchCase(astElement)) { this.generateVectorForSwitchCase(astElement); } 
+            else if (ASTHelper.isSwitchStatement(astElement)) { this.generateVectorForSwitchStatement(astElement); }
+            else if (ASTHelper.isSwitchCase(astElement)) { this.generateVectorForSwitchCase(astElement); }
             else if (ASTHelper.isConditionalExpression(astElement)) { this.generateVectorForConditionalExpression(astElement); }
             
             else if(ASTHelper.isReturnStatement(astElement)) { this.generateVectorForReturnStatement(astElement); }
@@ -73,15 +72,8 @@ var VectorGenerator = {
             else if (ASTHelper.isGeneratorExpression(astElement)) { this.generateVectorForGeneratorExpression(astElement); }
             
             else if (ASTHelper.isPattern(astElement)) { this.generateVectorForPattern(astElement); }
-            else if (ASTHelper.isArrayPattern(astElement)) { this.generateVectorArrayPattern(astElement); }
-            else if (ASTHelper.isObjectPattern(astElement)) { this.generateVectorForObjectPattern(astElement); }
-            
-            else if (ASTHelper.isComprehensionBlock(astElement)) { this.generateVectorForComprehensionBlock(astElement); }
-            
-            
-            
-            
-            
+
+            //else if (ASTHelper.isComprehensionBlock(astElement)) { this.generateVectorForComprehensionBlock(astElement); }
             
             else { alert("Unhandled element when generating vector: " + astElement.type); }
         }
@@ -89,6 +81,30 @@ var VectorGenerator = {
         {
             alert("Error when generating vector: " + e);
         }
+    },
+
+    generateVectorForPattern: function(pattern)
+    {
+        try
+        {
+            if(!ASTHelper.isPattern(pattern)) { alert("Sent argument is not a pattern when generating vector!"); return; }
+
+            pattern.characteristicVector = new CharacteristicVector();
+
+            alert("Make identifiers and Object Pattern");
+
+            if (ASTHelper.isArrayPattern(pattern))
+            {
+                pattern.characteristicVector[CharacteristicVector.RELEVANT_NODES.ArrayPattern]++;
+
+
+            }
+            else if (ASTHelper.isObjectPattern(pattern))
+            {
+                pattern.characteristicVector[CharacteristicVector.RELEVANT_NODES.ObjectPattern]++;
+            }
+        }
+        catch(e) { alert("Error when generating vector from Pattern"); }
     },
 
     generateVectorForBlockStatement: function(blockStatement)
@@ -175,7 +191,7 @@ var VectorGenerator = {
  		                	   		                
 	   		            }, this);
     		  		 	
-    		//NEMA KIND PROPERTY-a JOŠ
+    		//NEMA KIND PROPERTY-a JOï¿½
     		
     		 objectExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.ObjectExpression]++;
       	    
@@ -234,7 +250,7 @@ var VectorGenerator = {
     		newExpression.characteristicVector = new CharacteristicVector();
     		
     		
-    		//NE VALJA CONSTUCTOR, MISLIM DA JE NETOÈNO NAPISANO NA PAPIRU
+    		//NE VALJA CONSTUCTOR, MISLIM DA JE NETOï¿½NO NAPISANO NA PAPIRU
     		/*
     		this.generate(newExpression.constructor);
             newExpression.characteristicVector.join(newExpression.constructor.characteristicVector);
@@ -1082,5 +1098,8 @@ CharacteristicVector.RELEVANT_NODES =
     YieldExpression: "YieldExpression",
     ComprehensionExpression: "ComprehensionExpression",
     GeneratorExpression: "GeneratorExpression",
-    LetExpression: "LetExpression"
+    LetExpression: "LetExpression",
+
+    ArrayPattern: "ArrayPattern",
+    ObjectPattern: "ObjectPattern"
 };

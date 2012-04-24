@@ -322,7 +322,9 @@ var ASTHelper =
     isUpdateOperator: function(element) { return this.isElementOfType(element, this.CONST.OPERATOR.UpdateOperator); },
     isLogicalOperator: function(element) { return this.isElementOfType(element, this.CONST.OPERATOR.LogicalOperator); },
 
-    
+    isPattern: function(element) { return this.isArrayPattern(element) || this.isObjectPattern(element); },
+    isArrayPattern: function(element) { return this.isElementOfType(element, this.CONST.ArrayPattern); },
+    isObjectPattern: function(element) { return this.isElementOfType(element, this.CONST.ObjectPattern); },
    
     isUnaryMathOperator: function(element) 
     { 
@@ -391,6 +393,9 @@ var ASTHelper =
         CatchClause: "CatchClause",
         Identifier: "Identifier",
         Literal: "Literal",
+        Pattern: "Pattern",
+        ArrayPattern: "ArrayPattern",
+        ObjectPattern: "ObjectPattern",
         STATEMENT:
         {
             EmptyStatement: "EmptyStatement",

@@ -242,13 +242,6 @@ for (var i = 1; i <= 5; i++) {
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-
-// sequence statement
-//NEMAN PRIMJERA, IMPLEMENTACIJA NASLIPO
-
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
 //20 conditional expression
 testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":19},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":18},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":18},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":1},"source":null},"type":"Identifier","name":"a"},"right":{"loc":{"start":{"line":1,"column":5},"end":{"line":1,"column":18},"source":null},"type":"ConditionalExpression","test":{"loc":{"start":{"line":1,"column":5},"end":{"line":1,"column":10},"source":null},"type":"BinaryExpression","operator":"<","left":{"loc":{"start":{"line":1,"column":5},"end":{"line":1,"column":6},"source":null},"type":"Identifier","name":"b"},"right":{"loc":{"start":{"line":1,"column":9},"end":{"line":1,"column":10},"source":null},"type":"Identifier","name":"c"}},"consequent":{"loc":{"start":{"line":1,"column":13},"end":{"line":1,"column":14},"source":null},"type":"Identifier","name":"b"},"alternate":{"loc":{"start":{"line":1,"column":17},"end":{"line":1,"column":18},"source":null},"type":"Identifier","name":"c"}}}}]});
 
@@ -260,7 +253,24 @@ if (x*x > 1000 || y) alert("true!");
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//21 sequence statement
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":2,"column":13},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":9},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":9},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":9},"source":null},"type":"Identifier","name":"a"},"init":{"loc":{"start":{"line":1,"column":8},"end":{"line":1,"column":9},"source":null},"type":"Literal","value":3}}]},{"loc":{"start":{"line":2,"column":0},"end":{"line":2,"column":12},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":2,"column":0},"end":{"line":2,"column":12},"source":null},"type":"SequenceExpression","expressions":[{"loc":{"start":{"line":2,"column":0},"end":{"line":2,"column":5},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":2,"column":0},"end":{"line":2,"column":1},"source":null},"type":"Identifier","name":"a"},"right":{"loc":{"start":{"line":2,"column":4},"end":{"line":2,"column":5},"source":null},"type":"Literal","value":4}},{"loc":{"start":{"line":2,"column":7},"end":{"line":2,"column":12},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":2,"column":7},"end":{"line":2,"column":8},"source":null},"type":"Identifier","name":"a"},"right":{"loc":{"start":{"line":2,"column":11},"end":{"line":2,"column":12},"source":null},"type":"Literal","value":5}}]}}]});
+/*
+var a = 3;
+a = 4, a = 5;
+*/
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//22 - array comprehension
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":4,"column":17},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":1},"end":{"line":1,"column":10},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":1,"column":5},"end":{"line":1,"column":10},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":1,"column":5},"end":{"line":1,"column":10},"source":null},"type":"Identifier","name":"a"},"init":{"loc":{"start":{"line":1,"column":9},"end":{"line":1,"column":10},"source":null},"type":"Literal","value":1}}]},{"loc":{"start":{"line":2,"column":1},"end":{"line":2,"column":10},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":2,"column":5},"end":{"line":2,"column":10},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":2,"column":5},"end":{"line":2,"column":10},"source":null},"type":"Identifier","name":"b"},"init":{"loc":{"start":{"line":2,"column":9},"end":{"line":2,"column":10},"source":null},"type":"Literal","value":3}}]},{"loc":{"start":{"line":4,"column":1},"end":{"line":4,"column":16},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":4,"column":1},"end":{"line":4,"column":16},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":4,"column":1},"end":{"line":4,"column":7},"source":null},"type":"ArrayPattern","elements":[{"loc":{"start":{"line":4,"column":2},"end":{"line":4,"column":3},"source":null},"type":"Identifier","name":"a"},{"loc":{"start":{"line":4,"column":5},"end":{"line":4,"column":6},"source":null},"type":"Identifier","name":"b"}]},"right":{"loc":{"start":{"line":4,"column":10},"end":{"line":4,"column":16},"source":null},"type":"ArrayExpression","elements":[{"loc":{"start":{"line":4,"column":11},"end":{"line":4,"column":12},"source":null},"type":"Identifier","name":"b"},{"loc":{"start":{"line":4,"column":14},"end":{"line":4,"column":15},"source":null},"type":"Identifier","name":"a"}]}}}]});
+/*
+ var a = 1;
+ var b = 3;
+
+ [a, b] = [b, a];
+* */
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
- 
 
