@@ -273,7 +273,7 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":4,"column":17}
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-//23 - array comprehension
+//23 - this expression
 
 testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":13},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":13},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":13},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":4},"source":null},"type":"ThisExpression"},"property":{"loc":null,"type":"Identifier","name":"generate"},"computed":false}}]});
 /*
@@ -283,3 +283,318 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":13}
 
 
 
+//GENERAL TESTING 
+//OD 24 NADALJE
+
+
+//24 function && callExpression
+
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":4,"column":1},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":9},"end":{"line":4,"column":1},"source":null},"type":"FunctionDeclaration","id":{"loc":null,"type":"Identifier","name":"displaymessage"},"params":[],"body":{"loc":{"start":{"line":2,"column":0},"end":{"line":3,"column":22},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":3,"column":0},"end":{"line":3,"column":21},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":3,"column":0},"end":{"line":3,"column":21},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":3,"column":0},"end":{"line":3,"column":5},"source":null},"type":"Identifier","name":"alert"},"arguments":[{"loc":{"start":{"line":3,"column":6},"end":{"line":3,"column":20},"source":null},"type":"Literal","value":"Hello World!"}]}}]},"generator":false,"expression":false}]});
+
+
+/*
+ * function displaymessage()
+{
+alert("Hello World!");
+}
+ */
+	
+//25 ifStatement, identifier, literal
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":36},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":35},"source":null},"type":"IfStatement","test":{"loc":{"start":{"line":1,"column":3},"end":{"line":1,"column":8},"source":null},"type":"BinaryExpression","operator":">","left":{"loc":{"start":{"line":1,"column":3},"end":{"line":1,"column":4},"source":null},"type":"Identifier","name":"a"},"right":{"loc":{"start":{"line":1,"column":7},"end":{"line":1,"column":8},"source":null},"type":"Identifier","name":"b"}},"consequent":{"loc":{"start":{"line":1,"column":10},"end":{"line":1,"column":35},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":1,"column":10},"end":{"line":1,"column":35},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":1,"column":10},"end":{"line":1,"column":15},"source":null},"type":"Identifier","name":"alert"},"arguments":[{"loc":{"start":{"line":1,"column":17},"end":{"line":1,"column":34},"source":null},"type":"Literal","value":"a je vece od b!"}]}},"alternate":null}]});
+/*
+ * if(a > b) alert ("a je vece od b!");
+ */
+
+//26 labeled statement, binaryEquality, binaryMath, breakStatement, numberLiteral
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":7,"column":1},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":6,"column":21},"source":null},"type":"LabeledStatement","label":{"loc":null,"type":"Identifier","name":"even_number"},"body":{"loc":{"start":{"line":2,"column":0},"end":{"line":6,"column":21},"source":null},"type":"IfStatement","test":{"loc":{"start":{"line":2,"column":3},"end":{"line":2,"column":9},"source":null},"type":"BinaryExpression","operator":"==","left":{"loc":{"start":{"line":2,"column":3},"end":{"line":2,"column":6},"source":null},"type":"BinaryExpression","operator":"%","left":{"loc":{"start":{"line":2,"column":3},"end":{"line":2,"column":4},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":2,"column":5},"end":{"line":2,"column":6},"source":null},"type":"Literal","value":2}},"right":{"loc":{"start":{"line":2,"column":8},"end":{"line":2,"column":9},"source":null},"type":"Literal","value":0}},"consequent":{"loc":{"start":{"line":3,"column":0},"end":{"line":6,"column":21},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":4,"column":3},"end":{"line":5,"column":23},"source":null},"type":"IfStatement","test":{"loc":{"start":{"line":4,"column":6},"end":{"line":4,"column":11},"source":null},"type":"BinaryExpression","operator":"==","left":{"loc":{"start":{"line":4,"column":6},"end":{"line":4,"column":7},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":4,"column":9},"end":{"line":4,"column":11},"source":null},"type":"Literal","value":12}},"consequent":{"loc":{"start":{"line":5,"column":6},"end":{"line":5,"column":23},"source":null},"type":"BreakStatement","label":{"loc":null,"type":"Identifier","name":"even_number"}},"alternate":null},{"loc":{"start":{"line":6,"column":3},"end":{"line":6,"column":20},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":6,"column":3},"end":{"line":6,"column":20},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":6,"column":3},"end":{"line":6,"column":17},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":6,"column":3},"end":{"line":6,"column":11},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":6,"column":18},"end":{"line":6,"column":19},"source":null},"type":"Identifier","name":"i"}]}}]},"alternate":null}}]});
+
+/*
+ * even_number:
+if(i%2==0)
+{
+   if(i==12)
+      break even_number;
+   document.write(i);
+}
+ */
+
+//27 assignmentExpression, continueStatement, forStatement, updateExpression, variableDeclaration, variableDeclarator
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":10,"column":3},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":7},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":7},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":7},"source":null},"type":"Identifier","name":"i"},"init":{"loc":{"start":{"line":1,"column":6},"end":{"line":1,"column":7},"source":null},"type":"Literal","value":0}}]},{"loc":{"start":{"line":2,"column":0},"end":{"line":9,"column":27},"source":null},"type":"ForStatement","init":{"loc":{"start":{"line":2,"column":5},"end":{"line":2,"column":8},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":2,"column":5},"end":{"line":2,"column":6},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":2,"column":7},"end":{"line":2,"column":8},"source":null},"type":"Literal","value":0}},"test":{"loc":{"start":{"line":2,"column":9},"end":{"line":2,"column":14},"source":null},"type":"BinaryExpression","operator":"<=","left":{"loc":{"start":{"line":2,"column":9},"end":{"line":2,"column":10},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":2,"column":12},"end":{"line":2,"column":14},"source":null},"type":"Literal","value":10}},"update":{"loc":{"start":{"line":2,"column":15},"end":{"line":2,"column":18},"source":null},"type":"UpdateExpression","operator":"++","argument":{"loc":{"start":{"line":2,"column":15},"end":{"line":2,"column":16},"source":null},"type":"Identifier","name":"i"},"prefix":false},"body":{"loc":{"start":{"line":3,"column":2},"end":{"line":9,"column":27},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":4,"column":2},"end":{"line":6,"column":13},"source":null},"type":"IfStatement","test":{"loc":{"start":{"line":4,"column":6},"end":{"line":4,"column":10},"source":null},"type":"BinaryExpression","operator":"==","left":{"loc":{"start":{"line":4,"column":6},"end":{"line":4,"column":7},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":4,"column":9},"end":{"line":4,"column":10},"source":null},"type":"Literal","value":3}},"consequent":{"loc":{"start":{"line":5,"column":4},"end":{"line":6,"column":13},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":6,"column":4},"end":{"line":6,"column":4},"source":null},"type":"ContinueStatement","label":null}]},"alternate":null},{"loc":{"start":{"line":8,"column":2},"end":{"line":8,"column":38},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":8,"column":2},"end":{"line":8,"column":38},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":8,"column":2},"end":{"line":8,"column":16},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":8,"column":2},"end":{"line":8,"column":10},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":8,"column":17},"end":{"line":8,"column":37},"source":null},"type":"BinaryExpression","operator":"+","left":{"loc":{"start":{"line":8,"column":17},"end":{"line":8,"column":33},"source":null},"type":"Literal","value":"The number is "},"right":{"loc":{"start":{"line":8,"column":36},"end":{"line":8,"column":37},"source":null},"type":"Identifier","name":"i"}}]}},{"loc":{"start":{"line":9,"column":2},"end":{"line":9,"column":26},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":9,"column":2},"end":{"line":9,"column":26},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":9,"column":2},"end":{"line":9,"column":16},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":9,"column":2},"end":{"line":9,"column":10},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":9,"column":17},"end":{"line":9,"column":25},"source":null},"type":"Literal","value":"<br />"}]}}]}}]});
+
+/*
+ * var i=0
+for (i=0;i<=10;i++)
+  {
+  if (i==3)
+    {
+    continue;
+    }
+  document.write("The number is " + i);
+  document.write("<br />");
+  }
+  */
+
+//28 with statement
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":6,"column":1},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":5,"column":25},"source":null},"type":"WithStatement","object":{"loc":{"start":{"line":1,"column":5},"end":{"line":1,"column":13},"source":null},"type":"Identifier","name":"document"},"body":{"loc":{"start":{"line":2,"column":0},"end":{"line":5,"column":25},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":3,"column":0},"end":{"line":3,"column":36},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":3,"column":0},"end":{"line":3,"column":36},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":3,"column":0},"end":{"line":3,"column":5},"source":null},"type":"Identifier","name":"write"},"arguments":[{"loc":{"start":{"line":3,"column":6},"end":{"line":3,"column":35},"source":null},"type":"Literal","value":" inside with statement <br>"}]}},{"loc":{"start":{"line":4,"column":0},"end":{"line":4,"column":68},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":4,"column":0},"end":{"line":4,"column":68},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":4,"column":0},"end":{"line":4,"column":5},"source":null},"type":"Identifier","name":"write"},"arguments":[{"loc":{"start":{"line":4,"column":6},"end":{"line":4,"column":67},"source":null},"type":"Literal","value":" using with(object) we can call its functions directly <br>"}]}},{"loc":{"start":{"line":5,"column":0},"end":{"line":5,"column":24},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":5,"column":0},"end":{"line":5,"column":24},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":5,"column":0},"end":{"line":5,"column":5},"source":null},"type":"Identifier","name":"write"},"arguments":[{"loc":{"start":{"line":5,"column":7},"end":{"line":5,"column":23},"source":null},"type":"BinaryExpression","operator":"+","left":{"loc":{"start":{"line":5,"column":7},"end":{"line":5,"column":17},"source":null},"type":"Literal","value":" TITLE -"},"right":{"loc":{"start":{"line":5,"column":18},"end":{"line":5,"column":23},"source":null},"type":"Identifier","name":"title"}}]}}]}}]});
+
+
+/*
+ *with(document)
+{
+write(" inside with statement <br>");
+write(" using with(object) we can call its functions directly <br>");
+write (" TITLE -"+title);
+}
+ *
+ */
+
+//29 switchCase, switchStatement, newExpression
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":16,"column":1},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":14},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":14},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":14},"source":null},"type":"Identifier","name":"d"},"init":{"loc":{"start":{"line":1,"column":10},"end":{"line":1,"column":14},"source":null},"type":"NewExpression","callee":{"loc":{"start":{"line":1,"column":10},"end":{"line":1,"column":14},"source":null},"type":"Identifier","name":"Date"},"arguments":[]}}]},{"loc":{"start":{"line":2,"column":0},"end":{"line":2,"column":21},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":2,"column":4},"end":{"line":2,"column":21},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":2,"column":4},"end":{"line":2,"column":21},"source":null},"type":"Identifier","name":"theDay"},"init":{"loc":{"start":{"line":2,"column":11},"end":{"line":2,"column":21},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":2,"column":11},"end":{"line":2,"column":19},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":2,"column":11},"end":{"line":2,"column":12},"source":null},"type":"Identifier","name":"d"},"property":{"loc":null,"type":"Identifier","name":"getDay"},"computed":false},"arguments":[]}}]},{"loc":{"start":{"line":3,"column":0},"end":{"line":16,"column":1},"source":null},"type":"SwitchStatement","discriminant":{"loc":{"start":{"line":3,"column":8},"end":{"line":3,"column":14},"source":null},"type":"Identifier","name":"theDay"},"cases":[{"loc":{"start":{"line":5,"column":0},"end":{"line":7,"column":7},"source":null},"type":"SwitchCase","test":{"loc":{"start":{"line":5,"column":5},"end":{"line":5,"column":6},"source":null},"type":"Literal","value":5},"consequent":[{"loc":{"start":{"line":6,"column":2},"end":{"line":6,"column":34},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":6,"column":2},"end":{"line":6,"column":34},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":6,"column":2},"end":{"line":6,"column":16},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":6,"column":2},"end":{"line":6,"column":10},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":6,"column":17},"end":{"line":6,"column":33},"source":null},"type":"Literal","value":"Finally Friday"}]}},{"loc":{"start":{"line":7,"column":2},"end":{"line":7,"column":7},"source":null},"type":"BreakStatement","label":null}]},{"loc":{"start":{"line":8,"column":0},"end":{"line":10,"column":7},"source":null},"type":"SwitchCase","test":{"loc":{"start":{"line":8,"column":5},"end":{"line":8,"column":6},"source":null},"type":"Literal","value":6},"consequent":[{"loc":{"start":{"line":9,"column":2},"end":{"line":9,"column":34},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":9,"column":2},"end":{"line":9,"column":34},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":9,"column":2},"end":{"line":9,"column":16},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":9,"column":2},"end":{"line":9,"column":10},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":9,"column":17},"end":{"line":9,"column":33},"source":null},"type":"Literal","value":"Super Saturday"}]}},{"loc":{"start":{"line":10,"column":2},"end":{"line":10,"column":7},"source":null},"type":"BreakStatement","label":null}]},{"loc":{"start":{"line":11,"column":0},"end":{"line":13,"column":7},"source":null},"type":"SwitchCase","test":{"loc":{"start":{"line":11,"column":5},"end":{"line":11,"column":6},"source":null},"type":"Literal","value":0},"consequent":[{"loc":{"start":{"line":12,"column":2},"end":{"line":12,"column":33},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":12,"column":2},"end":{"line":12,"column":33},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":12,"column":2},"end":{"line":12,"column":16},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":12,"column":2},"end":{"line":12,"column":10},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":12,"column":17},"end":{"line":12,"column":32},"source":null},"type":"Literal","value":"Sleepy Sunday"}]}},{"loc":{"start":{"line":13,"column":2},"end":{"line":13,"column":7},"source":null},"type":"BreakStatement","label":null}]},{"loc":{"start":{"line":14,"column":0},"end":{"line":15,"column":56},"source":null},"type":"SwitchCase","test":null,"consequent":[{"loc":{"start":{"line":15,"column":2},"end":{"line":15,"column":56},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":15,"column":2},"end":{"line":15,"column":56},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":15,"column":2},"end":{"line":15,"column":16},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":15,"column":2},"end":{"line":15,"column":10},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":15,"column":17},"end":{"line":15,"column":55},"source":null},"type":"Literal","value":"I'm looking forward to this weekend!"}]}}]}],"lexical":false}]});
+
+/*
+ * var d=new Date();
+var theDay=d.getDay();
+switch (theDay)
+{
+case 5:
+  document.write("Finally Friday");
+  break;
+case 6:
+  document.write("Super Saturday");
+  break;
+case 0:
+  document.write("Sleepy Sunday");
+  break;
+default:
+  document.write("I'm looking forward to this weekend!");
+}
+*/
+
+
+//30 return, functionDeclaration, 
+
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":4,"column":1},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":9},"end":{"line":4,"column":1},"source":null},"type":"FunctionDeclaration","id":{"loc":null,"type":"Identifier","name":"product"},"params":[{"loc":{"start":{"line":1,"column":17},"end":{"line":1,"column":18},"source":null},"type":"Identifier","name":"a"},{"loc":{"start":{"line":1,"column":19},"end":{"line":1,"column":20},"source":null},"type":"Identifier","name":"b"}],"body":{"loc":{"start":{"line":2,"column":0},"end":{"line":3,"column":11},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":3,"column":0},"end":{"line":3,"column":10},"source":null},"type":"ReturnStatement","argument":{"loc":{"start":{"line":3,"column":7},"end":{"line":3,"column":10},"source":null},"type":"BinaryExpression","operator":"*","left":{"loc":{"start":{"line":3,"column":7},"end":{"line":3,"column":8},"source":null},"type":"Identifier","name":"a"},"right":{"loc":{"start":{"line":3,"column":9},"end":{"line":3,"column":10},"source":null},"type":"Identifier","name":"b"}}}]},"generator":false,"expression":false}]});
+
+
+/*
+ * function product(a,b)
+{
+return a*b;
+}*/
+
+//31  throw, catchClause, try
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":31,"column":3},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":51},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":51},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":51},"source":null},"type":"Identifier","name":"x"},"init":{"loc":{"start":{"line":1,"column":6},"end":{"line":1,"column":51},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":1,"column":6},"end":{"line":1,"column":12},"source":null},"type":"Identifier","name":"prompt"},"arguments":[{"loc":{"start":{"line":1,"column":13},"end":{"line":1,"column":47},"source":null},"type":"Literal","value":"Enter a number between 5 and 10:"},{"loc":{"start":{"line":1,"column":48},"end":{"line":1,"column":50},"source":null},"type":"Literal","value":""}]}}]},{"loc":{"start":{"line":2,"column":0},"end":{"line":2,"column":3},"source":null},"type":"TryStatement","block":{"loc":{"start":{"line":3,"column":2},"end":{"line":15,"column":5},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":4,"column":2},"end":{"line":14,"column":17},"source":null},"type":"IfStatement","test":{"loc":{"start":{"line":4,"column":5},"end":{"line":4,"column":9},"source":null},"type":"BinaryExpression","operator":">","left":{"loc":{"start":{"line":4,"column":5},"end":{"line":4,"column":6},"source":null},"type":"Identifier","name":"x"},"right":{"loc":{"start":{"line":4,"column":7},"end":{"line":4,"column":9},"source":null},"type":"Literal","value":10}},"consequent":{"loc":{"start":{"line":5,"column":4},"end":{"line":6,"column":17},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":6,"column":4},"end":{"line":6,"column":16},"source":null},"type":"ThrowStatement","argument":{"loc":{"start":{"line":6,"column":10},"end":{"line":6,"column":16},"source":null},"type":"Literal","value":"Err1"}}]},"alternate":{"loc":{"start":{"line":8,"column":7},"end":{"line":14,"column":17},"source":null},"type":"IfStatement","test":{"loc":{"start":{"line":8,"column":10},"end":{"line":8,"column":13},"source":null},"type":"BinaryExpression","operator":"<","left":{"loc":{"start":{"line":8,"column":10},"end":{"line":8,"column":11},"source":null},"type":"Identifier","name":"x"},"right":{"loc":{"start":{"line":8,"column":12},"end":{"line":8,"column":13},"source":null},"type":"Literal","value":5}},"consequent":{"loc":{"start":{"line":9,"column":4},"end":{"line":10,"column":17},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":10,"column":4},"end":{"line":10,"column":16},"source":null},"type":"ThrowStatement","argument":{"loc":{"start":{"line":10,"column":10},"end":{"line":10,"column":16},"source":null},"type":"Literal","value":"Err2"}}]},"alternate":{"loc":{"start":{"line":12,"column":7},"end":{"line":14,"column":17},"source":null},"type":"IfStatement","test":{"loc":{"start":{"line":12,"column":10},"end":{"line":12,"column":18},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":12,"column":10},"end":{"line":12,"column":15},"source":null},"type":"Identifier","name":"isNaN"},"arguments":[{"loc":{"start":{"line":12,"column":16},"end":{"line":12,"column":17},"source":null},"type":"Identifier","name":"x"}]},"consequent":{"loc":{"start":{"line":13,"column":4},"end":{"line":14,"column":17},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":14,"column":4},"end":{"line":14,"column":16},"source":null},"type":"ThrowStatement","argument":{"loc":{"start":{"line":14,"column":10},"end":{"line":14,"column":16},"source":null},"type":"Literal","value":"Err3"}}]},"alternate":null}}}]},"handlers":[{"loc":{"start":{"line":17,"column":0},"end":{"line":17,"column":5},"source":null},"type":"CatchClause","param":{"loc":{"start":{"line":17,"column":6},"end":{"line":17,"column":9},"source":null},"type":"Identifier","name":"err"},"guard":null,"body":{"loc":{"start":{"line":18,"column":2},"end":{"line":30,"column":5},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":19,"column":2},"end":{"line":21,"column":52},"source":null},"type":"IfStatement","test":{"loc":{"start":{"line":19,"column":5},"end":{"line":19,"column":16},"source":null},"type":"BinaryExpression","operator":"==","left":{"loc":{"start":{"line":19,"column":5},"end":{"line":19,"column":8},"source":null},"type":"Identifier","name":"err"},"right":{"loc":{"start":{"line":19,"column":10},"end":{"line":19,"column":16},"source":null},"type":"Literal","value":"Err1"}},"consequent":{"loc":{"start":{"line":20,"column":4},"end":{"line":21,"column":52},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":21,"column":4},"end":{"line":21,"column":51},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":21,"column":4},"end":{"line":21,"column":51},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":21,"column":4},"end":{"line":21,"column":18},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":21,"column":4},"end":{"line":21,"column":12},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":21,"column":19},"end":{"line":21,"column":50},"source":null},"type":"Literal","value":"Error! The value is too high."}]}}]},"alternate":null},{"loc":{"start":{"line":23,"column":2},"end":{"line":25,"column":51},"source":null},"type":"IfStatement","test":{"loc":{"start":{"line":23,"column":5},"end":{"line":23,"column":16},"source":null},"type":"BinaryExpression","operator":"==","left":{"loc":{"start":{"line":23,"column":5},"end":{"line":23,"column":8},"source":null},"type":"Identifier","name":"err"},"right":{"loc":{"start":{"line":23,"column":10},"end":{"line":23,"column":16},"source":null},"type":"Literal","value":"Err2"}},"consequent":{"loc":{"start":{"line":24,"column":4},"end":{"line":25,"column":51},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":25,"column":4},"end":{"line":25,"column":50},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":25,"column":4},"end":{"line":25,"column":50},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":25,"column":4},"end":{"line":25,"column":18},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":25,"column":4},"end":{"line":25,"column":12},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":25,"column":19},"end":{"line":25,"column":49},"source":null},"type":"Literal","value":"Error! The value is too low."}]}}]},"alternate":null},{"loc":{"start":{"line":27,"column":2},"end":{"line":29,"column":56},"source":null},"type":"IfStatement","test":{"loc":{"start":{"line":27,"column":5},"end":{"line":27,"column":16},"source":null},"type":"BinaryExpression","operator":"==","left":{"loc":{"start":{"line":27,"column":5},"end":{"line":27,"column":8},"source":null},"type":"Identifier","name":"err"},"right":{"loc":{"start":{"line":27,"column":10},"end":{"line":27,"column":16},"source":null},"type":"Literal","value":"Err3"}},"consequent":{"loc":{"start":{"line":28,"column":4},"end":{"line":29,"column":56},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":29,"column":4},"end":{"line":29,"column":55},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":29,"column":4},"end":{"line":29,"column":55},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":29,"column":4},"end":{"line":29,"column":18},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":29,"column":4},"end":{"line":29,"column":12},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":29,"column":19},"end":{"line":29,"column":54},"source":null},"type":"Literal","value":"Error! The value is not a number."}]}}]},"alternate":null}]}}],"finalizer":null}]});
+
+/*
+ *var x=prompt("Enter a number between 5 and 10:","");
+try
+  {
+  if(x>10)
+    {
+    throw "Err1";
+    }
+  else if(x<5)
+    {
+    throw "Err2";
+    }
+  else if(isNaN(x))
+    {
+    throw "Err3";
+    }
+  }
+catch(err)
+  {
+  if(err=="Err1")
+    {
+    document.write("Error! The value is too high.");
+    }
+  if(err=="Err2")
+    {
+    document.write("Error! The value is too low.");
+    }
+  if(err=="Err3")
+    {
+    document.write("Error! The value is not a number.");
+    }
+  }
+*/ 
+
+
+//32 while
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":7,"column":3},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":7},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":7},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":7},"source":null},"type":"Identifier","name":"i"},"init":{"loc":{"start":{"line":1,"column":6},"end":{"line":1,"column":7},"source":null},"type":"Literal","value":0}}]},{"loc":{"start":{"line":2,"column":0},"end":{"line":6,"column":6},"source":null},"type":"WhileStatement","test":{"loc":{"start":{"line":2,"column":7},"end":{"line":2,"column":11},"source":null},"type":"BinaryExpression","operator":"<=","left":{"loc":{"start":{"line":2,"column":7},"end":{"line":2,"column":8},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":2,"column":10},"end":{"line":2,"column":11},"source":null},"type":"Literal","value":5}},"body":{"loc":{"start":{"line":3,"column":2},"end":{"line":6,"column":6},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":4,"column":2},"end":{"line":4,"column":38},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":4,"column":2},"end":{"line":4,"column":38},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":4,"column":2},"end":{"line":4,"column":16},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":4,"column":2},"end":{"line":4,"column":10},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":4,"column":17},"end":{"line":4,"column":37},"source":null},"type":"BinaryExpression","operator":"+","left":{"loc":{"start":{"line":4,"column":17},"end":{"line":4,"column":33},"source":null},"type":"Literal","value":"The number is "},"right":{"loc":{"start":{"line":4,"column":36},"end":{"line":4,"column":37},"source":null},"type":"Identifier","name":"i"}}]}},{"loc":{"start":{"line":5,"column":2},"end":{"line":5,"column":26},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":5,"column":2},"end":{"line":5,"column":26},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":5,"column":2},"end":{"line":5,"column":16},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":5,"column":2},"end":{"line":5,"column":10},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":5,"column":17},"end":{"line":5,"column":25},"source":null},"type":"Literal","value":"<br />"}]}},{"loc":{"start":{"line":6,"column":2},"end":{"line":6,"column":5},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":6,"column":2},"end":{"line":6,"column":5},"source":null},"type":"UpdateExpression","operator":"++","argument":{"loc":{"start":{"line":6,"column":2},"end":{"line":6,"column":3},"source":null},"type":"Identifier","name":"i"},"prefix":false}}]}}]});
+
+
+
+
+/*
+var i=0;
+while (i<=5)
+  {
+  document.write("The number is " + i);
+  document.write("<br />");
+  i++;
+  }*/
+
+
+
+
+//33 doWhile
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":7,"column":12},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":9},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":9},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":9},"source":null},"type":"Identifier","name":"i"},"init":{"loc":{"start":{"line":1,"column":8},"end":{"line":1,"column":9},"source":null},"type":"Literal","value":0}}]},{"loc":{"start":{"line":2,"column":0},"end":{"line":7,"column":10},"source":null},"type":"DoWhileStatement","body":{"loc":{"start":{"line":3,"column":0},"end":{"line":5,"column":8},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":4,"column":3},"end":{"line":4,"column":30},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":4,"column":3},"end":{"line":4,"column":30},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":4,"column":3},"end":{"line":4,"column":17},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":4,"column":3},"end":{"line":4,"column":11},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":4,"column":18},"end":{"line":4,"column":29},"source":null},"type":"BinaryExpression","operator":"+","left":{"loc":{"start":{"line":4,"column":18},"end":{"line":4,"column":19},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":4,"column":22},"end":{"line":4,"column":29},"source":null},"type":"Literal","value":".<BR>"}}]}},{"loc":{"start":{"line":5,"column":3},"end":{"line":5,"column":7},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":5,"column":3},"end":{"line":5,"column":7},"source":null},"type":"AssignmentExpression","operator":"+=","left":{"loc":{"start":{"line":5,"column":3},"end":{"line":5,"column":4},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":5,"column":6},"end":{"line":5,"column":7},"source":null},"type":"Literal","value":2}}}]},"test":{"loc":{"start":{"line":7,"column":6},"end":{"line":7,"column":10},"source":null},"type":"BinaryExpression","operator":"<","left":{"loc":{"start":{"line":7,"column":6},"end":{"line":7,"column":7},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":7,"column":8},"end":{"line":7,"column":10},"source":null},"type":"Literal","value":20}}}]});
+
+
+/*
+var i = 0;
+do
+{
+   document.write(i + ".<BR>");
+   i+=2;
+}
+while(i<20);*/
+
+
+
+
+
+
+//34 forIn, memberExpression, objectExpression
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":7,"column":1},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":44},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":44},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":44},"source":null},"type":"Identifier","name":"person"},"init":{"loc":{"start":{"line":1,"column":11},"end":{"line":1,"column":44},"source":null},"type":"ObjectExpression","properties":[{"loc":{"start":{"line":1,"column":12},"end":{"line":1,"column":24},"source":null},"type":"Property","key":{"loc":{"start":{"line":1,"column":12},"end":{"line":1,"column":17},"source":null},"type":"Identifier","name":"fname"},"value":{"loc":{"start":{"line":1,"column":18},"end":{"line":1,"column":24},"source":null},"type":"Literal","value":"John"},"kind":"init"},{"loc":{"start":{"line":1,"column":25},"end":{"line":1,"column":36},"source":null},"type":"Property","key":{"loc":{"start":{"line":1,"column":25},"end":{"line":1,"column":30},"source":null},"type":"Identifier","name":"lname"},"value":{"loc":{"start":{"line":1,"column":31},"end":{"line":1,"column":36},"source":null},"type":"Literal","value":"Doe"},"kind":"init"},{"loc":{"start":{"line":1,"column":37},"end":{"line":1,"column":43},"source":null},"type":"Property","key":{"loc":{"start":{"line":1,"column":37},"end":{"line":1,"column":40},"source":null},"type":"Identifier","name":"age"},"value":{"loc":{"start":{"line":1,"column":41},"end":{"line":1,"column":43},"source":null},"type":"Literal","value":25},"kind":"init"}]}}]},{"loc":{"start":{"line":2,"column":0},"end":{"line":2,"column":5},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":2,"column":4},"end":{"line":2,"column":5},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":2,"column":4},"end":{"line":2,"column":5},"source":null},"type":"Identifier","name":"x"},"init":null}]},{"loc":{"start":{"line":4,"column":0},"end":{"line":6,"column":32},"source":null},"type":"ForInStatement","left":{"loc":{"start":{"line":4,"column":5},"end":{"line":4,"column":6},"source":null},"type":"Identifier","name":"x"},"right":{"loc":{"start":{"line":4,"column":10},"end":{"line":4,"column":16},"source":null},"type":"Identifier","name":"person"},"body":{"loc":{"start":{"line":5,"column":0},"end":{"line":6,"column":32},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":6,"column":0},"end":{"line":6,"column":31},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":6,"column":0},"end":{"line":6,"column":31},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":6,"column":0},"end":{"line":6,"column":14},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":6,"column":0},"end":{"line":6,"column":8},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":6,"column":15},"end":{"line":6,"column":30},"source":null},"type":"BinaryExpression","operator":"+","left":{"loc":{"start":{"line":6,"column":15},"end":{"line":6,"column":24},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":6,"column":15},"end":{"line":6,"column":21},"source":null},"type":"Identifier","name":"person"},"property":{"loc":{"start":{"line":6,"column":22},"end":{"line":6,"column":23},"source":null},"type":"Identifier","name":"x"},"computed":true},"right":{"loc":{"start":{"line":6,"column":27},"end":{"line":6,"column":30},"source":null},"type":"Literal","value":" "}}]}}]},"each":false}]});
+
+
+/*
+ * var person={fname:"John",lname:"Doe",age:25};
+var x;
+
+for (x in person)
+{
+document.write(person[x] + " ");
+}
+ */
+
+
+
+//35 thisExpression
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":3,"column":1},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":9},"end":{"line":3,"column":1},"source":null},"type":"FunctionDeclaration","id":{"loc":null,"type":"Identifier","name":"doSomething"},"params":[],"body":{"loc":{"start":{"line":1,"column":23},"end":{"line":2,"column":32},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":2,"column":3},"end":{"line":2,"column":31},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":2,"column":3},"end":{"line":2,"column":31},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":2,"column":3},"end":{"line":2,"column":19},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":2,"column":3},"end":{"line":2,"column":13},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":2,"column":3},"end":{"line":2,"column":7},"source":null},"type":"ThisExpression"},"property":{"loc":null,"type":"Identifier","name":"style"},"computed":false},"property":{"loc":null,"type":"Identifier","name":"color"},"computed":false},"right":{"loc":{"start":{"line":2,"column":22},"end":{"line":2,"column":31},"source":null},"type":"Literal","value":"#cc0000"}}}]},"generator":false,"expression":false}]});
+
+/*
+ * function doSomething() {
+   this.style.color = '#cc0000';
+}*/
+ 
+
+
+
+//36 arrayExpression NE RADIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":17},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":16},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":16},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":16},"source":null},"type":"Identifier","name":"myArray"},"init":{"loc":{"start":{"line":1,"column":14},"end":{"line":1,"column":16},"source":null},"type":"ArrayExpression","elements":[]}}]}]});
+
+/*
+var myArray = [];
+
+*/
+
+
+//37 debuggerStatement
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":5,"column":1},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":4,"column":11},"source":null},"type":"ForStatement","init":{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":9},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":5},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":1,"column":8},"end":{"line":1,"column":9},"source":null},"type":"Literal","value":1}},"test":{"loc":{"start":{"line":1,"column":11},"end":{"line":1,"column":14},"source":null},"type":"BinaryExpression","operator":"<","left":{"loc":{"start":{"line":1,"column":11},"end":{"line":1,"column":12},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":1,"column":13},"end":{"line":1,"column":14},"source":null},"type":"Literal","value":5}},"update":{"loc":{"start":{"line":1,"column":16},"end":{"line":1,"column":19},"source":null},"type":"UpdateExpression","operator":"++","argument":{"loc":{"start":{"line":1,"column":16},"end":{"line":1,"column":17},"source":null},"type":"Identifier","name":"i"},"prefix":false},"body":{"loc":{"start":{"line":2,"column":0},"end":{"line":4,"column":11},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":3,"column":3},"end":{"line":3,"column":36},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":3,"column":3},"end":{"line":3,"column":36},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":3,"column":3},"end":{"line":3,"column":14},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":3,"column":3},"end":{"line":3,"column":8},"source":null},"type":"Identifier","name":"Debug"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":3,"column":15},"end":{"line":3,"column":35},"source":null},"type":"BinaryExpression","operator":"+","left":{"loc":{"start":{"line":3,"column":15},"end":{"line":3,"column":31},"source":null},"type":"Literal","value":"loop index is "},"right":{"loc":{"start":{"line":3,"column":34},"end":{"line":3,"column":35},"source":null},"type":"Identifier","name":"i"}}]}},{"loc":{"start":{"line":4,"column":3},"end":{"line":4,"column":11},"source":null},"type":"DebuggerStatement"}]}}]});
+
+
+/*
+ * for(i = 1; i<5; i++) 
+{
+   Debug.write("loop index is " + i);   
+   debugger
+}*/
+
+//38 conditionExpression, logical
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":30},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":28},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":28},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":1},"source":null},"type":"Identifier","name":"a"},"right":{"loc":{"start":{"line":1,"column":3},"end":{"line":1,"column":28},"source":null},"type":"ConditionalExpression","test":{"loc":{"start":{"line":1,"column":3},"end":{"line":1,"column":13},"source":null},"type":"LogicalExpression","operator":"&&","left":{"loc":{"start":{"line":1,"column":3},"end":{"line":1,"column":6},"source":null},"type":"BinaryExpression","operator":">","left":{"loc":{"start":{"line":1,"column":3},"end":{"line":1,"column":4},"source":null},"type":"Identifier","name":"x"},"right":{"loc":{"start":{"line":1,"column":5},"end":{"line":1,"column":6},"source":null},"type":"Identifier","name":"y"}},"right":{"loc":{"start":{"line":1,"column":10},"end":{"line":1,"column":13},"source":null},"type":"BinaryExpression","operator":">","left":{"loc":{"start":{"line":1,"column":10},"end":{"line":1,"column":11},"source":null},"type":"Identifier","name":"x"},"right":{"loc":{"start":{"line":1,"column":12},"end":{"line":1,"column":13},"source":null},"type":"Literal","value":2}}},"consequent":{"loc":{"start":{"line":1,"column":18},"end":{"line":1,"column":21},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":1,"column":18},"end":{"line":1,"column":19},"source":null},"type":"Identifier","name":"b"},"right":{"loc":{"start":{"line":1,"column":20},"end":{"line":1,"column":21},"source":null},"type":"Literal","value":5}},"alternate":{"loc":{"start":{"line":1,"column":25},"end":{"line":1,"column":28},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":1,"column":25},"end":{"line":1,"column":26},"source":null},"type":"Identifier","name":"c"},"right":{"loc":{"start":{"line":1,"column":27},"end":{"line":1,"column":28},"source":null},"type":"Literal","value":6}}}}}]});
+
+
+/*
+a=(x>y && x>2) ? (b=5): (c=6);*/
+
+
+
+//39 unary
+
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":3},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":2},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":2},"source":null},"type":"UnaryExpression","operator":"~","argument":{"loc":{"start":{"line":1,"column":1},"end":{"line":1,"column":2},"source":null},"type":"Identifier","name":"a"},"prefix":true}}]});
+
+
+/*
+ * ~a;
+ */
+
+
+
+
+//40 sequenceExpression
+
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":9},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":8},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":8},"source":null},"type":"SequenceExpression","expressions":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":5},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":1},"source":null},"type":"Identifier","name":"a"},"right":{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":5},"source":null},"type":"Literal","value":5}},{"loc":{"start":{"line":1,"column":7},"end":{"line":1,"column":8},"source":null},"type":"Literal","value":6}]}}]});
+
+
+/*
+ * a = 5, 6;
+ */
+
+
+//41 yieldExpression 
+
+
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":22,"column":5},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":25},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":1,"column":8},"end":{"line":1,"column":25},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":1,"column":8},"end":{"line":1,"column":25},"source":null},"type":"Identifier","name":"gen"},"init":{"loc":{"start":{"line":1,"column":14},"end":{"line":1,"column":25},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":1,"column":14},"end":{"line":1,"column":23},"source":null},"type":"Identifier","name":"generator"},"arguments":[]}}]},{"loc":{"start":{"line":3,"column":13},"end":{"line":9,"column":5},"source":null},"type":"FunctionDeclaration","id":{"loc":null,"type":"Identifier","name":"driveGenerator"},"params":[],"body":{"loc":{"start":{"line":3,"column":30},"end":{"line":8,"column":7},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":4,"column":6},"end":{"line":7,"column":20},"source":null},"type":"IfStatement","test":{"loc":{"start":{"line":4,"column":10},"end":{"line":4,"column":20},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":4,"column":10},"end":{"line":4,"column":18},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":4,"column":10},"end":{"line":4,"column":13},"source":null},"type":"Identifier","name":"gen"},"property":{"loc":null,"type":"Identifier","name":"next"},"computed":false},"arguments":[]},"consequent":{"loc":{"start":{"line":4,"column":22},"end":{"line":5,"column":45},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":5,"column":8},"end":{"line":5,"column":44},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":5,"column":8},"end":{"line":5,"column":44},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":5,"column":8},"end":{"line":5,"column":25},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":5,"column":8},"end":{"line":5,"column":14},"source":null},"type":"Identifier","name":"window"},"property":{"loc":null,"type":"Identifier","name":"setTimeout"},"computed":false},"arguments":[{"loc":{"start":{"line":5,"column":26},"end":{"line":5,"column":40},"source":null},"type":"Identifier","name":"driveGenerator"},{"loc":{"start":{"line":5,"column":42},"end":{"line":5,"column":43},"source":null},"type":"Literal","value":0}]}}]},"alternate":{"loc":{"start":{"line":6,"column":13},"end":{"line":7,"column":20},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":7,"column":8},"end":{"line":7,"column":19},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":7,"column":8},"end":{"line":7,"column":19},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":7,"column":8},"end":{"line":7,"column":17},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":7,"column":8},"end":{"line":7,"column":11},"source":null},"type":"Identifier","name":"gen"},"property":{"loc":null,"type":"Identifier","name":"close"},"computed":false},"arguments":[]}}]}}]},"generator":false,"expression":false},{"loc":{"start":{"line":11,"column":13},"end":{"line":22,"column":5},"source":null},"type":"FunctionDeclaration","id":{"loc":null,"type":"Identifier","name":"generator"},"params":[],"body":{"loc":{"start":{"line":11,"column":25},"end":{"line":21,"column":18},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":12,"column":6},"end":{"line":19,"column":9},"source":null},"type":"WhileStatement","test":{"loc":{"start":{"line":12,"column":13},"end":{"line":12,"column":26},"source":null},"type":"BinaryExpression","operator":"<","left":{"loc":{"start":{"line":12,"column":13},"end":{"line":12,"column":14},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":12,"column":17},"end":{"line":12,"column":26},"source":null},"type":"Identifier","name":"something"}},"body":{"loc":{"start":{"line":12,"column":28},"end":{"line":19,"column":9},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":15,"column":8},"end":{"line":15,"column":11},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":15,"column":8},"end":{"line":15,"column":11},"source":null},"type":"UpdateExpression","operator":"++","argument":{"loc":{"start":{"line":15,"column":10},"end":{"line":15,"column":11},"source":null},"type":"Identifier","name":"i"},"prefix":true}},{"loc":{"start":{"line":17,"column":8},"end":{"line":18,"column":21},"source":null},"type":"IfStatement","test":{"loc":{"start":{"line":17,"column":13},"end":{"line":17,"column":26},"source":null},"type":"BinaryExpression","operator":"==","left":{"loc":{"start":{"line":17,"column":13},"end":{"line":17,"column":20},"source":null},"type":"BinaryExpression","operator":"%","left":{"loc":{"start":{"line":17,"column":13},"end":{"line":17,"column":14},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":17,"column":17},"end":{"line":17,"column":20},"source":null},"type":"Literal","value":100}},"right":{"loc":{"start":{"line":17,"column":25},"end":{"line":17,"column":26},"source":null},"type":"Literal","value":0}},"consequent":{"loc":{"start":{"line":17,"column":28},"end":{"line":18,"column":21},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":18,"column":10},"end":{"line":18,"column":20},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":18,"column":10},"end":{"line":18,"column":20},"source":null},"type":"YieldExpression","argument":{"loc":{"start":{"line":18,"column":16},"end":{"line":18,"column":20},"source":null},"type":"Literal","value":true}}}]},"alternate":null}]}},{"loc":{"start":{"line":21,"column":6},"end":{"line":21,"column":17},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":21,"column":6},"end":{"line":21,"column":17},"source":null},"type":"YieldExpression","argument":{"loc":{"start":{"line":21,"column":12},"end":{"line":21,"column":17},"source":null},"type":"Literal","value":false}}}]},"generator":true,"expression":false}]});
+
+
+/*
+ *        var gen = generator();  
+      
+    function driveGenerator() {  
+      if (gen.next()) {  
+        window.setTimeout(driveGenerator, 0);     
+      } else {  
+        gen.close();      
+      }  
+    }  
+      
+    function generator() {  
+      while (i < something) {  
+         
+      
+        ++i;  
+         
+        if ((i % 100) == 0) {  
+          yield true;  
+        }   
+      }  
+      yield false;  
+    }  
+ */
+
+//42 generatorExpression
+
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":8,"column":1},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":50},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":50},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":50},"source":null},"type":"Identifier","name":"iterator"},"init":{"loc":{"start":{"line":1,"column":22},"end":{"line":1,"column":25},"source":null},"type":"GeneratorExpression","body":{"loc":{"start":{"line":1,"column":16},"end":{"line":1,"column":21},"source":null},"type":"BinaryExpression","operator":"*","left":{"loc":{"start":{"line":1,"column":16},"end":{"line":1,"column":17},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":1,"column":20},"end":{"line":1,"column":21},"source":null},"type":"Identifier","name":"i"}},"blocks":[{"loc":{"start":{"line":1,"column":16},"end":{"line":1,"column":48},"source":null},"type":"ComprehensionBlock","left":{"loc":{"start":{"line":1,"column":16},"end":{"line":1,"column":17},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":1,"column":37},"end":{"line":1,"column":48},"source":null},"type":"Identifier","name":"someNumbers"},"each":true}],"filter":null}}]},{"loc":{"start":{"line":2,"column":0},"end":{"line":2,"column":3},"source":null},"type":"TryStatement","block":{"loc":{"start":{"line":2,"column":4},"end":{"line":5,"column":1},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":3,"column":0},"end":{"line":4,"column":38},"source":null},"type":"WhileStatement","test":{"loc":{"start":{"line":3,"column":7},"end":{"line":3,"column":11},"source":null},"type":"Literal","value":true},"body":{"loc":{"start":{"line":3,"column":13},"end":{"line":4,"column":38},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":4,"column":0},"end":{"line":4,"column":37},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":4,"column":0},"end":{"line":4,"column":37},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":4,"column":0},"end":{"line":4,"column":14},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":4,"column":0},"end":{"line":4,"column":8},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":4,"column":15},"end":{"line":4,"column":36},"source":null},"type":"BinaryExpression","operator":"+","left":{"loc":{"start":{"line":4,"column":15},"end":{"line":4,"column":30},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":4,"column":15},"end":{"line":4,"column":28},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":4,"column":15},"end":{"line":4,"column":23},"source":null},"type":"Identifier","name":"iterator"},"property":{"loc":null,"type":"Identifier","name":"next"},"computed":false},"arguments":[]},"right":{"loc":{"start":{"line":4,"column":33},"end":{"line":4,"column":36},"source":null},"type":"Literal","value":" "}}]}}]}}]},"handlers":[{"loc":{"start":{"line":6,"column":2},"end":{"line":6,"column":7},"source":null},"type":"CatchClause","param":{"loc":{"start":{"line":6,"column":9},"end":{"line":6,"column":14},"source":null},"type":"Identifier","name":"error"},"guard":{"loc":{"start":{"line":6,"column":18},"end":{"line":6,"column":48},"source":null},"type":"BinaryExpression","operator":"instanceof","left":{"loc":{"start":{"line":6,"column":18},"end":{"line":6,"column":23},"source":null},"type":"Identifier","name":"error"},"right":{"loc":{"start":{"line":6,"column":35},"end":{"line":6,"column":48},"source":null},"type":"Identifier","name":"StopIteration"}},"body":{"loc":{"start":{"line":6,"column":50},"end":{"line":6,"column":51},"source":null},"type":"BlockStatement","body":[]}}],"finalizer":null}]});
+
+
+/*
+var iterator = (i * i for each (i in someNumbers));
+try {
+while (true) {
+document.write(iterator.next() + " ");
+}
+} catch (error if error instanceof StopIteration) {
+//we are done
+}*/

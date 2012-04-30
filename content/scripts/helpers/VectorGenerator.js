@@ -33,6 +33,8 @@ var VectorGenerator = {
             else if (ASTHelper.isArrayExpression(astElement)) { this.generateVectorForArrayExpression(astElement); }
             
             
+            else if (ASTHelper.isDebuggerStatement(astElement)) { this.generateVectorForDebuggerStatement(astElement); }
+            
             
             
             
@@ -81,7 +83,7 @@ var VectorGenerator = {
             
             else if (ASTHelper.isPattern(astElement)) { this.generateVectorForPattern(astElement); }
            
-            //else if (ASTHelper.isComprehensionBlock(astElement)) { this.generateVectorForComprehensionBlock(astElement); }
+            else if (ASTHelper.isComprehensionBlock(astElement)) { this.generateVectorForComprehensionBlock(astElement); }
             
             else { alert("Unhandled element when generating vector: " + astElement.type); }
         }
@@ -89,6 +91,21 @@ var VectorGenerator = {
         {
             alert("Error when generating vector: " + e);
         }
+    },
+    
+    
+    generateVectorForComprehensionBlock: function (comprehensionBlock)
+    {
+    	 try
+         {
+             if(!ASTHelper.isComprehensionBlock(comprehensionBlock)) { alert("Sent argument is not a comprehension block when generating vector!"); return; }
+
+             comprehensionBlock.characteristicVector = new CharacteristicVector();
+
+         }
+         catch(e) { alert("Error when generating vector for Comprehension Block: " + e);}
+     
+    	
     },
 
    
@@ -495,11 +512,11 @@ var VectorGenerator = {
     		assignmentExpression.characteristicVector = new CharacteristicVector();
     		
     		this.generate(assignmentExpression.left);
-            //this.generate(assignmentExpression.right);
+            this.generate(assignmentExpression.right);
     		
     		assignmentExpression.characteristicVector.join(assignmentExpression.left.characteristicVector);
     		
-    		//assignmentExpression.characteristicVector.join(assignmentExpression.right.characteristicVector);    		
+    		assignmentExpression.characteristicVector.join(assignmentExpression.right.characteristicVector);    		
     		
     		assignmentExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.AssignmentExpression]++;
     	
@@ -950,6 +967,20 @@ var VectorGenerator = {
 		catch (e) { alert ("Error when generating vector for Break Statement: " + e); }
 		
 	}, 
+	
+	generateVectorForDebuggerStatement: function(debuggerStatement)
+	{
+		try
+		{
+			if(!ASTHelper.isDebuggerStatement(debuggerStatement)) { alert("Sent argument is not a debugger statement when generating vector!"); return; }	
+			
+			debuggerStatement.characteristicVector = new CharacteristicVector();		
+			
+			debuggerStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.DebuggerStatement]++;
+			
+		}
+		catch (e) { alert ("Error when generating vector for Debugger Statement: " + e); }
+	},
 	
 	generateVectorForContinueStatement: function(continueStatement)
 	{

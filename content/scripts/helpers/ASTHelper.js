@@ -263,6 +263,7 @@ var ASTHelper =
     isCatchClause: function(element) { return this.isElementOfType(element, this.CONST.CatchClause); },
     isIdentifier: function(element) { return this.isElementOfType(element, this.CONST.Identifier); },
     isLiteral: function(element) { return this.isElementOfType(element, this.CONST.Literal); },
+    isComprehensionBlock: function(element) { return this.isElementOfType(element, this.CONST.ComprehensionBlock); },
 
     isStatement: function(element)
     {
@@ -319,9 +320,12 @@ var ASTHelper =
     isUnaryOperator: function(element) { return this.isElementOfType(element, this.CONST.OPERATOR.UnaryOperator); },
     isBinaryOperator: function(element) { return this.isElementOfType(element, this.CONST.OPERATOR.BinaryOperator); },
     isAssignmentOperator: function(element) { return this.isElementOfType(element, this.CONST.OPERATOR.AssignmentOperator); },
-    isUpdateOperator: function(element) { return this.isElementOfType(element, this.CONST.OPERATOR.UpdateOperator); },
+    isUpdateOperator: function(element) { return this.isElementOfType(element, this.CONST.OPERATOR.UpdateOperator); },    
     isLogicalOperator: function(element) { return this.isElementOfType(element, this.CONST.OPERATOR.LogicalOperator); },
 
+
+    
+    
     isPattern: function(element) { return this.isArrayPattern(element) || this.isObjectPattern(element); },
     isArrayPattern: function(element) { return this.isElementOfType(element, this.CONST.ArrayPattern); },
     isObjectPattern: function(element) { return this.isElementOfType(element, this.CONST.ObjectPattern); },
@@ -396,6 +400,8 @@ var ASTHelper =
         Pattern: "Pattern",
         ArrayPattern: "ArrayPattern",
         ObjectPattern: "ObjectPattern",
+        ComprehensionBlock: "ComprehensionBlock",
+        
         STATEMENT:
         {
             EmptyStatement: "EmptyStatement",
@@ -435,6 +441,7 @@ var ASTHelper =
             MemberExpression: "MemberExpression",
             YieldExpression: "YieldExpression",
             ComprehensionExpression: "ComprehensionExpression",
+
             GeneratorExpression: "GeneratorExpression",
             LetExpression: "LetExpression"
         },
