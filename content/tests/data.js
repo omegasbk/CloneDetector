@@ -613,3 +613,14 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":16,"column":4}
 //45 
 
 testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":24},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":24},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":24},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":17},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":13},"source":null},"type":"ArrayExpression","elements":[{"loc":{"start":{"line":1,"column":1},"end":{"line":1,"column":6},"source":null},"type":"Literal","value":"foo"},{"loc":{"start":{"line":1,"column":7},"end":{"line":1,"column":12},"source":null},"type":"Literal","value":"bar"}]},"property":{"loc":null,"type":"Identifier","name":"has"},"computed":false},"arguments":[{"loc":{"start":{"line":1,"column":18},"end":{"line":1,"column":23},"source":null},"type":"Literal","value":"foo"}]}}]});
+
+
+
+
+
+
+
+
+//46 JQUERY TEST
+
+testData.push();

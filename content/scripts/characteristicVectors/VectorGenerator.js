@@ -7,6 +7,8 @@ var VectorGenerator = {
     {
         try
         {
+        	
+        	
             if(ASTHelper.isProgram(astElement)) { this.generateVectorForProgram(astElement);}
             else if (ASTHelper.isFunction(astElement)) { this.generateVectorForFunction(astElement); }
             else if (ASTHelper.isBlockStatement(astElement)) { this.generateVectorForBlockStatement(astElement); }
@@ -1204,6 +1206,9 @@ function CharacteristicVector()
     };
 };
 
+
+
+
 CharacteristicVector.RELEVANT_NODES =
 {
     FunctionDeclaration: "FunctionDeclaration",
@@ -1276,3 +1281,4 @@ CharacteristicVector.RELEVANT_NODES =
     ArrayPattern: "ArrayPattern",
     ObjectPattern: "ObjectPattern"
 };
+

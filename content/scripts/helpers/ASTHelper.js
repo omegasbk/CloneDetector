@@ -1,5 +1,19 @@
 var ASTHelper =
 {
+		
+		
+	setParentChildRelationship: function()
+	{
+		  astHelper.traverseAst(program, function(currentElement, name, parentElement)
+		            {
+		            	currentElement.parent = parentElement;
+		            	if(parentElement.children == null) { parentElement.children = [];} parentElement.children.push(currentElement);
+		            });
+	},
+    
+
+        
+
 	parseSourceCodeToAST: function(sourceCode, sourceCodePath, startLine)
 	{
 		try

@@ -4,9 +4,15 @@
         <script type="text/javascript" src="scripts/helpers/valueTypeHelper.js"></script>
         <script type="text/javascript" src="scripts/helpers/ASTHelper.js"></script>
         <script type="text/javascript" src="scripts/helpers/FFHelper.js"></script>
-        <script type="text/javascript" src="scripts/helpers/VectorGenerator.js"></script>
+        <script type="text/javascript" src="scripts/characteristicVectors/VectorGenerator.js"></script>
+        <script type="text/javascript" src="scripts/characteristicVectors/VectorDistanceCalculator.js"></script>
         <script type="text/javascript">
-            VectorGenerator.generate(testData[41]);
+        	
+        
+        	VectorGenerator.generate(testData[41]);
+        	VectorGenerator.generate(testData[40]);
+            VectorDistanceCalculator.calculateHammingDistance();
+            
         </script>
 	</head>
 	
