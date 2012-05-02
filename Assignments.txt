@@ -1,0 +1,28 @@
+
+- move VectorGenerator.js to a new folder "characteristicVectors" under scripts; make necessary adjustments to file paths
+- test the program on jQuery
+- ASTHelper - add function setParentChildRelationship which traverses the whole AST tree and sets parents and children
+            - as a base use: traverseAst: function(astElement, processElementFunction) {}
+            - define the processElementFunction which has arguments: currentElement, elementName, parentElement
+
+            astHelper.traverseAst(program, function(currentElement, name, parentElement)
+            {
+            	currentElement.parent = parentElement;
+            	if(parentElement.children == null) { parentElement.children = [];} parentElement.children.push(currentElement);
+            });
+
+
+- make a new object: VectorDistanceCalculator with two functions that receive two vectors as input
+                        - calculateHammingDistance  sum (|xi - yi|)
+                        - calculateEuclideanDistance sqrt(sum((xi-yi)^2))
+- u  ASTHelperu  function flatten
+                    - takes an AST description (program), and returns an array of nodes with a post-order traversal
+            function
+            {
+                var nodes = [];
+                astHelper.traverseAst(program, function(currentElement, name, parentElement)
+                    {
+                        nodes.push(currentElement);
+                    });
+                return nodes;
+            }
