@@ -23,16 +23,16 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":11,"column":3}
 testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":11,"column":1},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":10,"column":4},"source":null},"type":"LabeledStatement","label":{"loc":null,"type":"Identifier","name":"outer_loop"},"body":{"loc":{"start":{"line":2,"column":0},"end":{"line":10,"column":4},"source":null},"type":"ForStatement","init":{"loc":{"start":{"line":2,"column":4},"end":{"line":2,"column":7},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":2,"column":4},"end":{"line":2,"column":5},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":2,"column":6},"end":{"line":2,"column":7},"source":null},"type":"Literal","value":0}},"test":{"loc":{"start":{"line":2,"column":9},"end":{"line":2,"column":12},"source":null},"type":"BinaryExpression","operator":"<","left":{"loc":{"start":{"line":2,"column":9},"end":{"line":2,"column":10},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":2,"column":11},"end":{"line":2,"column":12},"source":null},"type":"Literal","value":3}},"update":{"loc":{"start":{"line":2,"column":14},"end":{"line":2,"column":17},"source":null},"type":"UpdateExpression","operator":"++","argument":{"loc":{"start":{"line":2,"column":14},"end":{"line":2,"column":15},"source":null},"type":"Identifier","name":"i"},"prefix":false},"body":{"loc":{"start":{"line":3,"column":0},"end":{"line":10,"column":4},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":4,"column":3},"end":{"line":4,"column":49},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":4,"column":3},"end":{"line":4,"column":49},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":4,"column":3},"end":{"line":4,"column":17},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":4,"column":3},"end":{"line":4,"column":11},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":4,"column":18},"end":{"line":4,"column":48},"source":null},"type":"BinaryExpression","operator":"+","left":{"loc":{"start":{"line":4,"column":18},"end":{"line":4,"column":39},"source":null},"type":"BinaryExpression","operator":"+","left":{"loc":{"start":{"line":4,"column":18},"end":{"line":4,"column":35},"source":null},"type":"BinaryExpression","operator":"+","left":{"loc":{"start":{"line":4,"column":18},"end":{"line":4,"column":24},"source":null},"type":"Literal","value":"<BR>"},"right":{"loc":{"start":{"line":4,"column":27},"end":{"line":4,"column":35},"source":null},"type":"Literal","value":"outer "}},"right":{"loc":{"start":{"line":4,"column":38},"end":{"line":4,"column":39},"source":null},"type":"Identifier","name":"i"}},"right":{"loc":{"start":{"line":4,"column":42},"end":{"line":4,"column":48},"source":null},"type":"Literal","value":":   "}}]}},{"loc":{"start":{"line":5,"column":3},"end":{"line":9,"column":26},"source":null},"type":"ForStatement","init":{"loc":{"start":{"line":5,"column":7},"end":{"line":5,"column":10},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":5,"column":7},"end":{"line":5,"column":8},"source":null},"type":"Identifier","name":"j"},"right":{"loc":{"start":{"line":5,"column":9},"end":{"line":5,"column":10},"source":null},"type":"Literal","value":0}},"test":{"loc":{"start":{"line":5,"column":12},"end":{"line":5,"column":15},"source":null},"type":"BinaryExpression","operator":"<","left":{"loc":{"start":{"line":5,"column":12},"end":{"line":5,"column":13},"source":null},"type":"Identifier","name":"j"},"right":{"loc":{"start":{"line":5,"column":14},"end":{"line":5,"column":15},"source":null},"type":"Literal","value":5}},"update":{"loc":{"start":{"line":5,"column":17},"end":{"line":5,"column":20},"source":null},"type":"UpdateExpression","operator":"++","argument":{"loc":{"start":{"line":5,"column":17},"end":{"line":5,"column":18},"source":null},"type":"Identifier","name":"j"},"prefix":false},"body":{"loc":{"start":{"line":6,"column":3},"end":{"line":9,"column":26},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":7,"column":6},"end":{"line":7,"column":40},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":7,"column":6},"end":{"line":7,"column":40},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":7,"column":6},"end":{"line":7,"column":20},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":7,"column":6},"end":{"line":7,"column":14},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":7,"column":21},"end":{"line":7,"column":39},"source":null},"type":"BinaryExpression","operator":"+","left":{"loc":{"start":{"line":7,"column":21},"end":{"line":7,"column":33},"source":null},"type":"BinaryExpression","operator":"+","left":{"loc":{"start":{"line":7,"column":21},"end":{"line":7,"column":29},"source":null},"type":"Literal","value":"inner "},"right":{"loc":{"start":{"line":7,"column":32},"end":{"line":7,"column":33},"source":null},"type":"Identifier","name":"j"}},"right":{"loc":{"start":{"line":7,"column":36},"end":{"line":7,"column":39},"source":null},"type":"Literal","value":" "}}]}},{"loc":{"start":{"line":8,"column":6},"end":{"line":9,"column":25},"source":null},"type":"IfStatement","test":{"loc":{"start":{"line":8,"column":9},"end":{"line":8,"column":13},"source":null},"type":"BinaryExpression","operator":"==","left":{"loc":{"start":{"line":8,"column":9},"end":{"line":8,"column":10},"source":null},"type":"Identifier","name":"j"},"right":{"loc":{"start":{"line":8,"column":12},"end":{"line":8,"column":13},"source":null},"type":"Identifier","name":"x"}},"consequent":{"loc":{"start":{"line":9,"column":9},"end":{"line":9,"column":25},"source":null},"type":"BreakStatement","label":{"loc":null,"type":"Identifier","name":"outer_loop"}},"alternate":null}]}}]}}}]});
 /**
  * outer_loop:
-for(i=0; i<3; i++)
-{
-   document.write("<BR>" + "outer " + i + ":   ");
-   for(j=0; j<5; j++)
-   {
-      document.write("inner " + j + " ");
-      if(j==x)
-         break outer_loop;
-   }
-}
+ for(i=0; i<3; i++)
+ {
+ document.write("<BR>" + "outer " + i + ":   ");
+ for(j=0; j<5; j++)
+ {
+ document.write("inner " + j + " ");
+ if(j==x)
+ break outer_loop;
+ }
+ }
  */
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -41,15 +41,15 @@ for(i=0; i<3; i++)
 testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":10,"column":3},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":7},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":7},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":7},"source":null},"type":"Identifier","name":"i"},"init":{"loc":{"start":{"line":1,"column":6},"end":{"line":1,"column":7},"source":null},"type":"Literal","value":0}}]},{"loc":{"start":{"line":2,"column":0},"end":{"line":9,"column":27},"source":null},"type":"ForStatement","init":{"loc":{"start":{"line":2,"column":5},"end":{"line":2,"column":8},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":2,"column":5},"end":{"line":2,"column":6},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":2,"column":7},"end":{"line":2,"column":8},"source":null},"type":"Literal","value":0}},"test":{"loc":{"start":{"line":2,"column":9},"end":{"line":2,"column":14},"source":null},"type":"BinaryExpression","operator":"<=","left":{"loc":{"start":{"line":2,"column":9},"end":{"line":2,"column":10},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":2,"column":12},"end":{"line":2,"column":14},"source":null},"type":"Literal","value":10}},"update":{"loc":{"start":{"line":2,"column":15},"end":{"line":2,"column":18},"source":null},"type":"UpdateExpression","operator":"++","argument":{"loc":{"start":{"line":2,"column":15},"end":{"line":2,"column":16},"source":null},"type":"Identifier","name":"i"},"prefix":false},"body":{"loc":{"start":{"line":3,"column":2},"end":{"line":9,"column":27},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":4,"column":2},"end":{"line":6,"column":13},"source":null},"type":"IfStatement","test":{"loc":{"start":{"line":4,"column":6},"end":{"line":4,"column":10},"source":null},"type":"BinaryExpression","operator":"==","left":{"loc":{"start":{"line":4,"column":6},"end":{"line":4,"column":7},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":4,"column":9},"end":{"line":4,"column":10},"source":null},"type":"Literal","value":3}},"consequent":{"loc":{"start":{"line":5,"column":4},"end":{"line":6,"column":13},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":6,"column":4},"end":{"line":6,"column":4},"source":null},"type":"ContinueStatement","label":null}]},"alternate":null},{"loc":{"start":{"line":8,"column":2},"end":{"line":8,"column":38},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":8,"column":2},"end":{"line":8,"column":38},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":8,"column":2},"end":{"line":8,"column":16},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":8,"column":2},"end":{"line":8,"column":10},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":8,"column":17},"end":{"line":8,"column":37},"source":null},"type":"BinaryExpression","operator":"+","left":{"loc":{"start":{"line":8,"column":17},"end":{"line":8,"column":33},"source":null},"type":"Literal","value":"The number is "},"right":{"loc":{"start":{"line":8,"column":36},"end":{"line":8,"column":37},"source":null},"type":"Identifier","name":"i"}}]}},{"loc":{"start":{"line":9,"column":2},"end":{"line":9,"column":26},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":9,"column":2},"end":{"line":9,"column":26},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":9,"column":2},"end":{"line":9,"column":16},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":9,"column":2},"end":{"line":9,"column":10},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":9,"column":17},"end":{"line":9,"column":25},"source":null},"type":"Literal","value":"<br />"}]}}]}}]});
 /**
  * var i=0
-for (i=0;i<=10;i++)
-  {
-  if (i==3)
-    {
-    continue;
-    }
-  document.write("The number is " + i);
-  document.write("<br />");
-  }
+ for (i=0;i<=10;i++)
+ {
+ if (i==3)
+ {
+ continue;
+ }
+ document.write("The number is " + i);
+ document.write("<br />");
+ }
  */
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -58,17 +58,17 @@ for (i=0;i<=10;i++)
 testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":12,"column":3},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":7},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":7},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":7},"source":null},"type":"Identifier","name":"i"},"init":{"loc":{"start":{"line":1,"column":6},"end":{"line":1,"column":7},"source":null},"type":"Literal","value":0}}]},{"loc":{"start":{"line":2,"column":0},"end":{"line":11,"column":27},"source":null},"type":"LabeledStatement","label":{"loc":null,"type":"Identifier","name":"again"},"body":{"loc":{"start":{"line":4,"column":0},"end":{"line":11,"column":27},"source":null},"type":"ForStatement","init":{"loc":{"start":{"line":4,"column":5},"end":{"line":4,"column":8},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":4,"column":5},"end":{"line":4,"column":6},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":4,"column":7},"end":{"line":4,"column":8},"source":null},"type":"Literal","value":0}},"test":{"loc":{"start":{"line":4,"column":9},"end":{"line":4,"column":14},"source":null},"type":"BinaryExpression","operator":"<=","left":{"loc":{"start":{"line":4,"column":9},"end":{"line":4,"column":10},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":4,"column":12},"end":{"line":4,"column":14},"source":null},"type":"Literal","value":10}},"update":{"loc":{"start":{"line":4,"column":15},"end":{"line":4,"column":18},"source":null},"type":"UpdateExpression","operator":"++","argument":{"loc":{"start":{"line":4,"column":15},"end":{"line":4,"column":16},"source":null},"type":"Identifier","name":"i"},"prefix":false},"body":{"loc":{"start":{"line":5,"column":2},"end":{"line":11,"column":27},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":6,"column":2},"end":{"line":8,"column":19},"source":null},"type":"IfStatement","test":{"loc":{"start":{"line":6,"column":6},"end":{"line":6,"column":10},"source":null},"type":"BinaryExpression","operator":"==","left":{"loc":{"start":{"line":6,"column":6},"end":{"line":6,"column":7},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":6,"column":9},"end":{"line":6,"column":10},"source":null},"type":"Literal","value":3}},"consequent":{"loc":{"start":{"line":7,"column":4},"end":{"line":8,"column":19},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":8,"column":4},"end":{"line":8,"column":13},"source":null},"type":"ContinueStatement","label":{"loc":null,"type":"Identifier","name":"again"}}]},"alternate":null},{"loc":{"start":{"line":10,"column":2},"end":{"line":10,"column":38},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":10,"column":2},"end":{"line":10,"column":38},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":10,"column":2},"end":{"line":10,"column":16},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":10,"column":2},"end":{"line":10,"column":10},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":10,"column":17},"end":{"line":10,"column":37},"source":null},"type":"BinaryExpression","operator":"+","left":{"loc":{"start":{"line":10,"column":17},"end":{"line":10,"column":33},"source":null},"type":"Literal","value":"The number is "},"right":{"loc":{"start":{"line":10,"column":36},"end":{"line":10,"column":37},"source":null},"type":"Identifier","name":"i"}}]}},{"loc":{"start":{"line":11,"column":2},"end":{"line":11,"column":26},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":11,"column":2},"end":{"line":11,"column":26},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":11,"column":2},"end":{"line":11,"column":16},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":11,"column":2},"end":{"line":11,"column":10},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":11,"column":17},"end":{"line":11,"column":25},"source":null},"type":"Literal","value":"<br />"}]}}]}}}]});
 /**
  * var i=0
-again:
+ again:
 
-for (i=0;i<=10;i++)
-  {
-  if (i==3)
-    {
-    continue again;
-    }
-  document.write("The number is " + i);
-  document.write("<br />");
-  }
+ for (i=0;i<=10;i++)
+ {
+ if (i==3)
+ {
+ continue again;
+ }
+ document.write("The number is " + i);
+ document.write("<br />");
+ }
  */
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -79,12 +79,12 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":7,"column":3},
 
 /**
  * var i=0;
-while (i<=5)
-  {
-  document.write("The number is " + i);
-  document.write("<br />");
-  i++;
-  }
+ while (i<=5)
+ {
+ document.write("The number is " + i);
+ document.write("<br />");
+ i++;
+ }
  */
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -98,12 +98,12 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":7,"column":11}
 
 /**
  * do
-{
-document.write("Broj " + i)
-document.write("<br />")
-i=i+1
-}
-while (i<9)
+ {
+ document.write("Broj " + i)
+ document.write("<br />")
+ i=i+1
+ }
+ while (i<9)
  */
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -114,12 +114,12 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":7,"column":1},
 
 /**
  * var person={fname:"John",lname:"Doe",age:25};
-var x;
+ var x;
 
-for (x in person)
-{
-document.write(person[x] + " ");
-}
+ for (x in person)
+ {
+ document.write(person[x] + " ");
+ }
  */
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -129,11 +129,11 @@ document.write(person[x] + " ");
 testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":4,"column":1},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":3,"column":16},"source":null},"type":"WithStatement","object":{"loc":{"start":{"line":1,"column":6},"end":{"line":1,"column":44},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":1,"column":6},"end":{"line":1,"column":38},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":1,"column":6},"end":{"line":1,"column":32},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":1,"column":6},"end":{"line":1,"column":27},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":1,"column":6},"end":{"line":1,"column":22},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":1,"column":6},"end":{"line":1,"column":16},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":1,"column":6},"end":{"line":1,"column":13},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":1,"column":6},"end":{"line":1,"column":9},"source":null},"type":"Identifier","name":"ooo"},"property":{"loc":null,"type":"Identifier","name":"eee"},"computed":false},"property":{"loc":null,"type":"Identifier","name":"oo"},"computed":false},"property":{"loc":null,"type":"Identifier","name":"ah_ah"},"computed":false},"property":{"loc":null,"type":"Identifier","name":"ting"},"computed":false},"property":{"loc":null,"type":"Identifier","name":"tang"},"computed":false},"property":{"loc":null,"type":"Identifier","name":"walla"},"computed":false},"property":{"loc":null,"type":"Identifier","name":"walla"},"computed":false},"body":{"loc":{"start":{"line":1,"column":46},"end":{"line":3,"column":16},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":2,"column":4},"end":{"line":2,"column":15},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":2,"column":4},"end":{"line":2,"column":15},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":2,"column":4},"end":{"line":2,"column":8},"source":null},"type":"Identifier","name":"bing"},"right":{"loc":{"start":{"line":2,"column":11},"end":{"line":2,"column":15},"source":null},"type":"Literal","value":true}}},{"loc":{"start":{"line":3,"column":4},"end":{"line":3,"column":15},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":3,"column":4},"end":{"line":3,"column":15},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":3,"column":4},"end":{"line":3,"column":8},"source":null},"type":"Identifier","name":"bang"},"right":{"loc":{"start":{"line":3,"column":11},"end":{"line":3,"column":15},"source":null},"type":"Literal","value":true}}}]}}]});
 
 /**
-*with (ooo.eee.oo.ah_ah.ting.tang.walla.walla) {
-bing = true;
-bang = true;
-}
-*/
+ *with (ooo.eee.oo.ah_ah.ting.tang.walla.walla) {
+ bing = true;
+ bang = true;
+ }
+ */
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -141,23 +141,23 @@ bang = true;
 testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":16,"column":1},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":14},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":14},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":14},"source":null},"type":"Identifier","name":"d"},"init":{"loc":{"start":{"line":1,"column":10},"end":{"line":1,"column":14},"source":null},"type":"NewExpression","callee":{"loc":{"start":{"line":1,"column":10},"end":{"line":1,"column":14},"source":null},"type":"Identifier","name":"Date"},"arguments":[]}}]},{"loc":{"start":{"line":2,"column":0},"end":{"line":2,"column":21},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":2,"column":4},"end":{"line":2,"column":21},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":2,"column":4},"end":{"line":2,"column":21},"source":null},"type":"Identifier","name":"theDay"},"init":{"loc":{"start":{"line":2,"column":11},"end":{"line":2,"column":21},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":2,"column":11},"end":{"line":2,"column":19},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":2,"column":11},"end":{"line":2,"column":12},"source":null},"type":"Identifier","name":"d"},"property":{"loc":null,"type":"Identifier","name":"getDay"},"computed":false},"arguments":[]}}]},{"loc":{"start":{"line":3,"column":0},"end":{"line":16,"column":1},"source":null},"type":"SwitchStatement","discriminant":{"loc":{"start":{"line":3,"column":8},"end":{"line":3,"column":14},"source":null},"type":"Identifier","name":"theDay"},"cases":[{"loc":{"start":{"line":5,"column":0},"end":{"line":7,"column":7},"source":null},"type":"SwitchCase","test":{"loc":{"start":{"line":5,"column":5},"end":{"line":5,"column":6},"source":null},"type":"Literal","value":5},"consequent":[{"loc":{"start":{"line":6,"column":2},"end":{"line":6,"column":34},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":6,"column":2},"end":{"line":6,"column":34},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":6,"column":2},"end":{"line":6,"column":16},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":6,"column":2},"end":{"line":6,"column":10},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":6,"column":17},"end":{"line":6,"column":33},"source":null},"type":"Literal","value":"Finally Friday"}]}},{"loc":{"start":{"line":7,"column":2},"end":{"line":7,"column":7},"source":null},"type":"BreakStatement","label":null}]},{"loc":{"start":{"line":8,"column":0},"end":{"line":10,"column":7},"source":null},"type":"SwitchCase","test":{"loc":{"start":{"line":8,"column":5},"end":{"line":8,"column":6},"source":null},"type":"Literal","value":6},"consequent":[{"loc":{"start":{"line":9,"column":2},"end":{"line":9,"column":34},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":9,"column":2},"end":{"line":9,"column":34},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":9,"column":2},"end":{"line":9,"column":16},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":9,"column":2},"end":{"line":9,"column":10},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":9,"column":17},"end":{"line":9,"column":33},"source":null},"type":"Literal","value":"Super Saturday"}]}},{"loc":{"start":{"line":10,"column":2},"end":{"line":10,"column":7},"source":null},"type":"BreakStatement","label":null}]},{"loc":{"start":{"line":11,"column":0},"end":{"line":13,"column":7},"source":null},"type":"SwitchCase","test":{"loc":{"start":{"line":11,"column":5},"end":{"line":11,"column":6},"source":null},"type":"Literal","value":0},"consequent":[{"loc":{"start":{"line":12,"column":2},"end":{"line":12,"column":33},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":12,"column":2},"end":{"line":12,"column":33},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":12,"column":2},"end":{"line":12,"column":16},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":12,"column":2},"end":{"line":12,"column":10},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":12,"column":17},"end":{"line":12,"column":32},"source":null},"type":"Literal","value":"Sleepy Sunday"}]}},{"loc":{"start":{"line":13,"column":2},"end":{"line":13,"column":7},"source":null},"type":"BreakStatement","label":null}]},{"loc":{"start":{"line":14,"column":0},"end":{"line":15,"column":56},"source":null},"type":"SwitchCase","test":null,"consequent":[{"loc":{"start":{"line":15,"column":2},"end":{"line":15,"column":56},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":15,"column":2},"end":{"line":15,"column":56},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":15,"column":2},"end":{"line":15,"column":16},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":15,"column":2},"end":{"line":15,"column":10},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":15,"column":17},"end":{"line":15,"column":55},"source":null},"type":"Literal","value":"I'm looking forward to this weekend!"}]}}]}],"lexical":false}]});
 
 /**
-*var d=new Date();
-var theDay=d.getDay();
-switch (theDay)
-{
-case 5:
-  document.write("Finally Friday");
-  break;
-case 6:
-  document.write("Super Saturday");
-  break;
-case 0:
-  document.write("Sleepy Sunday");
-  break;
-default:
-  document.write("I'm looking forward to this weekend!");
-}
-*/
+ *var d=new Date();
+ var theDay=d.getDay();
+ switch (theDay)
+ {
+ case 5:
+ document.write("Finally Friday");
+ break;
+ case 6:
+ document.write("Super Saturday");
+ break;
+ case 0:
+ document.write("Sleepy Sunday");
+ break;
+ default:
+ document.write("I'm looking forward to this weekend!");
+ }
+ */
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -167,20 +167,20 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":13,"column":42
 
 
 /**
-*var pre_tip_total = 100.00
-var tip_cost
-var total_bill
+ *var pre_tip_total = 100.00
+ var tip_cost
+ var total_bill
 
-function calculate_tip(pre_tip) {
-var tip_result
-tip_result = pre_tip * 0.15
-return (tip_result) 
-}
+ function calculate_tip(pre_tip) {
+ var tip_result
+ tip_result = pre_tip * 0.15
+ return (tip_result)
+ }
 
-tip_cost = calculate_tip(pre_tip_total)
-total_bill = pre_tip_total + tip_cost
-alert("Your total bill is $" + total_bill)
-*/
+ tip_cost = calculate_tip(pre_tip_total)
+ total_bill = pre_tip_total + tip_cost
+ alert("Your total bill is $" + total_bill)
+ */
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -190,37 +190,37 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":31,"column":3}
 
 /**
  * var x=prompt("Enter a number between 5 and 10:","");
-try
-  {
-  if(x>10)
-    {
-    throw "Err1";
-    }
-  else if(x<5)
-    {
-    throw "Err2";
-    }
-  else if(isNaN(x))
-    {
-    throw "Err3";
-    }
-  }
-catch(err)
-  {
-  if(err=="Err1")
-    {
-    document.write("Error! The value is too high.");
-    }
-  if(err=="Err2")
-    {
-    document.write("Error! The value is too low.");
-    }
-  if(err=="Err3")
-    {
-    document.write("Error! The value is not a number.");
-    }
-  }
-  */
+ try
+ {
+ if(x>10)
+ {
+ throw "Err1";
+ }
+ else if(x<5)
+ {
+ throw "Err2";
+ }
+ else if(isNaN(x))
+ {
+ throw "Err3";
+ }
+ }
+ catch(err)
+ {
+ if(err=="Err1")
+ {
+ document.write("Error! The value is too high.");
+ }
+ if(err=="Err2")
+ {
+ document.write("Error! The value is too low.");
+ }
+ if(err=="Err3")
+ {
+ document.write("Error! The value is not a number.");
+ }
+ }
+ */
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -228,17 +228,17 @@ catch(err)
 testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":10,"column":1},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":42},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":42},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":42},"source":null},"type":"Identifier","name":"list"},"init":{"loc":{"start":{"line":1,"column":11},"end":{"line":1,"column":42},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":1,"column":11},"end":{"line":1,"column":34},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":1,"column":11},"end":{"line":1,"column":19},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"getElementById"},"computed":false},"arguments":[{"loc":{"start":{"line":1,"column":35},"end":{"line":1,"column":41},"source":null},"type":"Literal","value":"list"}]}}]},{"loc":{"start":{"line":2,"column":0},"end":{"line":9,"column":25},"source":null},"type":"ForStatement","init":{"loc":{"start":{"line":2,"column":5},"end":{"line":2,"column":14},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":2,"column":9},"end":{"line":2,"column":14},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":2,"column":9},"end":{"line":2,"column":14},"source":null},"type":"Identifier","name":"i"},"init":{"loc":{"start":{"line":2,"column":13},"end":{"line":2,"column":14},"source":null},"type":"Literal","value":1}}]},"test":{"loc":{"start":{"line":2,"column":16},"end":{"line":2,"column":22},"source":null},"type":"BinaryExpression","operator":"<=","left":{"loc":{"start":{"line":2,"column":16},"end":{"line":2,"column":17},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":2,"column":21},"end":{"line":2,"column":22},"source":null},"type":"Literal","value":5}},"update":{"loc":{"start":{"line":2,"column":24},"end":{"line":2,"column":27},"source":null},"type":"UpdateExpression","operator":"++","argument":{"loc":{"start":{"line":2,"column":24},"end":{"line":2,"column":25},"source":null},"type":"Identifier","name":"i"},"prefix":false},"body":{"loc":{"start":{"line":2,"column":29},"end":{"line":2,"column":30},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":3,"column":2},"end":{"line":3,"column":41},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":3,"column":6},"end":{"line":3,"column":41},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":3,"column":6},"end":{"line":3,"column":41},"source":null},"type":"Identifier","name":"item"},"init":{"loc":{"start":{"line":3,"column":13},"end":{"line":3,"column":41},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":3,"column":13},"end":{"line":3,"column":35},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":3,"column":13},"end":{"line":3,"column":21},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"createElement"},"computed":false},"arguments":[{"loc":{"start":{"line":3,"column":36},"end":{"line":3,"column":40},"source":null},"type":"Literal","value":"LI"}]}}]},{"loc":{"start":{"line":4,"column":2},"end":{"line":4,"column":56},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":4,"column":2},"end":{"line":4,"column":56},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":4,"column":2},"end":{"line":4,"column":18},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":4,"column":2},"end":{"line":4,"column":6},"source":null},"type":"Identifier","name":"item"},"property":{"loc":null,"type":"Identifier","name":"appendChild"},"computed":false},"arguments":[{"loc":{"start":{"line":4,"column":19},"end":{"line":4,"column":55},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":4,"column":19},"end":{"line":4,"column":42},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":4,"column":19},"end":{"line":4,"column":27},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"createTextNode"},"computed":false},"arguments":[{"loc":{"start":{"line":4,"column":43},"end":{"line":4,"column":54},"source":null},"type":"BinaryExpression","operator":"+","left":{"loc":{"start":{"line":4,"column":43},"end":{"line":4,"column":50},"source":null},"type":"Literal","value":"Item "},"right":{"loc":{"start":{"line":4,"column":53},"end":{"line":4,"column":54},"source":null},"type":"Identifier","name":"i"}}]}]}},{"loc":{"start":{"line":5,"column":2},"end":{"line":5,"column":11},"source":null},"type":"VariableDeclaration","kind":"let","declarations":[{"loc":{"start":{"line":5,"column":6},"end":{"line":5,"column":11},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":5,"column":6},"end":{"line":5,"column":11},"source":null},"type":"Identifier","name":"j"},"init":{"loc":{"start":{"line":5,"column":10},"end":{"line":5,"column":11},"source":null},"type":"Identifier","name":"i"}}]},{"loc":{"start":{"line":6,"column":2},"end":{"line":8,"column":3},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":6,"column":2},"end":{"line":8,"column":3},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":6,"column":2},"end":{"line":6,"column":14},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":6,"column":2},"end":{"line":6,"column":6},"source":null},"type":"Identifier","name":"item"},"property":{"loc":null,"type":"Identifier","name":"onclick"},"computed":false},"right":{"loc":{"start":{"line":6,"column":17},"end":{"line":8,"column":3},"source":null},"type":"FunctionExpression","id":null,"params":[{"loc":{"start":{"line":6,"column":27},"end":{"line":6,"column":29},"source":null},"type":"Identifier","name":"ev"}],"body":{"loc":{"start":{"line":6,"column":31},"end":{"line":7,"column":40},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":7,"column":4},"end":{"line":7,"column":39},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":7,"column":4},"end":{"line":7,"column":39},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":7,"column":4},"end":{"line":7,"column":9},"source":null},"type":"Identifier","name":"alert"},"arguments":[{"loc":{"start":{"line":7,"column":10},"end":{"line":7,"column":38},"source":null},"type":"BinaryExpression","operator":"+","left":{"loc":{"start":{"line":7,"column":10},"end":{"line":7,"column":21},"source":null},"type":"BinaryExpression","operator":"+","left":{"loc":{"start":{"line":7,"column":10},"end":{"line":7,"column":17},"source":null},"type":"Literal","value":"Item "},"right":{"loc":{"start":{"line":7,"column":20},"end":{"line":7,"column":21},"source":null},"type":"Identifier","name":"j"}},"right":{"loc":{"start":{"line":7,"column":24},"end":{"line":7,"column":38},"source":null},"type":"Literal","value":" is clicked."}}]}}]},"generator":false,"expression":false}}},{"loc":{"start":{"line":9,"column":2},"end":{"line":9,"column":24},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":9,"column":2},"end":{"line":9,"column":24},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":9,"column":2},"end":{"line":9,"column":18},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":9,"column":2},"end":{"line":9,"column":6},"source":null},"type":"Identifier","name":"list"},"property":{"loc":null,"type":"Identifier","name":"appendChild"},"computed":false},"arguments":[{"loc":{"start":{"line":9,"column":19},"end":{"line":9,"column":23},"source":null},"type":"Identifier","name":"item"}]}}]}}]});
 
 /**
- * var list = document.getElementById("list"); 
-for (var i = 1; i <= 5; i++) {   
-  var item = document.createElement("LI");   
-  item.appendChild(document.createTextNode("Item " + i));   
-  let j = i;   
-  item.onclick = function (ev) {     
-    alert("Item " + j + " is clicked.");   
-  };   
-  list.appendChild(item); 
-} 
-*/
+ * var list = document.getElementById("list");
+ for (var i = 1; i <= 5; i++) {
+ var item = document.createElement("LI");
+ item.appendChild(document.createTextNode("Item " + i));
+ let j = i;
+ item.onclick = function (ev) {
+ alert("Item " + j + " is clicked.");
+ };
+ list.appendChild(item);
+ }
+ */
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -246,10 +246,10 @@ for (var i = 1; i <= 5; i++) {
 testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":19},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":18},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":18},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":1},"source":null},"type":"Identifier","name":"a"},"right":{"loc":{"start":{"line":1,"column":5},"end":{"line":1,"column":18},"source":null},"type":"ConditionalExpression","test":{"loc":{"start":{"line":1,"column":5},"end":{"line":1,"column":10},"source":null},"type":"BinaryExpression","operator":"<","left":{"loc":{"start":{"line":1,"column":5},"end":{"line":1,"column":6},"source":null},"type":"Identifier","name":"b"},"right":{"loc":{"start":{"line":1,"column":9},"end":{"line":1,"column":10},"source":null},"type":"Identifier","name":"c"}},"consequent":{"loc":{"start":{"line":1,"column":13},"end":{"line":1,"column":14},"source":null},"type":"Identifier","name":"b"},"alternate":{"loc":{"start":{"line":1,"column":17},"end":{"line":1,"column":18},"source":null},"type":"Identifier","name":"c"}}}}]});
 
 /**
- * var x = 10;  
-var y = true;  
-if (x*x > 1000 || y) alert("true!");  
-*/
+ * var x = 10;
+ var y = true;
+ if (x*x > 1000 || y) alert("true!");
+ */
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -257,9 +257,9 @@ if (x*x > 1000 || y) alert("true!");
 
 testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":2,"column":13},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":9},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":9},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":9},"source":null},"type":"Identifier","name":"a"},"init":{"loc":{"start":{"line":1,"column":8},"end":{"line":1,"column":9},"source":null},"type":"Literal","value":3}}]},{"loc":{"start":{"line":2,"column":0},"end":{"line":2,"column":12},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":2,"column":0},"end":{"line":2,"column":12},"source":null},"type":"SequenceExpression","expressions":[{"loc":{"start":{"line":2,"column":0},"end":{"line":2,"column":5},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":2,"column":0},"end":{"line":2,"column":1},"source":null},"type":"Identifier","name":"a"},"right":{"loc":{"start":{"line":2,"column":4},"end":{"line":2,"column":5},"source":null},"type":"Literal","value":4}},{"loc":{"start":{"line":2,"column":7},"end":{"line":2,"column":12},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":2,"column":7},"end":{"line":2,"column":8},"source":null},"type":"Identifier","name":"a"},"right":{"loc":{"start":{"line":2,"column":11},"end":{"line":2,"column":12},"source":null},"type":"Literal","value":5}}]}}]});
 /*
-var a = 3;
-a = 4, a = 5;
-*/
+ var a = 3;
+ a = 4, a = 5;
+ */
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //22 - array comprehension
 
@@ -269,7 +269,7 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":4,"column":17}
  var b = 3;
 
  [a, b] = [b, a];
-* */
+ * */
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -278,7 +278,7 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":4,"column":17}
 testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":13},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":13},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":13},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":4},"source":null},"type":"ThisExpression"},"property":{"loc":null,"type":"Identifier","name":"generate"},"computed":false}}]});
 /*
  this.generate
-* */
+ * */
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -295,11 +295,11 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":4,"column":1},
 
 /*
  * function displaymessage()
-{
-alert("Hello World!");
-}
+ {
+ alert("Hello World!");
+ }
  */
-	
+
 //25 ifStatement, identifier, literal
 
 testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":36},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":35},"source":null},"type":"IfStatement","test":{"loc":{"start":{"line":1,"column":3},"end":{"line":1,"column":8},"source":null},"type":"BinaryExpression","operator":">","left":{"loc":{"start":{"line":1,"column":3},"end":{"line":1,"column":4},"source":null},"type":"Identifier","name":"a"},"right":{"loc":{"start":{"line":1,"column":7},"end":{"line":1,"column":8},"source":null},"type":"Identifier","name":"b"}},"consequent":{"loc":{"start":{"line":1,"column":10},"end":{"line":1,"column":35},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":1,"column":10},"end":{"line":1,"column":35},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":1,"column":10},"end":{"line":1,"column":15},"source":null},"type":"Identifier","name":"alert"},"arguments":[{"loc":{"start":{"line":1,"column":17},"end":{"line":1,"column":34},"source":null},"type":"Literal","value":"a je vece od b!"}]}},"alternate":null}]});
@@ -313,12 +313,12 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":7,"column":1},
 
 /*
  * even_number:
-if(i%2==0)
-{
-   if(i==12)
-      break even_number;
-   document.write(i);
-}
+ if(i%2==0)
+ {
+ if(i==12)
+ break even_number;
+ document.write(i);
+ }
  */
 
 //27 assignmentExpression, continueStatement, forStatement, updateExpression, variableDeclaration, variableDeclarator
@@ -327,16 +327,16 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":10,"column":3}
 
 /*
  * var i=0
-for (i=0;i<=10;i++)
-  {
-  if (i==3)
-    {
-    continue;
-    }
-  document.write("The number is " + i);
-  document.write("<br />");
-  }
-  */
+ for (i=0;i<=10;i++)
+ {
+ if (i==3)
+ {
+ continue;
+ }
+ document.write("The number is " + i);
+ document.write("<br />");
+ }
+ */
 
 //28 with statement
 
@@ -345,11 +345,11 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":6,"column":1},
 
 /*
  *with(document)
-{
-write(" inside with statement <br>");
-write(" using with(object) we can call its functions directly <br>");
-write (" TITLE -"+title);
-}
+ {
+ write(" inside with statement <br>");
+ write(" using with(object) we can call its functions directly <br>");
+ write (" TITLE -"+title);
+ }
  *
  */
 
@@ -359,22 +359,22 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":16,"column":1}
 
 /*
  * var d=new Date();
-var theDay=d.getDay();
-switch (theDay)
-{
-case 5:
-  document.write("Finally Friday");
-  break;
-case 6:
-  document.write("Super Saturday");
-  break;
-case 0:
-  document.write("Sleepy Sunday");
-  break;
-default:
-  document.write("I'm looking forward to this weekend!");
-}
-*/
+ var theDay=d.getDay();
+ switch (theDay)
+ {
+ case 5:
+ document.write("Finally Friday");
+ break;
+ case 6:
+ document.write("Super Saturday");
+ break;
+ case 0:
+ document.write("Sleepy Sunday");
+ break;
+ default:
+ document.write("I'm looking forward to this weekend!");
+ }
+ */
 
 
 //30 return, functionDeclaration, 
@@ -385,9 +385,9 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":4,"column":1},
 
 /*
  * function product(a,b)
-{
-return a*b;
-}*/
+ {
+ return a*b;
+ }*/
 
 //31  throw, catchClause, try
 
@@ -395,37 +395,37 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":31,"column":3}
 
 /*
  *var x=prompt("Enter a number between 5 and 10:","");
-try
-  {
-  if(x>10)
-    {
-    throw "Err1";
-    }
-  else if(x<5)
-    {
-    throw "Err2";
-    }
-  else if(isNaN(x))
-    {
-    throw "Err3";
-    }
-  }
-catch(err)
-  {
-  if(err=="Err1")
-    {
-    document.write("Error! The value is too high.");
-    }
-  if(err=="Err2")
-    {
-    document.write("Error! The value is too low.");
-    }
-  if(err=="Err3")
-    {
-    document.write("Error! The value is not a number.");
-    }
-  }
-*/ 
+ try
+ {
+ if(x>10)
+ {
+ throw "Err1";
+ }
+ else if(x<5)
+ {
+ throw "Err2";
+ }
+ else if(isNaN(x))
+ {
+ throw "Err3";
+ }
+ }
+ catch(err)
+ {
+ if(err=="Err1")
+ {
+ document.write("Error! The value is too high.");
+ }
+ if(err=="Err2")
+ {
+ document.write("Error! The value is too low.");
+ }
+ if(err=="Err3")
+ {
+ document.write("Error! The value is not a number.");
+ }
+ }
+ */
 
 
 //32 while
@@ -436,13 +436,13 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":7,"column":3},
 
 
 /*
-var i=0;
-while (i<=5)
-  {
-  document.write("The number is " + i);
-  document.write("<br />");
-  i++;
-  }*/
+ var i=0;
+ while (i<=5)
+ {
+ document.write("The number is " + i);
+ document.write("<br />");
+ i++;
+ }*/
 
 
 
@@ -453,13 +453,13 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":7,"column":12}
 
 
 /*
-var i = 0;
-do
-{
-   document.write(i + ".<BR>");
-   i+=2;
-}
-while(i<20);*/
+ var i = 0;
+ do
+ {
+ document.write(i + ".<BR>");
+ i+=2;
+ }
+ while(i<20);*/
 
 
 
@@ -473,12 +473,12 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":7,"column":1},
 
 /*
  * var person={fname:"John",lname:"Doe",age:25};
-var x;
+ var x;
 
-for (x in person)
-{
-document.write(person[x] + " ");
-}
+ for (x in person)
+ {
+ document.write(person[x] + " ");
+ }
  */
 
 
@@ -489,20 +489,20 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":3,"column":1},
 
 /*
  * function doSomething() {
-   this.style.color = '#cc0000';
-}*/
- 
+ this.style.color = '#cc0000';
+ }*/
 
 
 
-//36 arrayExpression NE RADIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+
+//36 arrayExpression
 
 testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":17},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":16},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":16},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":16},"source":null},"type":"Identifier","name":"myArray"},"init":{"loc":{"start":{"line":1,"column":14},"end":{"line":1,"column":16},"source":null},"type":"ArrayExpression","elements":[]}}]}]});
 
 /*
-var myArray = [];
+ var myArray = [];
 
-*/
+ */
 
 
 //37 debuggerStatement
@@ -512,10 +512,10 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":5,"column":1},
 
 /*
  * for(i = 1; i<5; i++) 
-{
-   Debug.write("loop index is " + i);   
-   debugger
-}*/
+ {
+ Debug.write("loop index is " + i);
+ debugger
+ }*/
 
 //38 conditionExpression, logical
 
@@ -523,7 +523,7 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":30}
 
 
 /*
-a=(x>y && x>2) ? (b=5): (c=6);*/
+ a=(x>y && x>2) ? (b=5): (c=6);*/
 
 
 
@@ -560,41 +560,56 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":22,"column":5}
 
 /*
  *        var gen = generator();  
-      
-    function driveGenerator() {  
-      if (gen.next()) {  
-        window.setTimeout(driveGenerator, 0);     
-      } else {  
-        gen.close();      
-      }  
-    }  
-      
-    function generator() {  
-      while (i < something) {  
-         
-      
-        ++i;  
-         
-        if ((i % 100) == 0) {  
-          yield true;  
-        }   
-      }  
-      yield false;  
-    }  
+
+ function driveGenerator() {
+ if (gen.next()) {
+ window.setTimeout(driveGenerator, 0);
+ } else {
+ gen.close();
+ }
+ }
+
+ function generator() {
+ while (i < something) {
+
+
+ ++i;
+
+ if ((i % 100) == 0) {
+ yield true;
+ }
+ }
+ yield false;
+ }
  */
 
-//42 generatorExpression
+//42 generatorExpression, comprehensionBlock
 
 
 testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":8,"column":1},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":50},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":50},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":50},"source":null},"type":"Identifier","name":"iterator"},"init":{"loc":{"start":{"line":1,"column":22},"end":{"line":1,"column":25},"source":null},"type":"GeneratorExpression","body":{"loc":{"start":{"line":1,"column":16},"end":{"line":1,"column":21},"source":null},"type":"BinaryExpression","operator":"*","left":{"loc":{"start":{"line":1,"column":16},"end":{"line":1,"column":17},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":1,"column":20},"end":{"line":1,"column":21},"source":null},"type":"Identifier","name":"i"}},"blocks":[{"loc":{"start":{"line":1,"column":16},"end":{"line":1,"column":48},"source":null},"type":"ComprehensionBlock","left":{"loc":{"start":{"line":1,"column":16},"end":{"line":1,"column":17},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":1,"column":37},"end":{"line":1,"column":48},"source":null},"type":"Identifier","name":"someNumbers"},"each":true}],"filter":null}}]},{"loc":{"start":{"line":2,"column":0},"end":{"line":2,"column":3},"source":null},"type":"TryStatement","block":{"loc":{"start":{"line":2,"column":4},"end":{"line":5,"column":1},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":3,"column":0},"end":{"line":4,"column":38},"source":null},"type":"WhileStatement","test":{"loc":{"start":{"line":3,"column":7},"end":{"line":3,"column":11},"source":null},"type":"Literal","value":true},"body":{"loc":{"start":{"line":3,"column":13},"end":{"line":4,"column":38},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":4,"column":0},"end":{"line":4,"column":37},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":4,"column":0},"end":{"line":4,"column":37},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":4,"column":0},"end":{"line":4,"column":14},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":4,"column":0},"end":{"line":4,"column":8},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":4,"column":15},"end":{"line":4,"column":36},"source":null},"type":"BinaryExpression","operator":"+","left":{"loc":{"start":{"line":4,"column":15},"end":{"line":4,"column":30},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":4,"column":15},"end":{"line":4,"column":28},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":4,"column":15},"end":{"line":4,"column":23},"source":null},"type":"Identifier","name":"iterator"},"property":{"loc":null,"type":"Identifier","name":"next"},"computed":false},"arguments":[]},"right":{"loc":{"start":{"line":4,"column":33},"end":{"line":4,"column":36},"source":null},"type":"Literal","value":" "}}]}}]}}]},"handlers":[{"loc":{"start":{"line":6,"column":2},"end":{"line":6,"column":7},"source":null},"type":"CatchClause","param":{"loc":{"start":{"line":6,"column":9},"end":{"line":6,"column":14},"source":null},"type":"Identifier","name":"error"},"guard":{"loc":{"start":{"line":6,"column":18},"end":{"line":6,"column":48},"source":null},"type":"BinaryExpression","operator":"instanceof","left":{"loc":{"start":{"line":6,"column":18},"end":{"line":6,"column":23},"source":null},"type":"Identifier","name":"error"},"right":{"loc":{"start":{"line":6,"column":35},"end":{"line":6,"column":48},"source":null},"type":"Identifier","name":"StopIteration"}},"body":{"loc":{"start":{"line":6,"column":50},"end":{"line":6,"column":51},"source":null},"type":"BlockStatement","body":[]}}],"finalizer":null}]});
 
 
 /*
-var iterator = (i * i for each (i in someNumbers));
-try {
-while (true) {
-document.write(iterator.next() + " ");
-}
-} catch (error if error instanceof StopIteration) {
-//we are done
-}*/
+ var iterator = (i * i for each (i in someNumbers));
+ try {
+ while (true) {
+ document.write(iterator.next() + " ");
+ }
+ } catch (error if error instanceof StopIteration) {
+ //we are done
+ }*/
+
+
+
+
+//43 off TEST !OK
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":10,"column":1},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":9},"end":{"line":10,"column":1},"source":null},"type":"FunctionDeclaration","id":{"loc":null,"type":"Identifier","name":"sumDigits"},"params":[{"loc":{"start":{"line":1,"column":19},"end":{"line":1,"column":22},"source":null},"type":"Identifier","name":"num"}],"body":{"loc":{"start":{"line":1,"column":24},"end":{"line":9,"column":74},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":2,"column":5},"end":{"line":2,"column":19},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":2,"column":9},"end":{"line":2,"column":10},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":2,"column":9},"end":{"line":2,"column":10},"source":null},"type":"Identifier","name":"i"},"init":null},{"loc":{"start":{"line":2,"column":12},"end":{"line":2,"column":19},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":2,"column":12},"end":{"line":2,"column":19},"source":null},"type":"Identifier","name":"sum"},"init":{"loc":{"start":{"line":2,"column":18},"end":{"line":2,"column":19},"source":null},"type":"Literal","value":0}}]},{"loc":{"start":{"line":4,"column":5},"end":{"line":5,"column":22},"source":null},"type":"ForStatement","init":{"loc":{"start":{"line":4,"column":10},"end":{"line":4,"column":15},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":4,"column":10},"end":{"line":4,"column":11},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":4,"column":14},"end":{"line":4,"column":15},"source":null},"type":"Literal","value":1}},"test":{"loc":{"start":{"line":4,"column":17},"end":{"line":4,"column":25},"source":null},"type":"BinaryExpression","operator":"<=","left":{"loc":{"start":{"line":4,"column":17},"end":{"line":4,"column":18},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":4,"column":22},"end":{"line":4,"column":25},"source":null},"type":"Identifier","name":"num"}},"update":{"loc":{"start":{"line":4,"column":27},"end":{"line":4,"column":30},"source":null},"type":"UpdateExpression","operator":"++","argument":{"loc":{"start":{"line":4,"column":27},"end":{"line":4,"column":28},"source":null},"type":"Identifier","name":"i"},"prefix":false},"body":{"loc":{"start":{"line":4,"column":32},"end":{"line":5,"column":22},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":5,"column":13},"end":{"line":5,"column":21},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":5,"column":13},"end":{"line":5,"column":21},"source":null},"type":"AssignmentExpression","operator":"+=","left":{"loc":{"start":{"line":5,"column":13},"end":{"line":5,"column":16},"source":null},"type":"Identifier","name":"sum"},"right":{"loc":{"start":{"line":5,"column":20},"end":{"line":5,"column":21},"source":null},"type":"Identifier","name":"i"}}}]}},{"loc":{"start":{"line":9,"column":5},"end":{"line":9,"column":73},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":9,"column":5},"end":{"line":9,"column":73},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":9,"column":5},"end":{"line":9,"column":10},"source":null},"type":"Identifier","name":"alert"},"arguments":[{"loc":{"start":{"line":9,"column":11},"end":{"line":9,"column":72},"source":null},"type":"BinaryExpression","operator":"+","left":{"loc":{"start":{"line":9,"column":11},"end":{"line":9,"column":66},"source":null},"type":"BinaryExpression","operator":"+","left":{"loc":{"start":{"line":9,"column":11},"end":{"line":9,"column":50},"source":null},"type":"BinaryExpression","operator":"+","left":{"loc":{"start":{"line":9,"column":11},"end":{"line":9,"column":45},"source":null},"type":"Literal","value":"The sum of the digits from 1 to "},"right":{"loc":{"start":{"line":9,"column":47},"end":{"line":9,"column":50},"source":null},"type":"Identifier","name":"num"}},"right":{"loc":{"start":{"line":9,"column":53},"end":{"line":9,"column":66},"source":null},"type":"Literal","value":" is:\n\n\t "}},"right":{"loc":{"start":{"line":9,"column":69},"end":{"line":9,"column":72},"source":null},"type":"Identifier","name":"sum"}}]}}]},"generator":false,"expression":false}]});
+
+//44 off TEST !OK
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":16,"column":4},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":15},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":5},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":5},"source":null},"type":"Identifier","name":"i"},"init":null},{"loc":{"start":{"line":1,"column":7},"end":{"line":1,"column":8},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":1,"column":7},"end":{"line":1,"column":8},"source":null},"type":"Identifier","name":"j"},"init":null},{"loc":{"start":{"line":1,"column":10},"end":{"line":1,"column":15},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":1,"column":10},"end":{"line":1,"column":15},"source":null},"type":"Identifier","name":"total"},"init":null}]},{"loc":{"start":{"line":3,"column":0},"end":{"line":15,"column":27},"source":null},"type":"ForStatement","init":{"loc":{"start":{"line":3,"column":5},"end":{"line":3,"column":10},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":3,"column":5},"end":{"line":3,"column":6},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":3,"column":9},"end":{"line":3,"column":10},"source":null},"type":"Literal","value":1}},"test":{"loc":{"start":{"line":3,"column":12},"end":{"line":3,"column":19},"source":null},"type":"BinaryExpression","operator":"<=","left":{"loc":{"start":{"line":3,"column":12},"end":{"line":3,"column":13},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":3,"column":17},"end":{"line":3,"column":19},"source":null},"type":"Literal","value":10}},"update":{"loc":{"start":{"line":3,"column":21},"end":{"line":3,"column":24},"source":null},"type":"UpdateExpression","operator":"++","argument":{"loc":{"start":{"line":3,"column":21},"end":{"line":3,"column":22},"source":null},"type":"Identifier","name":"i"},"prefix":false},"body":{"loc":{"start":{"line":3,"column":26},"end":{"line":15,"column":27},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":4,"column":6},"end":{"line":12,"column":31},"source":null},"type":"ForStatement","init":{"loc":{"start":{"line":4,"column":11},"end":{"line":4,"column":16},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":4,"column":11},"end":{"line":4,"column":12},"source":null},"type":"Identifier","name":"j"},"right":{"loc":{"start":{"line":4,"column":15},"end":{"line":4,"column":16},"source":null},"type":"Literal","value":1}},"test":{"loc":{"start":{"line":4,"column":18},"end":{"line":4,"column":24},"source":null},"type":"BinaryExpression","operator":"<","left":{"loc":{"start":{"line":4,"column":18},"end":{"line":4,"column":19},"source":null},"type":"Identifier","name":"j"},"right":{"loc":{"start":{"line":4,"column":22},"end":{"line":4,"column":24},"source":null},"type":"Literal","value":10}},"update":{"loc":{"start":{"line":4,"column":26},"end":{"line":4,"column":29},"source":null},"type":"UpdateExpression","operator":"++","argument":{"loc":{"start":{"line":4,"column":26},"end":{"line":4,"column":27},"source":null},"type":"Identifier","name":"j"},"prefix":false},"body":{"loc":{"start":{"line":4,"column":31},"end":{"line":12,"column":31},"source":null},"type":"BlockStatement","body":[{"loc":{"start":{"line":5,"column":9},"end":{"line":5,"column":22},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":5,"column":9},"end":{"line":5,"column":22},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":5,"column":9},"end":{"line":5,"column":14},"source":null},"type":"Identifier","name":"total"},"right":{"loc":{"start":{"line":5,"column":17},"end":{"line":5,"column":22},"source":null},"type":"BinaryExpression","operator":"*","left":{"loc":{"start":{"line":5,"column":17},"end":{"line":5,"column":18},"source":null},"type":"Identifier","name":"i"},"right":{"loc":{"start":{"line":5,"column":21},"end":{"line":5,"column":22},"source":null},"type":"Identifier","name":"j"}}}},{"loc":{"start":{"line":6,"column":9},"end":{"line":6,"column":28},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":6,"column":9},"end":{"line":6,"column":28},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":6,"column":9},"end":{"line":6,"column":14},"source":null},"type":"Identifier","name":"total"},"right":{"loc":{"start":{"line":6,"column":17},"end":{"line":6,"column":28},"source":null},"type":"BinaryExpression","operator":"+","left":{"loc":{"start":{"line":6,"column":17},"end":{"line":6,"column":20},"source":null},"type":"Literal","value":" "},"right":{"loc":{"start":{"line":6,"column":23},"end":{"line":6,"column":28},"source":null},"type":"Identifier","name":"total"}}}},{"loc":{"start":{"line":9,"column":9},"end":{"line":9,"column":44},"source":null},"type":"IfStatement","test":{"loc":{"start":{"line":9,"column":13},"end":{"line":9,"column":23},"source":null},"type":"BinaryExpression","operator":"<","left":{"loc":{"start":{"line":9,"column":13},"end":{"line":9,"column":18},"source":null},"type":"Identifier","name":"total"},"right":{"loc":{"start":{"line":9,"column":21},"end":{"line":9,"column":23},"source":null},"type":"Literal","value":10}},"consequent":{"loc":{"start":{"line":9,"column":25},"end":{"line":9,"column":44},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":9,"column":25},"end":{"line":9,"column":44},"source":null},"type":"AssignmentExpression","operator":"=","left":{"loc":{"start":{"line":9,"column":25},"end":{"line":9,"column":30},"source":null},"type":"Identifier","name":"total"},"right":{"loc":{"start":{"line":9,"column":33},"end":{"line":9,"column":44},"source":null},"type":"BinaryExpression","operator":"+","left":{"loc":{"start":{"line":9,"column":33},"end":{"line":9,"column":36},"source":null},"type":"Literal","value":" "},"right":{"loc":{"start":{"line":9,"column":39},"end":{"line":9,"column":44},"source":null},"type":"Identifier","name":"total"}}}},"alternate":null},{"loc":{"start":{"line":12,"column":9},"end":{"line":12,"column":30},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":12,"column":9},"end":{"line":12,"column":30},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":12,"column":9},"end":{"line":12,"column":23},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":12,"column":9},"end":{"line":12,"column":17},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":12,"column":24},"end":{"line":12,"column":29},"source":null},"type":"Identifier","name":"total"}]}}]}},{"loc":{"start":{"line":15,"column":4},"end":{"line":15,"column":26},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":15,"column":4},"end":{"line":15,"column":26},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":15,"column":4},"end":{"line":15,"column":18},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":15,"column":4},"end":{"line":15,"column":12},"source":null},"type":"Identifier","name":"document"},"property":{"loc":null,"type":"Identifier","name":"write"},"computed":false},"arguments":[{"loc":{"start":{"line":15,"column":19},"end":{"line":15,"column":25},"source":null},"type":"Literal","value":"<BR>"}]}}]}}]});
+
+//45 
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":24},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":24},"source":null},"type":"ExpressionStatement","expression":{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":24},"source":null},"type":"CallExpression","callee":{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":17},"source":null},"type":"MemberExpression","object":{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":13},"source":null},"type":"ArrayExpression","elements":[{"loc":{"start":{"line":1,"column":1},"end":{"line":1,"column":6},"source":null},"type":"Literal","value":"foo"},{"loc":{"start":{"line":1,"column":7},"end":{"line":1,"column":12},"source":null},"type":"Literal","value":"bar"}]},"property":{"loc":null,"type":"Identifier","name":"has"},"computed":false},"arguments":[{"loc":{"start":{"line":1,"column":18},"end":{"line":1,"column":23},"source":null},"type":"Literal","value":"foo"}]}}]});
