@@ -2,16 +2,26 @@ var ASTHelper =
 {
 		
 		
-	setParentChildRelationship: function()
+	setParentChildRelationship: function(program)
 	{
-		  astHelper.traverseAst(program, function(currentElement, name, parentElement)
+		  ASTHelper.traverseAst(program, function(currentElement, name, parentElement)
 		            {
 		            	currentElement.parent = parentElement;
-		            	if(parentElement.children == null) { parentElement.children = [];} parentElement.children.push(currentElement);
+		            	if(parentElement.children == null) { parentElement.children = [];} 
+		            	parentElement.children.push(currentElement);			            	
 		            });
 	},
     
-
+	
+	flatten: function(program)
+	{
+		    var nodes = [];
+            ASTHelper.traverseAst(program, function(currentElement, name, parentElement)
+                {
+                    nodes.push(currentElement);
+                });
+            return nodes;        
+	},
         
 
 	parseSourceCodeToAST: function(sourceCode, sourceCodePath, startLine)
