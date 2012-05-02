@@ -1102,10 +1102,10 @@ var VectorGenerator = {
     		generatorExpression.characteristicVector.join(generatorExpression.body.characteristicVector);
     		
 
-            generatorExpression.blocks.forEach(function(generatorExpression)
+            generatorExpression.blocks.forEach(function(block)
             {
-                this.generate(generatorExpression);
-                generatorExpression.characteristicVector.join(generatorExpression.blocks.characteristicVector);
+                this.generate(block);
+                generatorExpression.characteristicVector.join(block.characteristicVector);
             }, this);
     		
     		
