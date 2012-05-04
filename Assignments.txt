@@ -1,42 +1,81 @@
-
-- move VectorGenerator.js to a new folder "characteristicVectors" under scripts; make necessary adjustments to file paths
-- test the program on jQuery
-
-
-
-
-
-- ASTHelper - add function setParentChildRelationship which traverses the whole AST tree and sets parents and children
-            - as a base use: traverseAst: function(astElement, processElementFunction) {}
-            - define the processElementFunction which has arguments: currentElement, elementName, parentElement
-
-            astHelper.traverseAst(program, function(currentElement, name, parentElement)
-            {
-            	currentElement.parent = parentElement;
-            	if(parentElement.children == null) { parentElement.children = [];} parentElement.children.push(currentElement);
-            });
-            
-            
-            
+// NAPRAVITI OVO PRVO!
+//naći algoritam koji će generirati sve kombinacije 'i'-tog razreda od n-elementa u rasponu od 0-n
+// i modificirati ga da ne dopusti da se susjedni članovi razlikuju za više od (max distance)
+// function(endNumber, classNumber, maxDistance)
+{
+    var combinations = [];
 
 
-- make a new object: VectorDistanceCalculator with two functions that receive two vectors as input
-                        - calculateHammingDistance  sum (|xi - yi|)
-                        - calculateEuclideanDistance sqrt(sum((xi-yi)^2))
-                        
-                        
-                        
-                        
-                        
-                        
-- u  ASTHelperu  function flatten
-                    - takes an AST description (program), and returns an array of nodes with a post-order traversal
-            function
-            {
-                var nodes = [];
-                astHelper.traverseAst(program, function(currentElement, name, parentElement)
-                    {
-                        nodes.push(currentElement);
-                    });
-                return nodes;
-            }
+    //npr [[1,2,3], [2,3,4],....]
+    return combinations;
+}
+
+- Stavi je za sad u VectorGenerator
+
+
+
+
+
+
+
+*********************************************
+- napraviti novi folder: mergeableNodesDetector
+- u njemu fajl MergeableNodeDetector.js i u njemu object: MergeableNodeDetector
+- MergeableNodeDetector
+    - getMergableNodes: function(programAst)
+    {
+        var mergeableNodes = [];
+
+
+        var allFunctions = ASTHelper.getAllFunctions(programAST); //->prošetaš se sa traverseAll po cilom programu i dohvatiš sve čvorove tipa FunctionDeclaration i FunctionExpression
+        var directProgramChildren = program.children;
+
+         ValueTypeHelper.pushAll(mergeableNodes, this.getMergeableNodesFromNodeList(directProgramChildren));
+
+         allFunctions.forEach(function(functionElement)
+         {
+            ValueTypeHelper.pushAll(mergeableNodes, this.getMergeableNodesFromNodeList(functionElement.children)); //djecu funkcije
+         });
+
+         ValueTypeHelper.pushAll(mergeableNodes, this.getMergeableNodesFromNodeList(directProgramChildren));
+    }
+
+    - u CharacteristicVector dodati slično funkciji join, dodati funkciju sum, koja sumira članove vektora i vraća taj broj
+    - minNumberOfTokens - svojstvo u MergeableNodeDetector, za sad ga postaviti na 4; (pogledaj koliko i++ ima i stavi to ka minimum)
+
+    - getMergeableNodesFromNodeList: function(statements)
+    {
+         var mergeableNodes = [];
+
+         statements.forEach(function(statement)
+         {
+             if(statement.characteristicVector.sum() >= this.minNumberOfTokens)
+             {
+                mergeableNodes.push(statement);
+             }
+         });
+
+         for(var i = 2; i < statements.length - 1; i++)
+         {
+
+             //Napraviti funkciju u VectorGeneratoru koja prima ovaj 'i'; statements.length (n); max distance
+             //i geneira sve kombinacije 'i'-tog razreda od n-elementa, bez ponavljanja, ali u algoritam
+             //ubaciti da ne dopusti generiranje kombinacija čiji se susjedni članovi razlikuju za više od nekog broja (max distance)
+
+             // NAPRAVITI OVO PRVO!
+             //naći algoritam koji će generirati sve kombinacije 'i'-tog razreda od n-elementa u rasponu od 0-n
+             // i modificirati ga da ne dopusti da se susjedni članovi razlikuju za više od (max distance)
+             // function(endNumber, classNumber, maxDistance)
+                {
+                    var combinations = [];
+
+
+                    //npr [[1,2,3], [2,3,4],....]
+                    return combinations;
+                }
+
+             //number of combination without repetition algorithm
+         }
+
+         return mergeableNodes;
+    }

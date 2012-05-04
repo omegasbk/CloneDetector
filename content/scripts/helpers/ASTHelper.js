@@ -8,7 +8,7 @@ var ASTHelper =
 		            {
 		            	currentElement.parent = parentElement;
 		            	if(parentElement.children == null) { parentElement.children = [];} 
-		            	parentElement.children.push(currentElement);			            	
+		            	parentElement.children.push(currentElement);
 		            });
 	},
     
