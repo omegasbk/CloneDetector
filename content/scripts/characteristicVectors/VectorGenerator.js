@@ -1176,13 +1176,79 @@ var VectorGenerator = {
             generatorExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.GeneratorExpression]++;
         }
         catch (e) { alert ("Error when generating vector for Generator Expression: " + e); }
-    }
+    },
+    
+    
+   
 
 
+    
 
 };
 
+function generateCombinations(endNumber, classNumber, maxDistance)
+{
+	var combinations = [];
+	var currentCombination = []
+	var nodes = [];		
+	var numberOfCombinations = 0;
+	var numerator = 1;
+	var denominator = 1;
+	var mask = [];
+	
+	
+	//napuni niz indeksima do endNumber
+	for(i = 0; i < endNumber ; i++)
+		{
+			nodes.push(i);
+		}
+	
+	
+	for (i = 0; i < classNumber; i++)
+		{
+			numerator *= (endNumber - i); 
+		}
+	
+	
+	for(i = classNumber; i > 0; i--)
+		{
+			denominator *= i;
+		}
+	
+	
+	
+	numberOfCombinations = numerator/denominator;
+	alert("Broj kombinacija:" + numberOfCombinations);
+	
+	for ( i = 0; i < endNumber; i++)
+		{
+			if(i < classNumber) mask.push(1);
+			else mask.push(0);
+		}
+	
+	
+		
+		console.log(mask);
+	
+		//prvi korak, sve lagano pribaci na drugu stranu
+		for(i=0; i < classNumber; i++)
+			{
+				var member = classNumber-1;
+				while (member < endNumber-1)
+					{
+						mask[member-i]=0;
+						mask[member+1-i]=1;
+						
+						console.log(mask);
+						member += 1;								
+					}			
+			}
+		
+		return combinations;
+	
+	
 
+};
 
 function CharacteristicVector()
 {
@@ -1205,7 +1271,6 @@ function CharacteristicVector()
         catch(e) { alert("Error when joining vectors: " + e); }
     };
 };
-
 
 
 

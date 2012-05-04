@@ -5,8 +5,8 @@
 {
     var combinations = [];
 
-
-    //npr [[1,2,3], [2,3,4],....]
+	
+   
     return combinations;
 }
 

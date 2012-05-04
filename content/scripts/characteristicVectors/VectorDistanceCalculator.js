@@ -11,6 +11,7 @@ var VectorDistanceCalculator =
 					sum += difference;
 				}
 			}
+		
 		return sum;
 	},
 	
@@ -26,7 +27,7 @@ var VectorDistanceCalculator =
 		  			sum += difference*difference;
 		  		}
 			}
-	        
+	  		
 	        return Math.sqrt(sum);
 	 
 	}
