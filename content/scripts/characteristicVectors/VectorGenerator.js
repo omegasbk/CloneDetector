@@ -1189,12 +1189,13 @@ var VectorGenerator = {
 function generateCombinations(endNumber, classNumber, maxDistance)
 {
 	var combinations = [];
-	var currentCombination = []
 	var nodes = [];		
 	var numberOfCombinations = 0;
 	var numerator = 1;
 	var denominator = 1;
 	var mask = [];
+	var brojac = 0;
+	
 	
 	
 	//napuni niz indeksima do endNumber
@@ -1215,40 +1216,48 @@ function generateCombinations(endNumber, classNumber, maxDistance)
 			denominator *= i;
 		}
 	
-	
-	
 	numberOfCombinations = numerator/denominator;
 	alert("Broj kombinacija:" + numberOfCombinations);
 	
 	for ( i = 0; i < endNumber; i++)
+	{
+		if(i < classNumber) mask.push(1);
+		else mask.push(0);
+	}
+
+	
+	console.log(mask);
+	brojac++;
+
+		
+	//prvi korak, sve lagano pribaci na drugu stranu
+	for(i=0; i < classNumber; i++)
 		{
-			if(i < classNumber) mask.push(1);
-			else mask.push(0);
+			var member = classNumber-1;
+			while (member < endNumber-1)
+				{
+					mask[member-i]=0;
+					mask[member+1-i]=1;
+					
+					console.log(mask);
+					member += 1;		
+					brojac++;
+				}			
 		}
 	
-	
+	mask = [];
 		
-		console.log(mask);
-	
-		//prvi korak, sve lagano pribaci na drugu stranu
-		for(i=0; i < classNumber; i++)
-			{
-				var member = classNumber-1;
-				while (member < endNumber-1)
-					{
-						mask[member-i]=0;
-						mask[member+1-i]=1;
-						
-						console.log(mask);
-						member += 1;								
-					}			
-			}
-		
-		return combinations;
-	
-	
+	for ( i = 0; i < endNumber; i++)
+	{
+		if(i < classNumber) mask.push(1);
+		else mask.push(0);
+	}
 
-};
+
+		
+		alert("Izgenerirano " + brojac + " od ukupno " + numberOfCombinations + " kombinacija!");
+	
+	};
 
 function CharacteristicVector()
 {
