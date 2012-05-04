@@ -22,7 +22,30 @@ var ASTHelper =
                 });
             return nodes;        
 	},
-        
+	
+	
+		
+	
+	
+ 
+	getAllFunctions: function(program)
+	{
+		var allFunctions = [];
+				
+		ASTHelper.traverseAst(program, function(currentElement, name, parentElement)
+                {
+					if (currentElement.isFunctionDeclaration || currentElement.isFunctionExpression)
+					{
+						allFunctions.push(currentElement);
+					
+					}
+                });
+		
+	          return allFunctions;
+	},
+	
+	
+	
 
 	parseSourceCodeToAST: function(sourceCode, sourceCodePath, startLine)
 	{

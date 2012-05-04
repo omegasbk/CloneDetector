@@ -6,6 +6,7 @@
         <script type="text/javascript" src="scripts/helpers/FFHelper.js"></script>
         <script type="text/javascript" src="scripts/characteristicVectors/VectorGenerator.js"></script>
         <script type="text/javascript" src="scripts/characteristicVectors/VectorDistanceCalculator.js"></script>
+        <script type="text/javascript" src="scripts/mergeableNodesDetector/MergeableNodeDetector.js"></script>
         <script type="text/javascript">
         	
         
@@ -13,6 +14,8 @@
         	VectorGenerator.generate(testData[40]);
             VectorDistanceCalculator.calculateHammingDistance();
             VectorDistanceCalculator.calculateEucledianDistance();
+            
+           	//MergeableNodeDetector.getMergableNodes(testData[46]); 
             
             
             generateCombinations();

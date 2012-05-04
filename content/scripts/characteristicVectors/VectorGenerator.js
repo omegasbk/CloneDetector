@@ -1279,6 +1279,23 @@ function CharacteristicVector()
         }
         catch(e) { alert("Error when joining vectors: " + e); }
     };
+    
+    this.sum = function(characteristicVector)
+    {
+        try
+        {
+        	var sum = 0; 
+        	
+            if(characteristicVector == null) { alert("When summing vector parameters vector cannot be null"); return; }
+
+            for(var propertyName in CharacteristicVector.RELEVANT_NODES)
+            {
+               sum += characteristicVector[propertyName];
+            }
+            return sum;
+        }
+        catch(e) { alert("Error when summing vector parameters: " + e); }
+    };
 };
 
 
