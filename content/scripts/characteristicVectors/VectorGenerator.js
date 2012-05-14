@@ -1188,13 +1188,16 @@ var VectorGenerator = {
 
 function generateCombinations(endNumber, classNumber, maxDistance)
 {
-	var combinations = [];
-	var nodes = [];		
+	var c = [];
+	var finalIndex = [];
+	var nodes = [];	
+	var x;
 	var numberOfCombinations = 0;
 	var numerator = 1;
 	var denominator = 1;
-	var mask = [];
 	var brojac = 0;
+	var j;
+	var i;
 	
 	
 	
@@ -1218,46 +1221,149 @@ function generateCombinations(endNumber, classNumber, maxDistance)
 	
 	numberOfCombinations = numerator/denominator;
 	alert("Broj kombinacija:" + numberOfCombinations);
+	alert("Izgenerirano " + brojac + " od ukupno " + numberOfCombinations + " kombinacija!");
 	
-	for ( i = 0; i < endNumber; i++)
+	
+	
+	
+	//T ALGORITAM
+	
+	
+	/*t1:
+	for(j = 1; j <= classNumber; j++ )
 	{
-		if(i < classNumber) mask.push(1);
-		else mask.push(0);
+		c.push(j - 1);
 	}
-
 	
-	console.log(mask);
-	brojac++;
-
-		
-	//prvi korak, sve lagano pribaci na drugu stranu
-	for(i=0; i < classNumber; i++)
+	c[classNumber + 1] = endNumber;
+	c[classNumber + 2] = 0;
+	
+	t2:
+	for(j = classNumber; j > 0; j--)
+	{
+		x = j;
+		break t6;
+	}
+	
+	t3:
+	if ((c[1] + 1) < c[2]) 
+	{
+		c[1] = c[1] + 1;
+		for(j = classNumber; j > 0; j--)
 		{
-			var member = classNumber-1;
-			while (member < endNumber-1)
-				{
-					mask[member-i]=0;
-					mask[member+1-i]=1;
-					
-					console.log(mask);
-					member += 1;		
-					brojac++;
-				}			
+			x = j;
+			c[j] = x;		
+		}
+			break t2;
+	}
+	else j = 2;
+	
+	t4:
+	while( x != c[j+1] )
+	{
+		c[j-1] = j - 2;
+		x = c[j] + 1;
+		if (x == c[j+1]) j = j + 1;
+	}	
+	
+	t5: 
+		if ( j > t ) break;
+	
+	t6:
+	c[j] = x;
+	j = j - 1;
+	break t2;*/
+	
+	
+	
+	//T1
+	//fill c[] i stavi osiguraèe
+	
+	for(j = 1; j <= classNumber; j++)
+		{
+			c.push(j-1);		
 		}
 	
-	mask = [];
-		
-	for ( i = 0; i < endNumber; i++)
-	{
-		if(i < classNumber) mask.push(1);
-		else mask.push(0);
-	}
-
-
-		
-		alert("Izgenerirano " + brojac + " od ukupno " + numberOfCombinations + " kombinacija!");
+	c[classNumber] = endNumber;
+	c[classNumber+1] = 0;
 	
-	};
+	j = classNumber;
+	console.log(c);
+		
+	
+	//T2
+	var stepFlag = 2;
+	
+	while (j <= classNumber)
+	{
+		if(stepFlag == 3 || stepFlag == 2)	
+		{
+			//T3
+			if (stepFlag == 3)
+				{
+					if((c[0]+1 < c[1])) 
+					{
+						c[0] = c[0] + 1;
+						stepFlag = 2;
+					}
+					else 
+					{
+						j = 2;
+						stepFlag = 4;
+					}
+				}
+			
+			//T2
+			if(stepFlag == 2)
+			{
+				if(j > 0) 
+				{
+					x = j;
+					stepFlag = 6;
+				}
+				else stepFlag = 3;
+			}									
+		}		
+		
+		
+		
+		//T4
+		if(stepFlag == 4)
+			{
+				c[j-2] = j-2;
+				x = c[j-1] + 1;
+				if ( x == c[j] ) 
+					{
+						j++;
+						stepFlag = 4;
+						
+					}
+				else stepFlag = 5;
+				
+			}
+		
+		if(stepFlag == 5)
+			{
+				if (j > classNumber)  break;
+				else stepFlag = 6;
+			}
+		
+		if(stepFlag == 6)
+			{
+				c[j-1] = x;
+				j--;
+				stepFlag = 2;
+			}
+		
+		
+	}
+	
+	
+	
+	
+	
+
+};
 
 function CharacteristicVector()
 {
