@@ -1,6 +1,6 @@
 var MergeableNodeDetector = {
 		
-	/*	getMergableNodes: function(program)
+		getMergableNodes: function(program)
 	    {
 	        var mergeableNodes = [];
 
@@ -16,13 +16,15 @@ var MergeableNodeDetector = {
 	        });
 
 	        ValueTypeHelper.pushAll(mergeableNodes, this.getMergeableNodesFromNodeList(directProgramChildren));
+	        
+	        console.log(mergeableNodes);
 	    },
-	    
 	    
 	    
 	    getMergeableNodesFromNodeList: function(statements)
 	    {
 	         var mergeableNodes = [];
+	         minNumberOfTokens = 4;
 
 	         statements.forEach(function(statement)
 	         {
@@ -35,5 +37,5 @@ var MergeableNodeDetector = {
 	        
 
 	         return mergeableNodes;
-	    }*/
+	    }
 }

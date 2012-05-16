@@ -4,11 +4,12 @@ var ASTHelper =
 		
 	setParentChildRelationship: function(program)
 	{
+	
 		  ASTHelper.traverseAst(program, function(currentElement, name, parentElement)
 		            {
 		            	currentElement.parent = parentElement;
 		            	if(parentElement.children == null) { parentElement.children = [];} 
-		            	parentElement.children.push(currentElement);
+		            	parentElement.children.push(currentElement);		            	
 		            });
 	},
     
@@ -21,11 +22,7 @@ var ASTHelper =
                     nodes.push(currentElement);
                 });
             return nodes;        
-	},
-	
-	
-		
-	
+	},	
 	
  
 	getAllFunctions: function(program)
@@ -33,15 +30,15 @@ var ASTHelper =
 		var allFunctions = [];
 				
 		ASTHelper.traverseAst(program, function(currentElement, name, parentElement)
-                {
-					if (currentElement.isFunctionDeclaration || currentElement.isFunctionExpression)
+                {	
+					if (currentElement.type == "FunctionDeclaration" || currentElement.type == "FunctionExpression" )
 					{
-						allFunctions.push(currentElement);
-					
+						allFunctions.push(currentElement);						
 					}
+					
                 });
 		
-	          return allFunctions;
+	    return allFunctions;
 	},
 	
 	

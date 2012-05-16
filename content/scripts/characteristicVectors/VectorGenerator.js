@@ -1186,7 +1186,7 @@ var VectorGenerator = {
 
 };
 
-function generateCombinations(endNumber, classNumber, maxDistance)
+function generateCombinations(endNumber, classNumber)
 {
 	var tgd = tgd || {};
 	tgd.Math = tgd.Math || {};
