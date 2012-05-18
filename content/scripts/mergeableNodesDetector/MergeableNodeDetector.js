@@ -4,16 +4,16 @@ var MergeableNodeDetector = {
 	    {
 	        var mergeableNodes = [];
 
+	        var allFunctions = ASTHelper.getAllFunctions(program);
 
-	        var allFunctions = ASTHelper.getAllFunctions(program); 
 	        var directProgramChildren = program.children;
 
 	        ValueTypeHelper.pushAll(mergeableNodes, this.getMergeableNodesFromNodeList(directProgramChildren));
 
 	        allFunctions.forEach(function(functionElement)
 	        {
-	            ValueTypeHelper.pushAll(mergeableNodes, this.getMergeableNodesFromNodeList(functionElement.children)); 
-	        });
+	            ValueTypeHelper.pushAll(mergeableNodes, this.getMergeableNodesFromNodeList(functionElement.children));
+	        }, this);
 
 	        ValueTypeHelper.pushAll(mergeableNodes, this.getMergeableNodesFromNodeList(directProgramChildren));
 	        
@@ -34,7 +34,6 @@ var MergeableNodeDetector = {
 	             }
 	         });
 
-	        
 
 	         return mergeableNodes;
 	    }

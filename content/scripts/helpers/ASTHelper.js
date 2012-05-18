@@ -95,8 +95,7 @@ var ASTHelper =
 		    {
                 //Do not traverse the source code location properties
                 //and parents!
-                if(propName == "loc"
-                || propName == "parent") { continue; }
+                if(propName == "loc" || propName == "parent" || propName == "children") { continue; }
 
                 var propertyValue = astElement[propName];
 

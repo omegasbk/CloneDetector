@@ -14,17 +14,17 @@
         	VectorGenerator.generate(testData[40]);
             VectorDistanceCalculator.calculateHammingDistance();
             VectorDistanceCalculator.calculateEucledianDistance();
-            
-           	//MergeableNodeDetector.getMergableNodes(testData[46]); 
-            
-           
-            generateCombinations();
-            
+
+
+
+            ASTHelper.setParentChildRelationship(testData[46]);
+            VectorGenerator.generate(testData[46]);
+            MergeableNodeDetector.getMergableNodes(testData[46]);
+
+
         	ASTHelper.getAllFunctions(testData[46]);
-        	ASTHelper.setParentChildRelationship(testData[46]);
         	ASTHelper.flatten(testData[46]);
-         
-            
+
             //jquery
             VectorGenerator.generate(testData[46]);
             
