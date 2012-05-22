@@ -47,10 +47,11 @@ var MergeableNodeDetector = {
 	    	
 	    	mergeableNodes.forEach(function(mergeableNode)
 	    	{
-	    		for(var i = 2; i <= mergeableNode.children.length; i++)
+	    		
+	    		for(var i = 0; i < mergeableNode.children.length; i++)
 	    		{
-	    			var allCombinations = MathHelper.generateCombinations(mergeableNode.children.length, i);
-	    			
+	    			brojac++;	
+	    			var allCombinations = MathHelper.generateCombinations(mergeableNode.children.length, i+1);	    			
 	    			
 	    			for(var j = 0; j < allCombinations.length; j++)
 	    			{
@@ -59,15 +60,16 @@ var MergeableNodeDetector = {
 	    				
 	    				for(var k = 0; k < currentCombination.length; k++)
 	    				{
-	    					currentCombinationNodes.push(mergeableNode.children[k]);
+	    					currentCombinationNodes.push(mergeableNode.children[currentCombination[k]]);
 	    				}
 	    				
 	    				childrenCombinations.push(currentCombinationNodes);
+	    				
 	    			}	    			
 	    		}
 	    	}); 		    	
 	   
-	    	   	
+	   
 	    	return childrenCombinations;	    	    	
 	    },
 	    
