@@ -20,6 +20,9 @@
             ASTHelper.setParentChildRelationship(testData[46]);
             VectorGenerator.generate(testData[46]);
             MergeableNodeDetector.getMergableNodes(testData[46]);
+            
+            
+            MergeableNodeDetector.getChildrenCombinations(MergeableNodeDetector.getMergableNodes(testData[46]));
 
 
         	ASTHelper.getAllFunctions(testData[46]);

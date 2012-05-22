@@ -1321,21 +1321,16 @@ function generateCombinations(endNumber, classNumber)
 	var a = new tgd.Math.Combination(endNumber, classNumber, set);
 	var allCombinations = [];
 	
-	var brojac = 0;
-
 	for(var i = 0; i < a._numCombinations; i++)
 	{
-		brojac++;
 		allCombinations.push(a.element(i));
 	}
 	
-	console.log("izgenerirano "+brojac+" kombinacija");
+	
 
 	var endTimeFirst = new Date();
 
 	return allCombinations;
-	
-	
 	
 
 };

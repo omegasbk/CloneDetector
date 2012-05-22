@@ -17,7 +17,8 @@ var MergeableNodeDetector = {
 
 	        ValueTypeHelper.pushAll(mergeableNodes, this.getMergeableNodesFromNodeList(directProgramChildren));
 	        
-	        console.log(mergeableNodes);
+	             
+	        return mergeableNodes;	        
 	    },
 	    
 	    
@@ -36,5 +37,39 @@ var MergeableNodeDetector = {
 
 
 	         return mergeableNodes;
-	    }
+	    }, 
+	    
+	    getChildrenCombinations: function(mergeableNodes)
+	    {
+	    	var mergeableNodesChildren = [];
+	    	var childrenCombinations = [];
+	    	var brojac = 0;
+	    	
+	    	mergeableNodes.forEach(function(mergeableNode)
+	    	{
+	    		for(var i = 2; i < mergeableNode.children.length; i++)
+	    		{
+	    			var allCombinations = VectorGenerator.generateCombinations(mergeableNode.children.length, i);
+	    			
+	    			
+	    			for(var j = 0; j < allCombinations; j++)
+	    			{
+	    				var currentCombination = allCombinations[j];
+	    				var currentCombinationNodes = [];
+	    				
+	    				for(var k = 0; k < currentCombination.length; k++)
+	    				{
+	    					currentCombinationNodes.push(mergeableNode.children[k]);
+	    				}
+	    				
+	    				childrenCombinations.push(currentCombinationNodes);
+	    			}	    			
+	    		}
+	    	}); 		    	
+	   
+	    	   	
+	    	return childrenCombinations;
+	    	    	
+	    },
+	    
 }
