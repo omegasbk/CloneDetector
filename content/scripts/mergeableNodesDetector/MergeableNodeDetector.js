@@ -1,6 +1,6 @@
 var MergeableNodeDetector = {
 		
-		getMergableNodes: function(program)
+		getMergeableNodes: function(program)
 	    {
 	        var mergeableNodes = [];
 
@@ -47,12 +47,12 @@ var MergeableNodeDetector = {
 	    	
 	    	mergeableNodes.forEach(function(mergeableNode)
 	    	{
-	    		for(var i = 2; i < mergeableNode.children.length; i++)
+	    		for(var i = 2; i <= mergeableNode.children.length; i++)
 	    		{
 	    			var allCombinations = MathHelper.generateCombinations(mergeableNode.children.length, i);
 	    			
 	    			
-	    			for(var j = 0; j < allCombinations; j++)
+	    			for(var j = 0; j < allCombinations.length; j++)
 	    			{
 	    				var currentCombination = allCombinations[j];
 	    				var currentCombinationNodes = [];
@@ -68,8 +68,7 @@ var MergeableNodeDetector = {
 	    	}); 		    	
 	   
 	    	   	
-	    	return childrenCombinations;
-	    	    	
+	    	return childrenCombinations;	    	    	
 	    },
 	    
 }

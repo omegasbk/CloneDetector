@@ -7,6 +7,7 @@
         <script type="text/javascript" src="scripts/characteristicVectors/VectorGenerator.js"></script>
         <script type="text/javascript" src="scripts/characteristicVectors/VectorDistanceCalculator.js"></script>
         <script type="text/javascript" src="scripts/mergeableNodesDetector/MergeableNodeDetector.js"></script>
+        <script type="text/javascript" src="scripts/characteristicVectors/CombinationsVectorCalculator.js"></script>
         <script type="text/javascript" src="scripts/helpers/MathHelper.js"></script>
         <script type="text/javascript">
         	
@@ -20,10 +21,15 @@
 
             ASTHelper.setParentChildRelationship(testData[46]);
             VectorGenerator.generate(testData[46]);
-            MergeableNodeDetector.getMergableNodes(testData[46]);
+            MergeableNodeDetector.getMergeableNodes(testData[46]);
             
             
-            MergeableNodeDetector.getChildrenCombinations(MergeableNodeDetector.getMergableNodes(testData[46]));
+            //MergeableNodeDetector.getChildrenCombinations(MergeableNodeDetector.getMergeableNodes(testData[46]));
+            //MergeableNodeDetector.getMergeableNodes(testData[46]);
+            
+            //CombinationsVectorCalculator.generateCombinationsVector(testData[46]);
+            
+            
 
 
         	ASTHelper.getAllFunctions(testData[46]);
