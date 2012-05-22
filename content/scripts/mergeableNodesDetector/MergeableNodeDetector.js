@@ -49,7 +49,7 @@ var MergeableNodeDetector = {
 	    	{
 	    		for(var i = 2; i < mergeableNode.children.length; i++)
 	    		{
-	    			var allCombinations = VectorGenerator.generateCombinations(mergeableNode.children.length, i);
+	    			var allCombinations = MathHelper.generateCombinations(mergeableNode.children.length, i);
 	    			
 	    			
 	    			for(var j = 0; j < allCombinations; j++)
