@@ -29,6 +29,8 @@
             
             var groups = CombinationsVectorCalculator.groupCombinationsVectorsByNumOfTokens(CombinationsVectorCalculator.generateCombinationsVector(testData[46]));
             
+            var potential = CombinationsVectorCalculator.getPotentialCandidates(CombinationsVectorCalculator.groupCombinationsVectorsByNumOfTokens(CombinationsVectorCalculator.generateCombinationsVector(testData[46])), 4);
+            
 
         	ASTHelper.getAllFunctions(testData[46]);
         	ASTHelper.flatten(testData[46]);
