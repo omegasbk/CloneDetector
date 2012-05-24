@@ -51,7 +51,7 @@ var CombinationsVectorCalculator =
         		
         		for(i = 0; i < group.length; i++)
         		{
-        			if(group[i+1] != null)
+        			if(group[i+1] != null)        				
         			differences.push(VectorDistanceCalculator.calculateHammingDistance(group[i].characteristicVector, group[i+1].characteristicVector));     			
         		}
         	}); 	
