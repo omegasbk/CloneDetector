@@ -70,9 +70,8 @@ var CombinationsVectorCalculator =
                     for(var k = j + 1; k < currentGroupLength; k++)
                     {
                         var compareWithCharacteristicVector = currentGroup[k];
-
-                        //How to compare if they are really similar
-                        if(characteristicVector.calculateSimilarity(compareWithCharacteristicVector) < 4) { potentialCandidates.push({first:characteristicVector, second:compareWithCharacteristicVector})};
+                        if(characteristicVector.characteristicVector.calculateSimilarity(compareWithCharacteristicVector.characteristicVector) < maxDistance) { potentialCandidates.push({first:characteristicVector, second:compareWithCharacteristicVector})};
+                        
                     }
 
                     //compare with all vectors in the following groups
@@ -85,7 +84,7 @@ var CombinationsVectorCalculator =
                             var compareWithCharacteristicVector = compareWithGroup[l];
 
                             //How to compare if they are really similar
-                            //if() { potentialCandidates.push({first:characteristicVector, second:compareWithCharacteristicVector})};
+                            if(characteristicVector.characteristicVector.calculateSimilarity(compareWithCharacteristicVector.characteristicVector) < maxDistance) { potentialCandidates.push({first:characteristicVector, second:compareWithCharacteristicVector})};
                         }
                     }
                 }
