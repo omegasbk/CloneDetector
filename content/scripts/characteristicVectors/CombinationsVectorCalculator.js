@@ -43,16 +43,23 @@ var CombinationsVectorCalculator =
             //Go through all groups
             for(var i = 0, groupsLength = characteristicVectorGroups.length; i < groupsLength; i++)
             {
+                var currentGroup = characteristicVectorGroups[i];
+
+                if(currentGroup == null) { continue; }
+
                 var compareWithGroups = [];
 
                 //compare with the following maxDistance groups ( from here to i+maxDistance)
                 var endGroupIndex = i + maxDistance;
                 endGroupIndex = endGroupIndex < groupsLength ? endGroupIndex : groupsLength - 1;
 
-                for(var j = i; j <= endGroupIndex; j++) { compareWithGroups.push(characteristicVectorGroups[j]); }
-
-
-                var currentGroup = characteristicVectorGroups[i];
+                for(var j = i; j <= endGroupIndex; j++)
+                {
+                    if(characteristicVectorGroups[j] != null)
+                    {
+                        compareWithGroups.push(characteristicVectorGroups[j]);
+                    }
+                }
 
                 //For each vector in the current group
                 for(j = 0, currentGroupLength = currentGroup.length; j < currentGroupLength; j++)
@@ -65,11 +72,11 @@ var CombinationsVectorCalculator =
                         var compareWithCharacteristicVector = currentGroup[k];
 
                         //How to compare if they are really similar
-                        //if() { potentialCandidates.push({first:characteristicVector, second:compareWithCharacteristicVector})};
+                        //if(characteristicVector.calculateSimilarity(compareWithCharacteristicsVector)) { potentialCandidates.push({first:characteristicVector, second:compareWithCharacteristicVector})};
                     }
 
                     //compare with all vectors in the following groups
-                    for(k = i; compareWithGroups.length; k++)
+                    for(k = i; k < compareWithGroups.length; k++)
                     {
                         var compareWithGroup = compareWithGroups[k];
 
