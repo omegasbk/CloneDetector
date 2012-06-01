@@ -72,7 +72,7 @@ var CombinationsVectorCalculator =
                         var compareWithCharacteristicVector = currentGroup[k];
 
                         //How to compare if they are really similar
-                        //if(characteristicVector.calculateSimilarity(compareWithCharacteristicsVector)) { potentialCandidates.push({first:characteristicVector, second:compareWithCharacteristicVector})};
+                        if(characteristicVector.calculateSimilarity(compareWithCharacteristicVector) < 4) { potentialCandidates.push({first:characteristicVector, second:compareWithCharacteristicVector})};
                     }
 
                     //compare with all vectors in the following groups

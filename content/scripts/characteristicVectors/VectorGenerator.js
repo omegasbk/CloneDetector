@@ -1208,6 +1208,30 @@ function CharacteristicVector()
         catch(e) { alert("Error when joining vectors: " + e); }
     };
     
+    this.calculateSimilarity = function(characteristicVector)
+    {
+    	try
+    	{
+    		var H = 0;
+    		var R = 0;
+    		var L = 0;
+    		
+    		for(var propertyName in CharacteristicVector.RELEVANT_NODES)
+            {
+    				if ((this[propertyName] == characteristicVector[propertyName]) && (this[propertyName] != 0) && (characteristicVector[propertyName] != 0))  H++;
+	                else if (this[propertyName] > characteristicVector[propertyName]) L++;
+	                else if(this[propertyName] < characteristicVector[propertyName]) R++;
+            }
+    		
+    		
+    		var similarity = 2*H/(2*H+L+R);
+    		
+    		return similarity;
+    		
+    	}
+    	catch(e) { alert("Error when calculating similarity: " + e) }
+    };
+    
     this.sum = function()
     {
         try
@@ -1223,6 +1247,8 @@ function CharacteristicVector()
         }
         catch(e) { alert("Error when summing vector parameters: " + e); }
     };
+    
+    
 };
 
 
