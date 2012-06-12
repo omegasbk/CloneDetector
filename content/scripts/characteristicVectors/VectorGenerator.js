@@ -1218,9 +1218,9 @@ function CharacteristicVector()
     		
     		for(var propertyName in CharacteristicVector.RELEVANT_NODES)
             {
-    				if ((this[propertyName] == characteristicVector[propertyName]) && (this[propertyName] != 0) && (characteristicVector[propertyName] != 0))  H++;
-	                else if (this[propertyName] > characteristicVector[propertyName]) L++;
-	                else if(this[propertyName] < characteristicVector[propertyName]) R++;
+    				if ((this[propertyName] == characteristicVector[propertyName]) && (this[propertyName] != 0) && (characteristicVector[propertyName] != 0))  H += this[propertyName];
+	                else if (this[propertyName] > characteristicVector[propertyName]) L += this[propertyName] - characteristicVector[propertyName];
+	                else if(this[propertyName] < characteristicVector[propertyName]) R += characteristicVector[propertyName] - this[propertyName];
             }
     		
     		

@@ -19,24 +19,24 @@
 
 
 
-            ASTHelper.setParentChildRelationship(testData[46]);
-            VectorGenerator.generate(testData[46]);
-            MergeableNodeDetector.getMergeableNodes(testData[46]);
+            ASTHelper.setParentChildRelationship(testData[47]);
+            VectorGenerator.generate(testData[47]);
+            MergeableNodeDetector.getMergeableNodes(testData[47]);
             
             
-            MergeableNodeDetector.getChildrenCombinations(MergeableNodeDetector.getMergeableNodes(testData[46]));
+            MergeableNodeDetector.getChildrenCombinations(MergeableNodeDetector.getMergeableNodes(testData[47]));
             
             
-            var groups = CombinationsVectorCalculator.groupCombinationsVectorsByNumOfTokens(CombinationsVectorCalculator.generateCombinationsVector(testData[46]));
+            var groups = CombinationsVectorCalculator.groupCombinationsVectorsByNumOfTokens(CombinationsVectorCalculator.generateCombinationsVector(testData[47]));
             
-            var potential = CombinationsVectorCalculator.getPotentialCandidates(CombinationsVectorCalculator.groupCombinationsVectorsByNumOfTokens(CombinationsVectorCalculator.generateCombinationsVector(testData[46])), 4);
+            var potential = CombinationsVectorCalculator.getPotentialCandidates(CombinationsVectorCalculator.groupCombinationsVectorsByNumOfTokens(CombinationsVectorCalculator.generateCombinationsVector(testData[47])), 4);
             
 
-        	ASTHelper.getAllFunctions(testData[46]);
-        	ASTHelper.flatten(testData[46]);
+        	ASTHelper.getAllFunctions(testData[47]);
+        	ASTHelper.flatten(testData[47]);
 
             //jquery
-            VectorGenerator.generate(testData[46]);
+            VectorGenerator.generate(testData[47]);
             
         </script>
 	</head>

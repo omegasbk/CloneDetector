@@ -646,3 +646,20 @@ testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":19,"column":1}
 	}
 }
 */
+
+
+
+
+//47 moj test #1
+
+
+
+testData.push({"loc":{"start":{"line":1,"column":0},"end":{"line":3,"column":10},"source":null},"type":"Program","body":[{"loc":{"start":{"line":1,"column":0},"end":{"line":1,"column":9},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":9},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":1,"column":4},"end":{"line":1,"column":9},"source":null},"type":"Identifier","name":"i"},"init":{"loc":{"start":{"line":1,"column":8},"end":{"line":1,"column":9},"source":null},"type":"Literal","value":0}}]},{"loc":{"start":{"line":3,"column":0},"end":{"line":3,"column":9},"source":null},"type":"VariableDeclaration","kind":"var","declarations":[{"loc":{"start":{"line":3,"column":4},"end":{"line":3,"column":9},"source":null},"type":"VariableDeclarator","id":{"loc":{"start":{"line":3,"column":4},"end":{"line":3,"column":9},"source":null},"type":"Identifier","name":"a"},"init":{"loc":{"start":{"line":3,"column":8},"end":{"line":3,"column":9},"source":null},"type":"Literal","value":5}}]}]});
+
+/*
+ * var i = 0;
+
+var a = 5;
+ */
+
+
