@@ -62,7 +62,7 @@ var CombinationsVectorCalculator =
                 }
 
                 //For each vector in the current group
-                for(j = 0, currentGroupLength = currentGroup.length; j < currentGroupLength; j++)
+                for(var j = 0, currentGroupLength = currentGroup.length; j < currentGroupLength; j++)
                 {
                     var characteristicVector = currentGroup[j];
 

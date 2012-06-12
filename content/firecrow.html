@@ -11,27 +11,24 @@
         <script type="text/javascript" src="scripts/characteristicVectors/CombinationsVectorCalculator.js"></script>
         <script type="text/javascript" src="scripts/helpers/MathHelper.js"></script>
 		<script type="text/javascript" src="scripts/helpers/firecrow.js"></script>
-        <script type="text/javascript">
-        
-        
-        
 
-        ASTHelper.setParentChildRelationship(testData[47]);
-        VectorGenerator.generate(testData[47]);        
-        
-        var groups = CombinationsVectorCalculator.groupCombinationsVectorsByNumOfTokens(CombinationsVectorCalculator.generateCombinationsVector(testData[47]));
-        
-        var potential = CombinationsVectorCalculator.getPotentialCandidates(CombinationsVectorCalculator.groupCombinationsVectorsByNumOfTokens(CombinationsVectorCalculator.generateCombinationsVector(testData[47])), 4);
-        
- 	
-
-       
-      	var firecrow = CodeTextGenerator.generateJsCode(testData[47]);
-            
-        </script>
 	</head>
 	
 	<body>
 		<h2>Firecrow</h2>
+
+        <pre id="codeContainer"></pre>
+
+        <script type="text/javascript">
+            ASTHelper.setParentChildRelationship(testData[47]);
+            VectorGenerator.generate(testData[47]);
+
+            var groups = CombinationsVectorCalculator.groupCombinationsVectorsByNumOfTokens(CombinationsVectorCalculator.generateCombinationsVector(testData[47]));
+
+            var potential = CombinationsVectorCalculator.getPotentialCandidates(CombinationsVectorCalculator.groupCombinationsVectorsByNumOfTokens(CombinationsVectorCalculator.generateCombinationsVector(testData[47])), 4);
+
+
+            document.getElementById("codeContainer").textContent = CodeTextGenerator.generateCode(testData[47]);
+        </script>
 	</body>
 </html>
