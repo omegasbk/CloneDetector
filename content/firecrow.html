@@ -20,6 +20,8 @@
         <pre id="codeContainer"></pre>
 
         <script type="text/javascript">
+        
+        	var a ;
             ASTHelper.setParentChildRelationship(testData[47]);
             VectorGenerator.generate(testData[47]);
 
@@ -27,8 +29,22 @@
 
             var potential = CombinationsVectorCalculator.getPotentialCandidates(CombinationsVectorCalculator.groupCombinationsVectorsByNumOfTokens(CombinationsVectorCalculator.generateCombinationsVector(testData[47])), 4);
 
-
-            document.getElementById("codeContainer").textContent = CodeTextGenerator.generateCode(testData[47]);
+            document.getElementById("codeContainer").textContent += "Testni kod: \n";
+            document.getElementById("codeContainer").textContent += CodeTextGenerator.generateCode(testData[47]);
+            
+            
+           for(i = 0; i < potential.length ; i++)
+        	{	
+        	   document.getElementById("codeContainer").textContent += "\n";
+        	   document.getElementById("codeContainer").textContent += "Prvi:";
+	           document.getElementById("codeContainer").textContent += CodeTextGenerator.generateCode(potential[i].first.combination[0]);
+	          
+	           document.getElementById("codeContainer").textContent += "\t";
+	           document.getElementById("codeContainer").textContent += "Drugi:";
+	           document.getElementById("codeContainer").textContent += CodeTextGenerator.generateCode(potential[i].second.combination[0]);
+	           
+	        }
+            
         </script>
 	</body>
 </html>
