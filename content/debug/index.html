@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CloneDetector - Debugging</title>
+    <script type="text/javascript" src="../tests/data.js"></script>
+    <script type="text/javascript" src="../scripts/helpers/valueTypeHelper.js"></script>
+    <script type="text/javascript" src="../scripts/helpers/ASTHelper.js"></script>
+    <script type="text/javascript" src="../scripts/helpers/FFHelper.js"></script>
+    <script type="text/javascript" src="../scripts/characteristicVectors/VectorGenerator.js"></script>
+    <script type="text/javascript" src="../scripts/characteristicVectors/VectorDistanceCalculator.js"></script>
+    <script type="text/javascript" src="../scripts/mergeableNodesDetector/MergeableNodeDetector.js"></script>
+    <script type="text/javascript" src="../scripts/characteristicVectors/CombinationsVectorCalculator.js"></script>
+    <script type="text/javascript" src="../scripts/helpers/MathHelper.js"></script>
+    <script type="text/javascript" src="../scripts/helpers/firecrow.js"></script>
+    <script type="text/javascript" src="testData.js"></script>
+</head>
+<body>
+    <h2>CloneDetector - Debugging</h2>
+
+    <div id="container"></div>
+
+    <script type="text/javascript">
+        var container = document.getElementById("container");
+        cloneTestData.forEach(function(testData)
+        {
+            ASTHelper.setParentChildRelationship(testData);
+            ASTHelper.traverseAst(testData, function(element)
+            {
+                element.toString = function()
+                {
+                    return CodeTextGenerator.generateCode(this);
+                }
+            });
+            VectorGenerator.generate(testData);
+
+            var potential = CombinationsVectorCalculator.getPotentialCandidates
+            (
+                CombinationsVectorCalculator.groupCombinationsVectorsByNumOfTokens
+                (
+                    CombinationsVectorCalculator.generateCombinationsVector(testData)
+                ),
+                2,
+                0.6
+            );
+
+            var testContainer = document.createElement("div");
+
+            var leftContainer = document.createElement("div");
+            leftContainer.style.float = "left";
+
+            var rightContainer = document.createElement("div");
+            rightContainer.style.float = "left";
+
+            testContainer.appendChild(leftContainer);
+            testContainer.appendChild(rightContainer);
+
+            var codeContainer = document.createElement("pre");
+            codeContainer.textContent = CodeTextGenerator.generateCode(testData);
+            leftContainer.appendChild(codeContainer);
+
+            var potentialList = document.createElement("ul");
+            rightContainer.appendChild(potentialList);
+
+            for(var i = 0; i < potential.length ; i++)
+            {
+                var firstItemElement = document.createElement("li");
+                firstItemElement.textContent = CodeTextGenerator.generateCode(potential[i].first.combination[0]) + " -/- "
+                                             + CodeTextGenerator.generateCode(potential[i].second.combination[0]);
+
+                potentialList.appendChild(firstItemElement);
+            }
+
+            container.appendChild(testContainer);
+            var clearer = document.createElement("div");
+            clearer.style.clear = "both";
+            clearer.textContent = "**************************";
+            container.appendChild(clearer);
+        });
+    </script>
+</body>
+</html>

@@ -15,13 +15,9 @@ var MergeableNodeDetector = {
 	            ValueTypeHelper.pushAll(mergeableNodes, this.getMergeableNodesFromNodeList(functionElement.children));
 	        }, this);
 
-	        ValueTypeHelper.pushAll(mergeableNodes, this.getMergeableNodesFromNodeList(directProgramChildren));
-	        
-	             
-	        return mergeableNodes;	        
+	        return mergeableNodes;
 	    },
-	    
-	    
+
 	    getMergeableNodesFromNodeList: function(statements)
 	    {
 	         var mergeableNodes = [];

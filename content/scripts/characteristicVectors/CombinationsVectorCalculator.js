@@ -36,7 +36,21 @@ var CombinationsVectorCalculator =
             return groups;
         },
 
-        getPotentialCandidates: function(characteristicVectorGroups, maxDistance)
+        _haveSameCombinations: function(firstVector, secondVector)
+        {
+            if(firstVector == null || secondVector == null) { return false; }
+
+            if(firstVector.combination.length != secondVector.combination.length) { return false; }
+
+            for(var i = 0, length = firstVector.combination.length; i < length; i++)
+            {
+               if(firstVector.combination[i] != secondVector.combination[i]) { return false; }
+            }
+
+            return true;
+        },
+
+        getPotentialCandidates: function(characteristicVectorGroups, maxDistance, minSimilarity)
         {
             var potentialCandidates = [];
 
@@ -53,7 +67,7 @@ var CombinationsVectorCalculator =
                 var endGroupIndex = i + maxDistance;
                 endGroupIndex = endGroupIndex < groupsLength ? endGroupIndex : groupsLength - 1;
 
-                for(var j = i; j <= endGroupIndex; j++)
+                for(var j = i + 1; j <= endGroupIndex; j++)
                 {
                     if(characteristicVectorGroups[j] != null)
                     {
@@ -70,8 +84,13 @@ var CombinationsVectorCalculator =
                     for(var k = j + 1; k < currentGroupLength; k++)
                     {
                         var compareWithCharacteristicVector = currentGroup[k];
-                        if(characteristicVector.characteristicVector.calculateSimilarity(compareWithCharacteristicVector.characteristicVector) < maxDistance) { potentialCandidates.push({first:characteristicVector, second:compareWithCharacteristicVector})};
-                        
+
+                        if(this._haveSameCombinations(characteristicVector, compareWithCharacteristicVector)) { continue; }
+
+                        if( characteristicVector.characteristicVector.calculateSimilarity(compareWithCharacteristicVector.characteristicVector) >= minSimilarity)
+                        {
+                            potentialCandidates.push({first:characteristicVector, second:compareWithCharacteristicVector})
+                        };
                     }
 
                     //compare with all vectors in the following groups
@@ -84,7 +103,10 @@ var CombinationsVectorCalculator =
                             var compareWithCharacteristicVector = compareWithGroup[l];
 
                             //How to compare if they are really similar
-                            if(characteristicVector.characteristicVector.calculateSimilarity(compareWithCharacteristicVector.characteristicVector) < maxDistance) { potentialCandidates.push({first:characteristicVector, second:compareWithCharacteristicVector})};
+                            if(characteristicVector.characteristicVector.calculateSimilarity(compareWithCharacteristicVector.characteristicVector) >= minSimilarity)
+                            {
+                                potentialCandidates.push({first:characteristicVector, second:compareWithCharacteristicVector})
+                            };
                         }
                     }
                 }
