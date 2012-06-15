@@ -27,7 +27,7 @@
 
             var groups = CombinationsVectorCalculator.groupCombinationsVectorsByNumOfTokens(CombinationsVectorCalculator.generateCombinationsVector(testData[48]));
 
-            var potential = CombinationsVectorCalculator.getPotentialCandidates(CombinationsVectorCalculator.groupCombinationsVectorsByNumOfTokens(CombinationsVectorCalculator.generateCombinationsVector(testData[48])), 2);
+            var potential = CombinationsVectorCalculator.getPotentialCandidates(CombinationsVectorCalculator.groupCombinationsVectorsByNumOfTokens(CombinationsVectorCalculator.generateCombinationsVector(testData[48])),10);
 
             document.getElementById("codeContainer").textContent += "Testni kod: \n";
             document.getElementById("codeContainer").textContent += CodeTextGenerator.generateCode(testData[48]);
