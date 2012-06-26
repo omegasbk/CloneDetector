@@ -17,49 +17,55 @@
 <body>
     <h2>CloneDetector - Debugging</h2>
 
-    <div id="container"></div>
+    <div id="container"></div> <!-- u njega æeš punit sve podatke -->
 
     <script type="text/javascript">
-        var container = document.getElementById("container");
-        cloneTestData.forEach(function(testData)
+        
+    	//vata ti sve sa id container i stavlja ih u container objekt
+    	var container = document.getElementById("container");
+        
+        
+        //uzima ti cili testData di imaš cloneTestData i šeta po njima        
+        cloneTestData.forEach(function(testData) //trenutno aktivni element je testData
         {
-            ASTHelper.setParentChildRelationship(testData);
-            ASTHelper.traverseAst(testData, function(element)
+            ASTHelper.setParentChildRelationship(testData); //izvrši mi postavljanje child-parent odnosa meðu 
+            ASTHelper.traverseAst(testData, function(element)//pretvaranje iz AST oblika u kod
             {
                 element.toString = function()
                 {
                     return CodeTextGenerator.generateCode(this);
                 }
             });
-            VectorGenerator.generate(testData);
+            
+            VectorGenerator.generate(testData);//izgeneriraj mi za AST od testData karakteristièni vektor
 
-            var potential = CombinationsVectorCalculator.getPotentialCandidates
+            var potential = CombinationsVectorCalculator.getPotentialCandidates //dohvati potencijalne kandidate
             (
-                CombinationsVectorCalculator.groupCombinationsVectorsByNumOfTokens
+                CombinationsVectorCalculator.groupCombinationsVectorsByNumOfTokens//uzima ti vektor kombinacije, broj tokena razlike i sliènost
                 (
-                    CombinationsVectorCalculator.generateCombinationsVector(testData)
+                    CombinationsVectorCalculator.generateCombinationsVector(testData)//vektor kombinacije
                 ),
                 2,
                 0.6
             );
 
-            var testContainer = document.createElement("div");
+            var testContainer = document.createElement("div"); //trpa u objekt testContainer novi div
 
-            var leftContainer = document.createElement("div");
+            var leftContainer = document.createElement("div"); //trpa u objekt leftContainer novi div
             leftContainer.style.float = "left";
 
-            var rightContainer = document.createElement("div");
+            var rightContainer = document.createElement("div"); //trpa u objekt rightContainer novi div
             rightContainer.style.float = "left";
 
             testContainer.appendChild(leftContainer);
             testContainer.appendChild(rightContainer);
 
-            var codeContainer = document.createElement("pre");
-            codeContainer.textContent = CodeTextGenerator.generateCode(testData);
+            var codeContainer = document.createElement("pre"); //unutar diva stavi pre element
+            codeContainer.textContent = CodeTextGenerator.generateCode(testData); //puni pre element sa kodon od testData
             leftContainer.appendChild(codeContainer);
 
-            var potentialList = document.createElement("ul");
-            rightContainer.appendChild(potentialList);
+            var potentialList = document.createElement("ul"); //napravi element ul
+            rightContainer.appendChild(potentialList); 
 
             for(var i = 0; i < potential.length ; i++)
             {
@@ -69,7 +75,6 @@
 
                 potentialList.appendChild(firstItemElement);
             }
-
             container.appendChild(testContainer);
             var clearer = document.createElement("div");
             clearer.style.clear = "both";

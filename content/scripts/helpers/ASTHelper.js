@@ -4,7 +4,7 @@ var ASTHelper =
 		
 	setParentChildRelationship: function(program)
 	{
-	
+	//prolaziš kroz cilo stablo, uzima ti cili program i puca ti do kraja stabla odnose roditelj-djeca, svi èvorovi 
 		  ASTHelper.traverseAst(program, function(currentElement, name, parentElement)
 		            {
 		            	currentElement.parent = parentElement;
@@ -12,9 +12,14 @@ var ASTHelper =
 		            	parentElement.children.push(currentElement);		            	
 		            });
 	},
+	
+	
+	//ko ti je u odnosu dijete roditelj? 
+	//definiraj to bolje za pisanje rada	
+	
     
 	
-	flatten: function(program)
+	flatten: function(program) //ti mi vraæaš "jednodimenzionalnu" hrpu èvorova
 	{
 		    var nodes = [];
             ASTHelper.traverseAst(program, function(currentElement, name, parentElement)

@@ -22,15 +22,15 @@
         <script type="text/javascript">
         
         	var a ;
-            ASTHelper.setParentChildRelationship(testData[48]);
-            VectorGenerator.generate(testData[48]);
+            ASTHelper.setParentChildRelationship(testData[2]);
+            VectorGenerator.generate(testData[2]);
 
-            var groups = CombinationsVectorCalculator.groupCombinationsVectorsByNumOfTokens(CombinationsVectorCalculator.generateCombinationsVector(testData[48]));
+            var groups = CombinationsVectorCalculator.groupCombinationsVectorsByNumOfTokens(CombinationsVectorCalculator.generateCombinationsVector(testData[2]));
 
-            var potential = CombinationsVectorCalculator.getPotentialCandidates(CombinationsVectorCalculator.groupCombinationsVectorsByNumOfTokens(CombinationsVectorCalculator.generateCombinationsVector(testData[48])),10);
+            var potential = CombinationsVectorCalculator.getPotentialCandidates(CombinationsVectorCalculator.groupCombinationsVectorsByNumOfTokens(CombinationsVectorCalculator.generateCombinationsVector(testData[2])),10);
 
             document.getElementById("codeContainer").textContent += "Testni kod: \n";
-            document.getElementById("codeContainer").textContent += CodeTextGenerator.generateCode(testData[48]);
+            document.getElementById("codeContainer").textContent += CodeTextGenerator.generateCode(testData[2]);
             
             
            for(i = 0; i < potential.length ; i++)
