@@ -13,6 +13,11 @@
     <script type="text/javascript" src="../scripts/helpers/MathHelper.js"></script>
     <script type="text/javascript" src="../scripts/helpers/firecrow.js"></script>
     <script type="text/javascript" src="testData.js"></script>
+    <style>
+        .potentialList li:nth-child(odd) { background-color: gray;}
+        .potentialList li:nth-child(even) { background-color: #a9a9a9;}
+        .middleCell { background-color: black; color: white;}
+    </style>
 </head>
 <body>
     <h2>CloneDetector - Debugging</h2>
@@ -66,6 +71,7 @@
             leftContainer.appendChild(codeContainer);
 
             var potentialList = document.createElement("ul"); //napravi element ul
+            potentialList.className = "potentialList";
             rightContainer.appendChild(potentialList); 
 
             for(var i = 0; i < potential.length ; i++)
@@ -81,6 +87,7 @@
 
                 var leftCell = document.createElement("td");
                 var middleCell = document.createElement("td");
+                middleCell.className = "middleCell";
                 var rightCell = document.createElement("td");
 
                 row.appendChild(leftCell);
