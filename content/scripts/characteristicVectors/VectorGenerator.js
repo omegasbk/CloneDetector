@@ -1176,14 +1176,7 @@ var VectorGenerator = {
             generatorExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.GeneratorExpression]++;
         }
         catch (e) { alert ("Error when generating vector for Generator Expression: " + e); }
-    },
-    
-    
-   
-
-
-    
-
+    }
 };
 
 
@@ -1247,9 +1240,11 @@ function CharacteristicVector()
         }
         catch(e) { alert("Error when summing vector parameters: " + e); }
     };
-    
-    
+
+    this.id = CharacteristicVector._ID_COUNTER++;
 };
+
+CharacteristicVector._ID_COUNTER = 0;
 
 
 

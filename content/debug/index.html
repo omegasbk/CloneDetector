@@ -17,31 +17,32 @@
 <body>
     <h2>CloneDetector - Debugging</h2>
 
-    <div id="container"></div> <!-- u njega æeš punit sve podatke -->
+    <div id="container"></div> <!-- u njega ï¿½eï¿½ punit sve podatke -->
 
     <script type="text/javascript">
         
     	//vata ti sve sa id container i stavlja ih u container objekt
     	var container = document.getElementById("container");
-        
-        
-        //uzima ti cili testData di imaš cloneTestData i šeta po njima        
-        cloneTestData.forEach(function(testData) //trenutno aktivni element je testData
+
+        //uzima ti cili testData di imaï¿½ cloneTestData i ï¿½eta po njima        
+        cloneTestData.forEach(function(testData, i) //trenutno aktivni element je testData
         {
-            ASTHelper.setParentChildRelationship(testData); //izvrši mi postavljanje child-parent odnosa meðu 
+            ASTHelper.setParentChildRelationship(testData); //izvrï¿½i mi postavljanje child-parent odnosa meï¿½u
+            var elementCounter = 0;
             ASTHelper.traverseAst(testData, function(element)//pretvaranje iz AST oblika u kod
             {
+                element.nodeId = elementCounter++;
                 element.toString = function()
                 {
                     return CodeTextGenerator.generateCode(this);
                 }
             });
             
-            VectorGenerator.generate(testData);//izgeneriraj mi za AST od testData karakteristièni vektor
+            VectorGenerator.generate(testData);//izgeneriraj mi za AST od testData karakteristiï¿½ni vektor
 
             var potential = CombinationsVectorCalculator.getPotentialCandidates //dohvati potencijalne kandidate
             (
-                CombinationsVectorCalculator.groupCombinationsVectorsByNumOfTokens//uzima ti vektor kombinacije, broj tokena razlike i sliènost
+                CombinationsVectorCalculator.groupCombinationsVectorsByNumOfTokens//uzima ti vektor kombinacije, broj tokena razlike i sliï¿½nost
                 (
                     CombinationsVectorCalculator.generateCombinationsVector(testData)//vektor kombinacije
                 ),
@@ -69,9 +70,41 @@
 
             for(var i = 0; i < potential.length ; i++)
             {
+                var item = potential[i];
+
                 var firstItemElement = document.createElement("li");
-                firstItemElement.textContent = CodeTextGenerator.generateCode(potential[i].first.combination[0]) + " -/- "
-                                             + CodeTextGenerator.generateCode(potential[i].second.combination[0]);
+                var table = document.createElement("table");
+
+                firstItemElement.appendChild(table);
+                var row = document.createElement("tr");
+                table.appendChild(row);
+
+                var leftCell = document.createElement("td");
+                var middleCell = document.createElement("td");
+                var rightCell = document.createElement("td");
+
+                row.appendChild(leftCell);
+                row.appendChild(middleCell);
+                row.appendChild(rightCell);
+
+                middleCell.textContent = " -/-";
+
+                for(var j = 0; j < item.first.combination.length; j++)
+                {
+                    var content = document.createElement("div");
+                    content.textContent = CodeTextGenerator.generateCode(item.first.combination[j]);
+                    leftCell.appendChild(content);
+                }
+
+                for(var j = 0; j < item.second.combination.length; j++)
+                {
+                    var content = document.createElement("div");
+                    content.textContent = CodeTextGenerator.generateCode(item.second.combination[j]);
+                    rightCell.appendChild(content);
+                }
+
+                /*firstItemElement.textContent =  + " -/- "
+                                             + CodeTextGenerator.generateCode(potential[i].second.combination[0]);*/
 
                 potentialList.appendChild(firstItemElement);
             }

@@ -60,13 +60,61 @@ var MergeableNodeDetector = {
 	    				}
 	    				
 	    				childrenCombinations.push(currentCombinationNodes);
-	    				
-	    			}	    			
+	    			}
 	    		}
-	    	}); 		    	
-	   
+	    	});
+
+	        //this._checkChildrenCombinations(childrenCombinations);
 	   
 	    	return childrenCombinations;	    	    	
 	    },
+
+        _checkChildrenCombinations: function(childrenCombinations)
+        {
+            var combinationIds = [];
+            childrenCombinations.forEach
+            (
+                 function (childCombination)
+                 {
+                     var combinationId = [];
+
+                     childCombination.forEach(function(combination)
+                     {
+                        combinationId.push(combination.loc.start.line + "-" + combination.loc.start.column);
+                     });
+
+                     combinationIds.push(combinationId);
+                 }
+             );
+
+             for(var i = 0; i < combinationIds.length - 1; i++)
+             {
+                for (var j = i+1; j < combinationIds.length; j++)
+                {
+                    var ithArray = combinationIds[i];
+                    var jthArray = combinationIds[j];
+
+                    if(ithArray.length != jthArray.length) { continue; }
+
+                     ithArray.sort();
+                     jthArray.sort();
+
+                     var areEqual = true;
+                     for(var k = 0; k < ithArray.length; k++)
+                     {
+                         if(ithArray[k] != jthArray[k])
+                         {
+                            areEqual = false;
+                            break;
+                         }
+                     }
+
+                     if(areEqual && ithArray.length != 0)
+                     {
+                        console.log("Double");
+                     }
+                }
+            }
+        }
 	    
 }
