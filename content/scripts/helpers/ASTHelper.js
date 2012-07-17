@@ -1,131 +1,134 @@
 var ASTHelper =
 {
-		
-		
-	setParentChildRelationship: function(program)
-	{
-	//prolaziš kroz cilo stablo, uzima ti cili program i puca ti do kraja stabla odnose roditelj-djeca, svi èvorovi 
-		  ASTHelper.traverseAst(program, function(currentElement, name, parentElement)
-		            {
-		            	currentElement.parent = parentElement;
-		            	if(parentElement.children == null) { parentElement.children = [];} 
-		            	parentElement.children.push(currentElement);		            	
-		            });
-	},
-	
-	
-	//ko ti je u odnosu dijete roditelj? 
-	//definiraj to bolje za pisanje rada	
-	
-    
-	
-	flatten: function(program) //ti mi vraæaš "jednodimenzionalnu" hrpu èvorova
-	{
-		    var nodes = [];
-            ASTHelper.traverseAst(program, function(currentElement, name, parentElement)
+    isAncestor: function(firstNode, secondNode)
+    {
+        var ancestor = firstNode;
+
+        while(ancestor != null)
+        {
+            if(secondNode == ancestor) { return true; }
+            ancestor = ancestor.parent;
+        }
+
+        return false;
+    },
+
+    setParentChildRelationship: function(program)
+    {
+    //prolaziï¿½ kroz cilo stablo, uzima ti cili program i puca ti do kraja stabla odnose roditelj-djeca, svi ï¿½vorovi
+        ASTHelper.traverseAst(program, function(currentElement, name, parentElement)
+        {
+            currentElement.parent = parentElement;
+            if(parentElement.children == null) { parentElement.children = [];}
+            parentElement.children.push(currentElement);
+        });
+    },
+
+    //ko ti je u odnosu dijete roditelj?
+    //definiraj to bolje za pisanje rada
+
+    flatten: function(program) //ti mi vraï¿½aï¿½ "jednodimenzionalnu" hrpu ï¿½vorova
+    {
+        var nodes = [];
+        ASTHelper.traverseAst(program, function(currentElement, name, parentElement)
+        {
+            nodes.push(currentElement);
+        });
+        return nodes;
+    },
+
+    getAllFunctions: function(program)
+    {
+        var allFunctions = [];
+
+        ASTHelper.traverseAst(program, function(currentElement, name, parentElement)
+        {
+            if (currentElement.type == "FunctionDeclaration" || currentElement.type == "FunctionExpression" )
+            {
+                allFunctions.push(currentElement);
+            }
+        });
+
+        return allFunctions;
+    },
+
+    parseSourceCodeToAST: function(sourceCode, sourceCodePath, startLine)
+    {
+        try
+        {
+            Components.utils.import("resource://gre/modules/reflect.jsm");
+
+            return Reflect.parse
+            (
+                sourceCode,
+                { loc:true, source: sourceCodePath, line: startLine }
+            );
+        }
+        catch(e) { alert("Error while getting AST from source code@" + sourceCodePath + "; error: " + sourceCodePath); }
+    },
+
+    getTypeExpressionsFromProgram: function(program, types)
+    {
+        try
+        {
+            var result = {};
+
+            var traverserFunction = function(elementValue, elementName, parentObject)
+            {
+                types.forEach(function(type)
                 {
-                    nodes.push(currentElement);
-                });
-            return nodes;        
-	},	
-	
- 
-	getAllFunctions: function(program)
-	{
-		var allFunctions = [];
-				
-		ASTHelper.traverseAst(program, function(currentElement, name, parentElement)
-                {	
-					if (currentElement.type == "FunctionDeclaration" || currentElement.type == "FunctionExpression" )
-					{
-						allFunctions.push(currentElement);						
-					}
-					
-                });
-		
-	    return allFunctions;
-	},
-	
-	
-	
+                    if(elementName === "type" &&  elementValue === type)
+                    {
+                        if(result[type] == null) { result[type] = []; }
 
-	parseSourceCodeToAST: function(sourceCode, sourceCodePath, startLine)
-	{
-		try
-		{
-			Components.utils.import("resource://gre/modules/reflect.jsm");
-			
-			return Reflect.parse
-			(
-				sourceCode, 
-				{ loc:true, source: sourceCodePath, line: startLine }
-			);
-		}
-		catch(e) { alert("Error while getting AST from source code@" + sourceCodePath + "; error: " + sourceCodePath); }
-	},
-	
-	getTypeExpressionsFromProgram: function(program, types)
-	{
-		try
-		{
-			var result = {};
-			
-			var traverserFunction = function(elementValue, elementName, parentObject)
-			{
-				types.forEach(function(type)
-				{
-					if(elementName === "type" &&  elementValue === type)
-					{
-						if(result[type] == null) { result[type] = []; }
-						
-						result[type].push(parentObject);
-					}
-				});
-			};
-			
-			this.traverseAst(program, traverserFunction);
-			
-			return result;
-		}
-		catch(e) { alert("Error while getting type expressions from program in ASTHelper: " + e);}
-	},
-	
-	traverseAst: function(astElement, processElementFunction)
-	{
-		try
-		{
-			if(!(ValueTypeHelper.isObject(astElement))) { return; }
+                        result[type].push(parentObject);
+                    }
+                });
+            };
 
-			for(var propName in astElement)
-		    {
+            this.traverseAst(program, traverserFunction);
+
+            return result;
+        }
+        catch(e) { alert("Error while getting type expressions from program in ASTHelper: " + e);}
+    },
+
+    traverseAst: function(astElement, processElementFunction)
+    {
+        try
+        {
+            if(!(ValueTypeHelper.isObject(astElement))) { return; }
+
+            for(var propName in astElement)
+            {
                 //Do not traverse the source code location properties
                 //and parents!
-                if(propName == "loc" || propName == "parent" || propName == "children") { continue; }
+                if(propName == "loc" || propName == "parent" || propName == "children" || propName == "characteristicVector") { continue; }
 
                 var propertyValue = astElement[propName];
 
-		        if(propertyValue == null) { continue; }
+                if(propertyValue == null) { continue; }
 
-		        if(ValueTypeHelper.isArray(propertyValue))
-		        {
-		            for(var i = 0; i < propertyValue.length; i++)
-		            {
+                if(ValueTypeHelper.isArray(propertyValue))
+                {
+                    for(var i = 0; i < propertyValue.length; i++)
+                    {
                         if(ValueTypeHelper.isObject(propertyValue[i]))
                         {
                             processElementFunction(propertyValue[i], propName, astElement);
                             this.traverseAst(propertyValue[i], processElementFunction);
                         }
-		            }
-		        }
-		        else if (ValueTypeHelper.isObject(propertyValue))
-		        {
+                    }
+                }
+                else if (ValueTypeHelper.isObject(propertyValue))
+                {
                     processElementFunction(propertyValue, propName, astElement);
-		        	this.traverseAst(propertyValue, processElementFunction);
-		        }
-		    }
-		}
-		catch(e) { alert("Error while traversing AST in ASTHelper: " + e); }
-	},
+                    this.traverseAst(propertyValue, processElementFunction);
+                }
+            }
+        }
+        catch(e) { alert("Error while traversing AST in ASTHelper: " + e); }
+    },
 
     traverseDirectSourceElements: function(astElement, processSourceElementFunction, enterBranchAndLoops)
     {
@@ -349,6 +352,7 @@ var ASTHelper =
     isThisExpression: function(element) { return this.isElementOfType(element, this.CONST.EXPRESSION.ThisExpression); },
     isArrayExpression: function(element) { return this.isElementOfType(element, this.CONST.EXPRESSION.ArrayExpression); },
     isObjectExpression: function(element) { return this.isElementOfType(element, this.CONST.EXPRESSION.ObjectExpression); },
+    isObjectProperty: function(element) { return this.isElementOfType(element, this.CONST.Property); },
     isFunctionExpression: function(element) { return this.isElementOfType(element, this.CONST.EXPRESSION.FunctionExpression); },
     isSequenceExpression: function(element) { return this.isElementOfType(element, this.CONST.EXPRESSION.SequenceExpression); },
     isUnaryExpression: function(element) { return this.isElementOfType(element, this.CONST.EXPRESSION.UnaryExpression); },
@@ -368,37 +372,37 @@ var ASTHelper =
     isUnaryOperator: function(element) { return this.isElementOfType(element, this.CONST.OPERATOR.UnaryOperator); },
     isBinaryOperator: function(element) { return this.isElementOfType(element, this.CONST.OPERATOR.BinaryOperator); },
     isAssignmentOperator: function(element) { return this.isElementOfType(element, this.CONST.OPERATOR.AssignmentOperator); },
-    isUpdateOperator: function(element) { return this.isElementOfType(element, this.CONST.OPERATOR.UpdateOperator); },    
+    isUpdateOperator: function(element) { return this.isElementOfType(element, this.CONST.OPERATOR.UpdateOperator); },
     isLogicalOperator: function(element) { return this.isElementOfType(element, this.CONST.OPERATOR.LogicalOperator); },
 
 
-    
-    
+
+
     isPattern: function(element) { return this.isArrayPattern(element) || this.isObjectPattern(element); },
     isArrayPattern: function(element) { return this.isElementOfType(element, this.CONST.ArrayPattern); },
     isObjectPattern: function(element) { return this.isElementOfType(element, this.CONST.ObjectPattern); },
-   
-    isUnaryMathOperator: function(element) 
-    { 
+
+    isUnaryMathOperator: function(element)
+    {
     	return element == "-" || element == "+";
     },
-    
-    isUnaryLogicalOperator: function(element) 
-    { 
+
+    isUnaryLogicalOperator: function(element)
+    {
     	return element == "!";
     },
-    
-    isUnaryBitOperator: function(element) 
-    { 
+
+    isUnaryBitOperator: function(element)
+    {
     	return element == "~";
     },
-    
-    isUnaryObjectOperator: function(element) 
-    { 
+
+    isUnaryObjectOperator: function(element)
+    {
     	return element == "typeof" || element == "void"
             || element == "delete";
-    },    
-    
+    },
+
     isBinaryEqualityOperator:function (element)
     {
         return element == "==" || element == "==="
@@ -449,7 +453,8 @@ var ASTHelper =
         ArrayPattern: "ArrayPattern",
         ObjectPattern: "ObjectPattern",
         ComprehensionBlock: "ComprehensionBlock",
-        
+        Property: "Property",
+
         STATEMENT:
         {
             EmptyStatement: "EmptyStatement",

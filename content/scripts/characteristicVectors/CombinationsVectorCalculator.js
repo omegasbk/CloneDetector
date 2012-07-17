@@ -2,21 +2,27 @@ var CombinationsVectorCalculator =
 {
         generateCombinationsVector: function(program)
         {
-            var combinations = MergeableNodeDetector.getChildrenCombinations(MergeableNodeDetector.getMergeableNodes(program));
-            return combinations.map(function(combination)
+            var nodeCombinations = MergeableNodeDetector.getMergeCombinations(program);
+            var combinations = [];
+
+            for(var i = 0, length = nodeCombinations.length; i < length; i++)
             {
                 var characteristicVector = new CharacteristicVector();
-                combination.forEach(function(item)
-                {
-                    characteristicVector.join(item.characteristicVector);
-                });
+                var nodeCombination = nodeCombinations[i];
 
-                return {
-                    combination: combination,
+                for(var j = 0, combinationsLength = nodeCombination.length; j < combinationsLength; j++)
+                {
+                    characteristicVector.join(nodeCombination[j].characteristicVector);
+                }
+
+                combinations.push({
+                    combination: nodeCombination,
                     characteristicVector: characteristicVector,
                     noOfTokens: characteristicVector.sum()
-                }
-            });
+                });
+            }
+
+            return combinations;
         },
 
         groupCombinationsVectorsByNumOfTokens: function(combinationsVectors)
@@ -29,7 +35,7 @@ var CombinationsVectorCalculator =
                 
                 if(combinationVector.noOfTokens != 1)
                 {
-                	groups[combinationVector.noOfTokens].push(combinationVector);
+                    groups[combinationVector.noOfTokens].push(combinationVector);
                 }
             });
 
@@ -87,10 +93,10 @@ var CombinationsVectorCalculator =
 
                         if(this._haveSameCombinations(combinationsVector, compareWithCombinationsVector)) { continue; }
 
-                        if(combinationsVector.characteristicVector.calculateSimilarity(compareWithCombinationsVector.characteristicVector) >= minSimilarity)
+                        if(combinationsVector.characteristicVector.calculateSimilarity(compareWithCombinationsVector.characteristicVector) >= minSimilarity
+                        && !this._containSameNodesOrAreWithinEachOther(combinationsVector.combination, compareWithCombinationsVector.combination))
                         {
                             potentialCandidates[Math.min(combinationsVector.characteristicVector.id, compareWithCombinationsVector.characteristicVector.id) + "-" + Math.max(combinationsVector.characteristicVector.id, compareWithCombinationsVector.characteristicVector.id)] = {first:combinationsVector, second:compareWithCombinationsVector};
-                            //potentialCandidates.push({first:combinationsVector, second:compareWithCombinationsVector})
                         };
                     }
 
@@ -104,10 +110,10 @@ var CombinationsVectorCalculator =
                             var compareWithCombinationsVector = compareWithGroup[l];
 
                             //How to compare if they are really similar
-                            if(combinationsVector.characteristicVector.calculateSimilarity(compareWithCombinationsVector.characteristicVector) >= minSimilarity)
+                            if(combinationsVector.characteristicVector.calculateSimilarity(compareWithCombinationsVector.characteristicVector) >= minSimilarity
+                            && !this._containSameNodesOrAreWithinEachOther(combinationsVector.combination, compareWithCombinationsVector.combination))
                             {
                                 potentialCandidates[Math.min(combinationsVector.characteristicVector.id, compareWithCombinationsVector.characteristicVector.id) + "-" + Math.max(combinationsVector.characteristicVector.id, compareWithCombinationsVector.characteristicVector.id)] = {first:combinationsVector, second:compareWithCombinationsVector};
-                                //potentialCandidates.push({first:combinationsVector, second:compareWithCombinationsVector})
                             };
                         }
                     }
@@ -119,24 +125,25 @@ var CombinationsVectorCalculator =
             for(var prop in potentialCandidates) { candidatesArray.push(potentialCandidates[prop]);}
 
             return candidatesArray;
+        },
 
-        	/*var differences = [];
+        _containSameNodesOrAreWithinEachOther: function(firstCombination, secondCombination)
+        {
+            for(var i = 0, firstLength = firstCombination.length; i < firstLength; i++)
+            {
+                var firstNode = firstCombination[i];
 
-        	combinationsVectorGroups.forEach(function(combinationsVectorGroup)
-        	{
-        		var group = [];
-        		
-        		combinationsVectorGroup.forEach(function(combinationsVectorItem)
-   				{
-        			group.push(combinationsVectorItem);
-   				});
-        		
-        		for(i = 0; i < group.length; i++)
-        		{
-        			if(group[i+1] != null)        				
-        			differences.push(VectorDistanceCalculator.calculateHammingDistance(group[i].combinationsVector, group[i+1].combinationsVector));
-        		}
-        	}); 	
-        	return differences;*/
+                for(var j = 0, secondLength = secondCombination.length; j < secondLength; j++)
+                {
+                    var secondNode = secondCombination[j];
+
+                    if(firstNode == secondNode || ASTHelper.isAncestor(firstNode, secondNode) || ASTHelper.isAncestor(secondNode, firstNode))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
 };

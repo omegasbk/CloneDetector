@@ -117,7 +117,11 @@ CodeTextGenerator.prototype =
             else if (astHelper.isVariableDeclarator(element)) { return this.generateFromVariableDeclarator(element); }
             else if (astHelper.isLiteral(element)) { return this.generateFromLiteral(element); }
             else if (astHelper.isIdentifier(element)) { return this.generateFromIdentifier(element); }
-            else { this.notifyError("Error while generating code unidentified ast element: "); return ""; }
+            else if (astHelper.isObjectProperty(element)) { return this.generateFromObjectProperty(element); }
+            else
+            {
+                this.notifyError("Error while generating code unidentified ast element: "); return "";
+            }
         }
         catch(e) { alert("Error while generating code: " + e); }
     },
@@ -428,24 +432,9 @@ CodeTextGenerator.prototype =
             var properties = objectExpression.properties;
             for (var i = 0, length = properties.length; i < length; i++)
             {
-                var property = properties[i];
-
                 if(i != 0) { code += ", "; }
 
-                if (property.kind == "init")
-                {
-                    code += this.generateJsCode(property.key) + this._COLON + " "
-                         + this.generateJsCode(property.value);
-                }
-                else
-                {
-                    code += this.generateJsCode(property.key);
-
-                    if (astHelper.isFunctionExpression(property.value))
-                        code += this.generateFromFunction(property.value);
-                    else
-                        code += this.generateExpression(property.value);
-                }
+                code += this.generateFromObjectProperty(properties[i]);
             }
 
             code += this._RIGHT_GULL_WING;
@@ -453,6 +442,32 @@ CodeTextGenerator.prototype =
             return code;
         }
         catch(e) { this.notifyError("Error when generating HTML from object expression:" + e); }
+    },
+
+    generateFromObjectProperty: function(property)
+    {
+       try
+       {
+            var code = "";
+
+           if (property.kind == "init")
+           {
+               code += this.generateJsCode(property.key) + this._COLON + " "
+                    + this.generateJsCode(property.value);
+           }
+           else
+           {
+               code += this.generateJsCode(property.key);
+
+               if (astHelper.isFunctionExpression(property.value))
+                   code += this.generateFromFunction(property.value);
+               else
+                   code += this.generateExpression(property.value);
+           }
+
+           return code;
+       }
+       catch(e) { this.notifyError("Error when generating code from object property: " + e); }
     },
 
     generateFromIfStatement: function(ifStatement)

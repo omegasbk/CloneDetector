@@ -1,120 +1,105 @@
 var MergeableNodeDetector = {
-		
-		getMergeableNodes: function(program)
-	    {
-	        var mergeableNodes = [];
+    defaultMinNumOfTokens: 4,
+    getMergeCombinations: function(program)
+    {
+        var combinations = [];
 
-	        var allFunctions = ASTHelper.getAllFunctions(program);
+        var functions = [];
+        var loops = [];
+        var conditionals = [];
+        var objectExpressions = [];
 
-	        var directProgramChildren = program.children;
-
-	        ValueTypeHelper.pushAll(mergeableNodes, this.getMergeableNodesFromNodeList(directProgramChildren));
-
-	        allFunctions.forEach(function(functionElement)
-	        {
-	            ValueTypeHelper.pushAll(mergeableNodes, this.getMergeableNodesFromNodeList(functionElement.children));
-	        }, this);
-
-	        return mergeableNodes;
-	    },
-
-	    getMergeableNodesFromNodeList: function(statements)
-	    {
-	         var mergeableNodes = [];
-	         minNumberOfTokens = 4;
-
-	         statements.forEach(function(statement)
-	         {
-	             if(statement.characteristicVector.sum() >= this.minNumberOfTokens)
-	             {
-	                mergeableNodes.push(statement);
-	             }
-	         });
-
-
-	         return mergeableNodes;
-	    }, 
-	    
-	    getChildrenCombinations: function(mergeableNodes)
-	    {
-	    	var mergeableNodesChildren = [];
-	    	var childrenCombinations = [];
-	    	var brojac = 0;
-	    	
-	    	mergeableNodes.forEach(function(mergeableNode)
-	    	{
-	    		
-	    		for(var i = 0; i < mergeableNode.children.length; i++)
-	    		{
-	    			brojac++;	
-	    			var allCombinations = MathHelper.generateCombinations(mergeableNode.children.length, i+1);	    			
-	    			
-	    			for(var j = 0; j < allCombinations.length; j++)
-	    			{
-	    				var currentCombination = allCombinations[j];
-	    				var currentCombinationNodes = [];
-	    				
-	    				for(var k = 0; k < currentCombination.length; k++)
-	    				{
-	    					currentCombinationNodes.push(mergeableNode.children[currentCombination[k]]);
-	    				}
-	    				
-	    				childrenCombinations.push(currentCombinationNodes);
-	    			}
-	    		}
-	    	});
-
-	        //this._checkChildrenCombinations(childrenCombinations);
-	   
-	    	return childrenCombinations;	    	    	
-	    },
-
-        _checkChildrenCombinations: function(childrenCombinations)
+        ASTHelper.traverseAst(program, function(element)
         {
-            var combinationIds = [];
-            childrenCombinations.forEach
-            (
-                 function (childCombination)
-                 {
-                     var combinationId = [];
+            if(element.characteristicVector == null || element.characteristicVector.sum() < MergeableNodeDetector.defaultMinNumOfTokens) { return; }
 
-                     childCombination.forEach(function(combination)
-                     {
-                        combinationId.push(combination.loc.start.line + "-" + combination.loc.start.column);
-                     });
+            if(ASTHelper.isFunction(element)) { functions.push(element);}
+            else if (ASTHelper.isLoopStatement(element)) { loops.push(element);}
+            else if (ASTHelper.isIfStatement(element) || ASTHelper.isSwitchStatement(element)) { conditionals.push(element); }
+            else if (ASTHelper.isObjectExpression(element)) { objectExpressions.push(element); }
+        });
 
-                     combinationIds.push(combinationId);
-                 }
-             );
+        ValueTypeHelper.pushAll(combinations, this.getAllCombinations(program.children));
 
-             for(var i = 0; i < combinationIds.length - 1; i++)
-             {
-                for (var j = i+1; j < combinationIds.length; j++)
+        for(var i = 0, length = functions.length; i < length; i++)
+        {
+            ValueTypeHelper.pushAll(combinations, this.getAllCombinations(functions[i].body.children));
+        }
+        for(var i = 0, length = loops.length; i < length; i++)
+        {
+            ValueTypeHelper.pushAll(combinations, this.getAllCombinations(loops[i].body.children));
+        }
+        for(var i = 0, length = conditionals.length; i < length; i++)
+        {
+            var conditional = conditionals[i];
+
+            if(ASTHelper.isIfStatement(conditional))
+            {
+                ValueTypeHelper.pushAll(combinations, this.getAllCombinations(conditional.consequent.children));
+
+                if(conditional.alternate != null)
                 {
-                    var ithArray = combinationIds[i];
-                    var jthArray = combinationIds[j];
+                    ValueTypeHelper.pushAll(combinations, this.getAllCombinations(conditional.alternate.children));
+                }
+            }
+            else
+            {
+                ValueTypeHelper.pushAll(combinations, this.getAllCombinations(conditional.children));
+            }
+        }
+        for(var i = 0, length = objectExpressions.length; i < length; i++)
+        {
+            ValueTypeHelper.pushAll(combinations, this.getAllCombinations(objectExpressions[i].children));
+        }
 
-                    if(ithArray.length != jthArray.length) { continue; }
+        return combinations;
+    },
 
-                     ithArray.sort();
-                     jthArray.sort();
+    getAllCombinations: function(nodes)
+    {
+        var combinations = [];
 
-                     var areEqual = true;
-                     for(var k = 0; k < ithArray.length; k++)
-                     {
-                         if(ithArray[k] != jthArray[k])
-                         {
-                            areEqual = false;
-                            break;
-                         }
-                     }
+        var expandedNodes = [];
 
-                     if(areEqual && ithArray.length != 0)
-                     {
-                        console.log("Double");
-                     }
+        for(var i = 0, length = nodes.length; i < length; i++)
+        {
+            var node = nodes[i];
+
+            if(ASTHelper.isBlockStatement(node)) { ValueTypeHelper.pushAll(expandedNodes, node.children); }
+            else { expandedNodes.push(node); }
+        }
+
+        for(var i = 0, length = expandedNodes.length; i < length; i++)
+        {
+            var allCombinations = MathHelper.generateCombinations(length, i + 1);
+
+            for(var j = 0; j < allCombinations.length; j++)
+            {
+                var currentCombination = allCombinations[j];
+                var currentCombinationNodes = [];
+
+                var combinationTokenNum = 0;
+
+                for(var k = 0; k < currentCombination.length; k++)
+                {
+                    var selectedNode = expandedNodes[currentCombination[k]];
+                    currentCombinationNodes.push(selectedNode);
+
+                    if(selectedNode.characteristicVector == null)
+                    {
+                        var a = 3;
+                    }
+
+                    combinationTokenNum += selectedNode.characteristicVector.sum();
+                }
+
+                if(combinationTokenNum >= this.defaultMinNumOfTokens)
+                {
+                    combinations.push(currentCombinationNodes);
                 }
             }
         }
-	    
+
+        return combinations;
+    }
 }

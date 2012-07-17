@@ -7,8 +7,6 @@ var VectorGenerator = {
     {
         try
         {
-        	
-        	
             if(ASTHelper.isProgram(astElement)) { this.generateVectorForProgram(astElement);}
             else if (ASTHelper.isFunction(astElement)) { this.generateVectorForFunction(astElement); }
             else if (ASTHelper.isBlockStatement(astElement)) { this.generateVectorForBlockStatement(astElement); }
@@ -36,9 +34,6 @@ var VectorGenerator = {
 
 
             else if (ASTHelper.isDebuggerStatement(astElement)) { this.generateVectorForDebuggerStatement(astElement); }
-
-
-
 
             else if (ASTHelper.isNewExpression(astElement)) { this.generateVectorForNewExpression(astElement); }
 
@@ -76,9 +71,6 @@ var VectorGenerator = {
             else if (ASTHelper.isIdentifier(astElement)) { this.generateVectorForIdentifier(astElement); }
             else if (ASTHelper.isLiteral(astElement)) { this.generateVectorForLiteral(astElement); }
 
-
-
-
             else if (ASTHelper.isYieldExpression(astElement)) { this.generateVectorForYieldExpression(astElement); }
             else if (ASTHelper.isComprehensionExpression(astElement)) { this.generateVectorForComprehensionExpression(astElement); }
             else if (ASTHelper.isGeneratorExpression(astElement)) { this.generateVectorForGeneratorExpression(astElement); }
@@ -103,7 +95,6 @@ var VectorGenerator = {
     {
         try
         {
-
             if(!ASTHelper.isComprehensionBlock(comprehensionBlock)) { alert("Sent argument is not a comprehension block when generating vector!"); return; }
 
             comprehensionBlock.characteristicVector = new CharacteristicVector();
@@ -111,17 +102,10 @@ var VectorGenerator = {
             this.generate(comprehensionBlock.left);
             comprehensionBlock.characteristicVector.join(comprehensionBlock.left.characteristicVector);
 
-
             this.generate(comprehensionBlock.right);
             comprehensionBlock.characteristicVector.join(comprehensionBlock.right.characteristicVector);
-
-
-
-
         }
         catch(e) { alert("Error when generating vector for Comprehension Block: " + e);}
-
-
     },
 
     generateVectorForLetExpression: function (letExpression)
@@ -160,16 +144,12 @@ var VectorGenerator = {
 
             pattern.characteristicVector = new CharacteristicVector();
 
-
             if (ASTHelper.isArrayPattern(pattern))
             {
                 if(!ASTHelper.isArrayPattern(pattern)) { alert("Sent argument is not an array pattern when generating vector!"); return; }
 
-
-
                 pattern.elements.forEach(function(pattern)
                 {
-
                     if(pattern.elements != null)
                     {
                         this.generate(elements);
@@ -184,7 +164,6 @@ var VectorGenerator = {
             {
                 if(!ASTHelper.isObjectPattern(pattern)) { alert("Sent argument is not an object pattern when generating vector!"); return; }
 
-
                 pattern.properties.forEach(function(pattern)
                 {
                     this.generate(pattern.key);
@@ -194,19 +173,10 @@ var VectorGenerator = {
                 }, this);
 
                 pattern.characteristicVector[CharacteristicVector.RELEVANT_NODES.ObjectPattern]++;
-
             }
         }
         catch(e) { alert("Error when generating vector from Pattern"); }
     },
-
-
-
-
-
-
-
-
 
     generateVectorForBlockStatement: function(blockStatement)
     {
@@ -216,11 +186,15 @@ var VectorGenerator = {
 
             blockStatement.characteristicVector = new CharacteristicVector();
 
-            blockStatement.body.forEach(function(statement)
+            var body = blockStatement.body;
+
+            for(var i = 0, length = body.length; i < length; i++)
             {
+                var statement = body[i];
+
                 this.generate(statement);
                 blockStatement.characteristicVector.join(statement.characteristicVector);
-            }, this);
+            }
         }
         catch(e) { alert("Error when generating vector for Block Statement: " + e);}
     },
@@ -240,7 +214,6 @@ var VectorGenerator = {
             labeledStatement.characteristicVector.join(labeledStatement.body.characteristicVector);
 
             labeledStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.LabeledStatement]++;
-
         }
         catch ( e ) { alert("Error when generating vector for Labeled Statement: " + e);}
     },
@@ -262,13 +235,9 @@ var VectorGenerator = {
             this.generate (callExpression.callee);
             callExpression.characteristicVector.join(callExpression.callee.characteristicVector);
 
-
             callExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.CallExpression]++;
-
-
         }
         catch (e) { alert("Error when generating vector for Call Expression: " + e); }
-
     },
 
 
@@ -280,25 +249,27 @@ var VectorGenerator = {
 
             objectExpression.characteristicVector = new CharacteristicVector();
 
-            objectExpression.properties.forEach(function(properties)
+            objectExpression.properties.forEach(function(property)
             {
+                property.characteristicVector = new CharacteristicVector();
 
-                this.generate(properties.key);
-                objectExpression.characteristicVector.join(properties.key.characteristicVector);
+                this.generate(property.key);
+                objectExpression.characteristicVector.join(property.key.characteristicVector);
 
-                this.generate(properties.value);
-                objectExpression.characteristicVector.join(properties.value.characteristicVector);
+                this.generate(property.value);
+                objectExpression.characteristicVector.join(property.value.characteristicVector);
 
-                if(properties.kind == "init") objectExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.ObjectInitExpression]++;
-                if(properties.kind == "get") objectExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.ObjectGetExpression]++;
-                if(properties.kind == "set") objectExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.ObjectSetExpression]++;
+                if(property.kind == "init") objectExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.ObjectInitExpression]++;
+                if(property.kind == "get") objectExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.ObjectGetExpression]++;
+                if(property.kind == "set") objectExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.ObjectSetExpression]++;
 
+                property.characteristicVector.join(property.key.characteristicVector);
+                property.characteristicVector.join(property.value.characteristicVector);
             }, this);
 
             //NEMA KIND PROPERTY-a
 
             objectExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.ObjectExpression]++;
-
         }
         catch (e) { alert("Error when generating vector for Object Expression: " + e); }
     },
@@ -307,7 +278,6 @@ var VectorGenerator = {
     {
         try
         {
-
             if(!ASTHelper.isMemberExpression(memberExpression)) { alert("Sent argument is not a member expression when generating vector!"); return; }
 
             memberExpression.characteristicVector = new CharacteristicVector();
@@ -318,9 +288,7 @@ var VectorGenerator = {
             this.generate(memberExpression.property);
             memberExpression.characteristicVector.join(memberExpression.property.characteristicVector);
 
-
             memberExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.MemberExpression]++;
-
         }
         catch (e) { alert("Error when generating vector for Member Expression: " + e); }
     },
@@ -340,7 +308,6 @@ var VectorGenerator = {
             withStatement.characteristicVector.join(withStatement.body.characteristicVector);
 
             withStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.WithStatement]++;
-
         }
         catch (e) { alert("Error when generating vector for With Statement: " + e); }
     },
@@ -355,18 +322,14 @@ var VectorGenerator = {
             thisExpression.characteristicVector = new CharacteristicVector();
 
             thisExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.ThisExpression]++;
-
-
         }
         catch (e) { alert("Error when generating vector for This Expression: " + e); }
-
     },
 
     generateVectorForArrayExpression: function (arrayExpression)
     {
         try
         {
-
             if(!ASTHelper.isArrayExpression(arrayExpression)) { alert("Sent argument is not an array expression when generating vector!"); return; }
 
             arrayExpression.characteristicVector = new CharacteristicVector();
@@ -381,13 +344,8 @@ var VectorGenerator = {
             }, this);
 
             arrayExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.ArrayExpression]++;
-
-
-
         }
         catch (e) { alert("Error when generating vector for Array Expression: " + e); }
-
-
     },
 
     generateVectorForNewExpression: function (newExpression)
@@ -397,7 +355,6 @@ var VectorGenerator = {
             if(!ASTHelper.isNewExpression(newExpression)) { alert("Sent argument is not a new expression when generating vector!"); return; }
 
             newExpression.characteristicVector = new CharacteristicVector();
-
 
             //NE VALJA CONSTUCTOR, MISLIM DA JE NETOCNO NAPISANO NA PAPIRU
             /*
@@ -410,9 +367,7 @@ var VectorGenerator = {
                 newExpression.characteristicVector.join(arguments.characteristicVector);
             }, this);
 
-
             newExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.NewExpression]++;
-
         }
         catch (e) { alert("Error when generating vector for New Expression: " + e); }
     },
@@ -435,7 +390,6 @@ var VectorGenerator = {
             }, this);
 
             switchStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.SwitchStatement]++;
-
         }
         catch (e) { alert("Error when generating vector for Switch Statement: " + e); }
     },
@@ -461,7 +415,6 @@ var VectorGenerator = {
             }, this);
 
             switchCase.characteristicVector[CharacteristicVector.RELEVANT_NODES.SwitchCase]++;
-
         }
         catch (e) { alert("Error when generating vector for Switch Case: " + e); }
     },
@@ -484,11 +437,9 @@ var VectorGenerator = {
             conditionalExpression.characteristicVector.join(conditionalExpression.consequent.characteristicVector);
 
             conditionalExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.ConditionalExpression]++;
-
         }
         catch (e) { alert("Error when generating vector for Conditional Expression: " + e); }
     },
-
 
     generateVectorForReturnStatement: function (returnStatement)
     {
@@ -502,11 +453,9 @@ var VectorGenerator = {
             {
                 this.generate(returnStatement.argument);
                 returnStatement.characteristicVector.join(returnStatement.argument.characteristicVector);
-
             }
 
             returnStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.ReturnStatement]++;
-
         }
         catch (e) { alert("Error when generating vector for Return Statement: " + e); }
     },
@@ -523,11 +472,9 @@ var VectorGenerator = {
             {
                 this.generate(throwStatement.argument);
                 throwStatement.characteristicVector.join(throwStatement.argument.characteristicVector);
-
             }
 
             throwStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.ThrowStatement]++;
-
         }
         catch (e) { alert("Error when generating vector for Throw Statement: " + e); }
     },
@@ -543,7 +490,6 @@ var VectorGenerator = {
             this.generate(expressionStatement.expression);
 
             expressionStatement.characteristicVector.join(expressionStatement.expression.characteristicVector);
-
         }
         catch(e) { alert("Error when generating vector for Expression Statement: " + e); }
     },
@@ -565,7 +511,6 @@ var VectorGenerator = {
             assignmentExpression.characteristicVector.join(assignmentExpression.right.characteristicVector);
 
             assignmentExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.AssignmentExpression]++;
-
         }
         catch (e) { alert("Error when generating vector for Assignment Expression: " + e); }
     },
@@ -599,9 +544,7 @@ var VectorGenerator = {
             }
         }
         catch (e) { alert("Error when generating vector for Unary Expression: " + e); }
-
     },
-
 
     generateVectorForBinaryExpression: function(binaryExpression)
     {
@@ -642,7 +585,6 @@ var VectorGenerator = {
             {
                 binaryExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.BinaryXmlExpression]++;
             }
-
         }
         catch(e) { alert("Error when generating vector for Binary Expression: " + e);}
     },
@@ -734,9 +676,6 @@ var VectorGenerator = {
                 this.generate(declarator);
                 variableDeclaration.characteristicVector.join(declarator.characteristicVector);
             }, this);
-
-
-            variableDeclaration.characteristicVector[CharacteristicVector.RELEVANT_NODES.VariableDeclaration]++;
         }
         catch(e) { alert("Error when generating vector for Variable Declaration: " + e); }
     },
@@ -845,7 +784,6 @@ var VectorGenerator = {
                 catchClause.characteristicVector.join(catchClause.guard.characteristicVector);
             }
 
-
             catchClause.characteristicVector[CharacteristicVector.RELEVANT_NODES.CatchClause]++;
         }
         catch (e) { alert ("Error when generating vector for Catch Clause: " + e); }
@@ -867,13 +805,11 @@ var VectorGenerator = {
 
             ifStatement.characteristicVector.join(ifStatement.consequent.characteristicVector);
 
-
             if (ifStatement.alternate != null)
             {
                 this.generate(ifStatement.alternate);
                 ifStatement.characteristicVector.join(ifStatement.alternate.characteristicVector);
             }
-
 
             ifStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.IfStatement]++;
         }
@@ -888,7 +824,6 @@ var VectorGenerator = {
             if(!ASTHelper.isForStatement(forStatement)) { alert("Sent argument is not a for statement when generating vector!"); return; }
 
             forStatement.characteristicVector = new CharacteristicVector();
-
 
             if (forStatement.init != null)
             {
@@ -912,11 +847,8 @@ var VectorGenerator = {
             forStatement.characteristicVector.join(forStatement.body.characteristicVector);
 
             forStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.ForStatement]++;
-
-
         }
         catch (e) { alert("Error when generating vector for For Statement: " + e); }
-
     },
 
     generateVectorForForInStatement: function (forinStatement)
@@ -938,7 +870,6 @@ var VectorGenerator = {
 
             forinStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.ForInStatement]++;
 
-
             //MISLIM DA JE EACH NEBITAN (each:boolean) =)
         }
         catch (e) { alert("Error when generating vector for for in statement: " + e); }
@@ -959,7 +890,6 @@ var VectorGenerator = {
             whileStatement.characteristicVector.join(whileStatement.test.characteristicVector);
 
             whileStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.WhileStatement]++;
-
         }
         catch (e) { alert("Error when generating vector for While Statement: " + e); }
 
@@ -983,7 +913,6 @@ var VectorGenerator = {
 
         }
         catch (e) { alert("Error when generating vector for DoWhile Statement: " + e); }
-
     },
 
     /**
@@ -1020,7 +949,6 @@ var VectorGenerator = {
             }
 
             breakStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.BreakStatement]++;
-
         }
         catch (e) { alert ("Error when generating vector for Break Statement: " + e); }
 
@@ -1035,7 +963,6 @@ var VectorGenerator = {
             debuggerStatement.characteristicVector = new CharacteristicVector();
 
             debuggerStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.DebuggerStatement]++;
-
         }
         catch (e) { alert ("Error when generating vector for Debugger Statement: " + e); }
     },
@@ -1055,7 +982,6 @@ var VectorGenerator = {
             }
 
             continueStatement.characteristicVector[CharacteristicVector.RELEVANT_NODES.ContinueStatement]++;
-
         }
         catch (e) { alert ("Error when generating vector for Continue Statement: " + e); }
     },
@@ -1088,10 +1014,8 @@ var VectorGenerator = {
             this.generate(logicalExpression.left);
             this.generate(logicalExpression.right);
 
-
             logicalExpression.characteristicVector.join(logicalExpression.left.characteristicVector);
             logicalExpression.characteristicVector.join(logicalExpression.right.characteristicVector);
-
 
             logicalExpression.characteristicVector[CharacteristicVector.RELEVANT_NODES.LogicalExpression]++;
         }
@@ -1122,7 +1046,6 @@ var VectorGenerator = {
     {
         try
         {
-
             if(!ASTHelper.isComprehensionExpression(comprehensionExpression)) { alert("Sent argument is not a comprehension expression when generating vector!"); return; }
 
             comprehensionExpression.characteristicVector = new CharacteristicVector();
@@ -1130,13 +1053,11 @@ var VectorGenerator = {
             this.generate(comprehensionExpression.body);
             comprehensionExpression.characteristicVector.join(comprehensionExpression.body.characteristicVector);
 
-
             comprehensionExpression.blocks.forEach(function(blocks)
             {
                 this.generate(blocks);
                 comprehensionExpression.characteristicVector.join(blocks.characteristicVector);
             }, this);
-
 
             if( comprehensionExpression.filter != null)
             {
@@ -1166,7 +1087,6 @@ var VectorGenerator = {
                 generatorExpression.characteristicVector.join(block.characteristicVector);
             }, this);
 
-
             if( generatorExpression.filter != null)
             {
                 this.generate(generatorExpression.filter);
@@ -1178,146 +1098,3 @@ var VectorGenerator = {
         catch (e) { alert ("Error when generating vector for Generator Expression: " + e); }
     }
 };
-
-
-function CharacteristicVector()
-{
-    for(var propertyName in CharacteristicVector.RELEVANT_NODES)
-    {
-        this[propertyName] = 0;
-    }
-
-    this.join = function(characteristicVector)
-    {
-        try
-        {
-            if(characteristicVector == null) { alert("When joining vectors the vector can not be null!"); return; }
-
-            for(var propertyName in CharacteristicVector.RELEVANT_NODES)
-            {
-                this[propertyName] += characteristicVector[propertyName];
-            }
-        }
-        catch(e) { alert("Error when joining vectors: " + e); }
-    };
-    
-    this.calculateSimilarity = function(characteristicVector)
-    {
-    	try
-    	{
-    		var H = 0;
-    		var R = 0;
-    		var L = 0;
-    		
-    		for(var propertyName in CharacteristicVector.RELEVANT_NODES)
-            {
-    				if ((this[propertyName] == characteristicVector[propertyName]) && (this[propertyName] != 0) && (characteristicVector[propertyName] != 0))  H += this[propertyName];
-	                else if (this[propertyName] > characteristicVector[propertyName]) L += this[propertyName] - characteristicVector[propertyName];
-	                else if(this[propertyName] < characteristicVector[propertyName]) R += characteristicVector[propertyName] - this[propertyName];
-            }
-    		
-    		
-    		var similarity = 2*H/(2*H+L+R);
-    		
-    		return similarity;
-    		
-    	}
-    	catch(e) { alert("Error when calculating similarity: " + e) }
-    };
-    
-    this.sum = function()
-    {
-        try
-        {
-        	var sum = 0;
-
-            for(var propertyName in CharacteristicVector.RELEVANT_NODES)
-            {
-                sum += this[propertyName];
-            }
-        	
-            return sum;
-        }
-        catch(e) { alert("Error when summing vector parameters: " + e); }
-    };
-
-    this.id = CharacteristicVector._ID_COUNTER++;
-};
-
-CharacteristicVector._ID_COUNTER = 0;
-
-
-
-CharacteristicVector.RELEVANT_NODES =
-{
-    FunctionDeclaration: "FunctionDeclaration",
-    VariableDeclaration: "VariableDeclaration",
-    VariableDeclarator: "VariableDeclarator",
-    SwitchCase: "SwitchCase",
-    CatchClause: "CatchClause",
-    Identifier: "Identifier",
-    StringLiteral: "StringLiteral",
-    NumberLiteral: "NumberLiteral",
-    BooleanLiteral: "BooleanLiteral",
-    NullLiteral: "NullLiteral",
-    RegExLiteral: "RegExLiteral",
-
-    IfStatement: "IfStatement",
-    LabeledStatement: "LabeledStatement",
-    BreakStatement: "BreakStatement",
-    ContinueStatement: "ContinueStatement",
-    WithStatement: "WithStatement",
-    SwitchStatement: "SwitchStatement",
-    ReturnStatement: "ReturnStatement",
-    ThrowStatement: "ThrowStatement",
-    TryStatement: "TryStatement",
-    WhileStatement: "WhileStatement",
-    DoWhileStatement: "DoWhileStatement",
-    ForStatement: "ForStatement",
-    ForInStatement: "ForInStatement",
-    LetStatement: "LetStatement",
-    DebuggerStatement: "DebuggerStatement",
-
-    ThisExpression : "ThisExpression",
-    ArrayExpression: "ArrayExpression",
-    ObjectExpression: "ObjectExpression",
-
-
-
-    ObjectInitExpression: "ObjectInitExpression",
-    ObjectGetExpression: "ObjectGetExpression",
-    ObjectSetExpression: "ObjectSetExpression",
-
-
-
-    FunctionExpression: "FunctionExpression",
-    SequenceExpression: "SequenceExpression",
-
-    UnaryMathExpression: "UnaryMathExpression",
-    UnaryBitExpression: "UnaryBitExpression",
-    UnaryLogicalExpression: "UnaryLogicalExpression",
-    UnaryObjectExpression: "UnaryObjectExpression",
-
-    BinaryEqualityExpression: "BinaryEqualityExpression",
-    BinaryMathExpression: "BinaryMathExpression",
-    BinaryRelationalExpression: "BinaryRelationalExpression",
-    BinaryBitExpression: "BinaryBitExpression",
-    BinaryObjectExpression: "BinaryObjectExpression",
-    BinaryXmlExpression: "BinaryXmlExpression",
-
-    AssignmentExpression: "AssignmentExpression",
-    UpdateExpression: "UpdateExpression",
-    LogicalExpression: "LogicalExpression",
-    ConditionalExpression: "ConditionalExpression",
-    NewExpression: "NewExpression",
-    CallExpression: "CallExpression",
-    MemberExpression: "MemberExpression",
-    YieldExpression: "YieldExpression",
-    ComprehensionExpression: "ComprehensionExpression",
-    GeneratorExpression: "GeneratorExpression",
-    LetExpression: "LetExpression",
-
-    ArrayPattern: "ArrayPattern",
-    ObjectPattern: "ObjectPattern"
-};
-
